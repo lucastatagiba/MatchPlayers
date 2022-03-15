@@ -1,0 +1,8 @@
+const CardFeed = () => {
+  return (
+    <>
+      <h1>oi</h1>
+    </>
+  );
+};
+export default CardFeed;

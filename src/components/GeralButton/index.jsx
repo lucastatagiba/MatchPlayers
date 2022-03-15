@@ -1,7 +1,9 @@
-const GeralButton = () => {
+import { Container } from "./style";
+
+const GeralButton = ({ bgcolor, children }) => {
   return (
     <>
-      <h1>oi</h1>
+      <Container bgcolor={bgcolor}>{children}</Container>
     </>
   );
 };

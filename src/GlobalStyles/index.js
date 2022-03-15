@@ -5,6 +5,7 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: 0;
+    font-family: "Roboto Mono", monospace;
 }
 body,input,button{
     font-size: 1rem;
@@ -17,5 +18,20 @@ button{
 }
 a{
     text-decoration: none;
+}
+
+:root{
+    --Blue-primary: #002543;
+    --Blue-secundary: #2B4C64;
+    --Color-Secondary: #6C8394;
+
+//tons de cinza
+    --Gray-4: #212529;
+    --Gray-3: #868E96;
+    --Gray-2: #E9ECEF;
+    --Gray-1: #F8F9FA;
+
+//fontsizes
+
 }
 `;

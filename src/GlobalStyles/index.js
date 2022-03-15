@@ -24,7 +24,7 @@ a{
     --Blue-primary: #002543;
     --Blue-secundary: #2B4C64;
     --Color-Secondary: #6C8394;
-
+    --Background-Color: #F3F2EF;
 //tons de cinza
     --Gray-4: #212529;
     --Gray-3: #868E96;

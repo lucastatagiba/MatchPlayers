@@ -3,6 +3,7 @@ import FeedPage from "../Pages/FeedPage";
 import LandingPage from "../Pages/LandingPage";
 import ProfilePage from "../Pages/ProfilePage";
 import RegisterPage from "../Pages/RegisterPage";
+import NotFoundPage from "../Pages/NotFoundPage";
 
 const Routes = () => {
   return (

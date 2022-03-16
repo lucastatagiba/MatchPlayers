@@ -9,10 +9,10 @@ import NotFoundPage from "../Pages/NotFoundPage";
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path={"/"} component={LandingPage} />
-      <Route exact path={"/register"} component={RegisterPage} />
-      <Route exact path={"/feed"} component={FeedPage} />
-      <Route exact path={"/profile/:name"} component={ProfilePage} />
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/register" component={RegisterPage} />
+      <Route exact path="/feed" component={FeedPage} />
+      <Route exact path="/profile/:name" component={ProfilePage} />
       <Route component={NotFoundPage} />
     </Switch>
   );

@@ -3,13 +3,17 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import * as styles from "./style";
 import logo from "../../Assets/img/logo.png";
+import { UserDataContext } from "../../providers/userData";
+import { useHistory } from "react-router-dom";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { handleLogin } = useContext(UserDataContext);
+  const history = useHistory();
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Digite seu email").email("Formato Inválido"),
@@ -23,7 +27,7 @@ const LandingPage = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const handleSubmitLogin = (data) => {
-    console.log(data);
+    handleLogin(data, history);
   };
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);

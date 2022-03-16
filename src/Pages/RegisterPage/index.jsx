@@ -3,14 +3,17 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import * as styles from "./style";
 import logo from "../../Assets/img/logo.png";
+import { UserDataContext } from "../../providers/userData";
+import { useHistory } from "react-router-dom";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const { handleRegister } = useContext(UserDataContext);
+  const history = useHistory();
   const formSchema = yup.object().shape({
     name: yup.string().required("Digite seu Nome Completo"),
     nickname: yup.string().required("Digite seu Apelido"),
@@ -33,8 +36,14 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const handleSubmitLogin = (data) => {
-    console.log(data);
+  const handleSubmitRegister = (data) => {
+    const newData = {
+      name: data.name,
+      email: data.email,
+      nickname: data.nickname,
+      password: data.password,
+    };
+    handleRegister(newData, history);
   };
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
@@ -66,7 +75,7 @@ const RegisterPage = () => {
               <span>Social Media For Games</span>
             </div>
           </figure>
-          <form onSubmit={handleSubmit(handleSubmitLogin)}>
+          <form onSubmit={handleSubmit(handleSubmitRegister)}>
             <div>
               <TextField
                 fullWidth

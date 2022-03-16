@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 export const PostListContext = createContext([]);
 
-export const FriendListProvider = ({ children }) => {
+export const PostListProvider = ({ children }) => {
   const [postList, setPostList] = useState(
     JSON.parse(localStorage.getItem("postList")) || []
   );

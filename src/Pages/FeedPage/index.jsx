@@ -1,7 +1,9 @@
+import Header from "../../components/Header";
+
 const FeedPage = () => {
   return (
     <>
-      <h1> Oi </h1>
+      <Header />
     </>
   );
 };

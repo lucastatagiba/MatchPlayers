@@ -7,7 +7,8 @@ const Input = ({
   color,
   bdradius,
   placeholder,
-  icon,
+  Icon,
+  border = true,
 }) => {
   return (
     <>
@@ -16,10 +17,12 @@ const Input = ({
         width={width}
         color={color}
         bdradius={bdradius}
-        placeholder={placeholder}
-        icon={icon}
         height={height}
-      ></Container>
+        border={border}
+      >
+        <input placeholder={placeholder} />
+        <Icon />
+      </Container>
     </>
   );
 };

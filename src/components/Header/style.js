@@ -32,7 +32,7 @@ export const Container = styled.div`
     }
   }
   .modalMenu {
-    display: ${(props) => (!props.children[2].props.appear ? "none" : "flex")};
+    display: ${(props) => (!props.children[1].props.appear ? "none" : "flex")};
     width: 80%;
     max-width: 380px;
     height: 175px;

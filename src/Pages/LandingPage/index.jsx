@@ -32,14 +32,31 @@ const LandingPage = () => {
   return (
     <>
       <styles.Container>
-        <figure>
-          <img src={logo} alt="Logo" />
-          <div>
-            <h3>MatchPlayers</h3>
-            <span>Social Media For Games</span>
-          </div>
-        </figure>
+        <styles.FigureDesktop>
+          <styles.DivLogo>
+            <img src={logo} alt="Logo" />
+            <div>
+              <h3>MatchPlayers</h3>
+              <span>Social Media For Games</span>
+            </div>
+          </styles.DivLogo>
+          <p>
+            Uma plataforma de rede social que integra o público gamer. Nela o
+            você poderá adicionar seus amigos, seus jogos favoritos, cadastrar
+            uma partida sua ou procurar por alguma existente. Você poderá se
+            conectar com a comunidade e realizar conquistas. Será possível
+            também ver as postagens de outros membros sobre notícias da
+            comunidade gamer.
+          </p>
+        </styles.FigureDesktop>
         <styles.BoxForm>
+          <figure>
+            <img src={logo} alt="Logo" />
+            <div>
+              <h3>MatchPlayers</h3>
+              <span>Social Media For Games</span>
+            </div>
+          </figure>
           <form onSubmit={handleSubmit(handleSubmitLogin)}>
             <div>
               <TextField

@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
   .modalMenu {
-    display: ${(props) => !props.children[2].props.appear && "none"};
+    display: ${(props) => !props.children[2].props.$appear && "none"};
     width: 80%;
     max-width: 380px;
     height: 400px;

@@ -7,12 +7,11 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 40px;
+  justify-content: center;
 
   figure {
     display: flex;
     height: max-content;
-    margin-bottom: 190px;
     cursor: pointer;
     div {
       width: max-content;
@@ -35,14 +34,47 @@ export const Container = styled.div`
   }
 
   @media (min-width: 1024px) {
-    padding-top: 0;
-    padding-right: 20vw;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 20px;
-    figure {
-      margin-bottom: 30px;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: none;
+    background: linear-gradient(
+      90deg,
+      rgba(6, 37, 67, 1) 40%,
+      rgba(247, 95, 48, 1) 100%
+    );
+  }
+`;
+
+export const FigureDesktop = styled.div`
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    img {
+      height: 150px;
+      width: 110px;
     }
+    p {
+      font-size: 20px;
+      width: 426px;
+      text-align: center;
+      color: white;
+    }
+  }
+`;
+export const DivLogo = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: white;
+  align-items: center;
+  padding-bottom: 70px;
+  cursor: pointer;
+  h3 {
+    font-size: 34px;
+  }
+  span {
+    font-size: 24px;
   }
 `;
 

@@ -2,11 +2,12 @@ import { Container } from "./style";
 import logoIMG from "../../Assets/img/logo.png";
 import BigLogoIMG from "../../Assets/img/image.png";
 import { BsHouseFill } from "react-icons/bs";
-import { AiFillMessage, AiFillSetting } from "react-icons/ai";
+import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import userIMG from "../../Assets/img/Praia1_140220.jpg";
 import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import Input from "../Input";
 
 const Header = () => {
   const [appearModal, setAppearModal] = useState({
@@ -64,13 +65,13 @@ const Header = () => {
         alt="logo"
         src={BigLogoIMG}
         className="bigLogo"
-        onClick={() => history("/feed")}
+        onClick={() => history.push("/feed")}
       />
       <img
         alt="logo"
         src={logoIMG}
         className="logoimg"
-        onClick={() => history("/feed")}
+        onClick={() => history.push("/feed")}
       />
 
       <div className="modalMenu" appear={appearModal.menu}>
@@ -84,11 +85,14 @@ const Header = () => {
       </div>
 
       <div>
-        <input />
+        <Input Icon={AiOutlineSearch} width="250" placeholder="Pesquisar" />
 
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
 
-        <BsHouseFill className="houseIcon" onClick={() => history("/feed")} />
+        <BsHouseFill
+          className="houseIcon"
+          onClick={() => history.push("/feed")}
+        />
         <AiFillMessage
           className="messageIcon"
           onClick={() => handleModal("message")}

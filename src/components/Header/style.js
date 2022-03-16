@@ -23,8 +23,8 @@ export const Container = styled.div`
   }
 
   .logoimg {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
   }
   .bigLogo {
     display: none;
@@ -39,8 +39,6 @@ export const Container = styled.div`
     }
     svg {
       color: var(--Gray-3);
-      width: 25px;
-      height: 25px;
     }
     .userimg,
     .houseIcon,
@@ -97,8 +95,8 @@ export const Container = styled.div`
       .configIcon {
         display: inline;
         color: var(--Gray-3);
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
       }
       .userimg {
         width: 40px;

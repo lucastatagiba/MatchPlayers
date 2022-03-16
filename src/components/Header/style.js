@@ -8,16 +8,50 @@ export const Container = styled.div`
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
   .modalMenu {
-    display: ${(props) => !props.children[2].props.appear && "none"};
+    display: ${(props) => (!props.children[2].props.appear ? "none" : "flex")};
     width: 80%;
     max-width: 380px;
-    height: 400px;
-    background-color: var(--Gray-2);
+    height: 175px;
     border-radius: 8px;
     position: absolute;
     top: 60px;
+    flex-direction: column;
+    margin-top: 20px;
+    border: 2px solid var(--Blue-primary);
+    div {
+      width: 100%;
+      border-top: 1px solid var(--Gray-3);
+      display: flex;
+      justify-content: center;
+      font-size: 14px;
+      padding-top: 5px;
+    }
   }
-  .modalConfig,
+  .modalMenu :nth-child(1) {
+    border-top: none;
+  }
+  .modalConfig {
+    display: ${(props) => (!props.children[3].props.appear ? "none" : "flex")};
+    flex-direction: column;
+    width: 80%;
+    max-width: 380px;
+    height: 300px;
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border: 2px solid var(--Blue-primary);
+    .upload {
+      width: 25px;
+      height: 25px;
+      margin: 5px;
+    }
+    h5 {
+      display: flex;
+      align-items: center;
+    }
+  }
   .modalPhoto {
     display: none;
   }

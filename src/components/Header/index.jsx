@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import { Container } from "./style";
 import logoIMG from "../../Assets/img/logo.png";
 import BigLogoIMG from "../../Assets/img/image.png";
@@ -8,6 +9,8 @@ import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input";
+import Button from "../GeneralButton";
+import { RiUpload2Fill } from "react-icons/ri";
 
 const Header = () => {
   const [appearModal, setAppearModal] = useState({
@@ -75,10 +78,36 @@ const Header = () => {
       />
 
       <div className="modalMenu" appear={appearModal.menu}>
-        Modal menu
+        <div onClick={() => history.push("/")}>Início</div>
+        <div>Amigos</div>
+        <div>Mensagens</div>
+        <div onClick={() => handleModal("config")}>Configurações</div>
+        <div>Sair</div>
       </div>
       <div className="modalConfig" appear={appearModal.config}>
-        Modal config
+        <h5>Editar senha:</h5>
+        <TextField
+          fullWidth
+          label="Senha"
+          variant="outlined"
+          size="small"
+          margin="normal"
+        />
+        <TextField
+          fullWidth
+          label="Confirmar Senha"
+          variant="outlined"
+          size="small"
+          margin="normal"
+        />
+        <h5>
+          Imagem de perfil <RiUpload2Fill className="upload" />
+        </h5>
+        <Button
+          bgcolor={"#002543"}
+          children={"Confirmar alterações"}
+          width={150}
+        />
       </div>
       <div className="modalPhoto" appear={appearModal.photo}>
         Modal foto

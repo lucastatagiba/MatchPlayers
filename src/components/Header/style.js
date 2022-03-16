@@ -7,6 +7,21 @@ export const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
+  .modalMenu {
+    display: ${(props) => !props.children[2].props.appear && "none"};
+    width: 80%;
+    max-width: 380px;
+    height: 400px;
+    background-color: var(--Gray-2);
+    border-radius: 8px;
+    position: absolute;
+    top: 60px;
+  }
+  .modalConfig,
+  .modalPhoto {
+    display: none;
+  }
+
   .logoimg {
     height: 40px;
     width: 40px;
@@ -32,10 +47,34 @@ export const Container = styled.div`
     .messageIcon,
     .configIcon {
       display: none;
+      cursor: pointer;
     }
   }
 
   @media screen and (min-width: 768px) {
+    .modalMenu {
+      display: none;
+    }
+    .modalConfig {
+      display: ${(props) => props.children[3].props.appear && "inline"};
+      width: 80%;
+      max-width: 380px;
+      height: 400px;
+      background-color: var(--Gray-2);
+      border-radius: 8px;
+      position: absolute;
+      top: 60px;
+    }
+    .modalPhoto {
+      display: ${(props) => props.children[4].props.appear && "inline"};
+      width: 80%;
+      max-width: 380px;
+      height: 400px;
+      background-color: var(--Gray-2);
+      border-radius: 8px;
+      position: absolute;
+      top: 60px;
+    }
     .bigLogo {
       height: 50px;
       width: fit-content;

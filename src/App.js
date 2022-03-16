@@ -1,12 +1,20 @@
 import { ToastContainer } from "react-toastify";
-import GlobalStyles from "./GlobalStyles";
+import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+
+import Routes from "./Routes";
+import GlobalStyles from "./GlobalStyles";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <ToastContainer />
-      <GlobalStyles />
+      <BrowserRouter>
+        <Header />
+        <Routes />
+        <ToastContainer />
+        <GlobalStyles />
+      </BrowserRouter>
     </>
   );
 }

@@ -1,24 +1,28 @@
 import { TextField } from "@mui/material";
-import { Container } from "./style";
-import logoIMG from "../../Assets/img/logo.png";
-import BigLogoIMG from "../../Assets/img/image.png";
 import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
-import userIMG from "../../Assets/img/Praia1_140220.jpg";
 import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { RiUpload2Fill } from "react-icons/ri";
+import { toast } from "react-toastify";
+
+import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
 import Button from "../GeneralButton";
-import { RiUpload2Fill } from "react-icons/ri";
+import { Container } from "./style";
 
 const Header = () => {
+  const history = useHistory();
   const [appearModal, setAppearModal] = useState({
     config: false,
     message: false,
     menu: false,
     photo: false,
   });
+  const [photoProfile, setPhotoProfile] = useState(
+    JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
+  );
 
   const handleModal = (icon) => {
     switch (icon) {
@@ -61,28 +65,32 @@ const Header = () => {
         break;
     }
   };
-  const history = useHistory();
+  const handleLogout = () => {
+    localStorage.clear();
+    history.push("/");
+    toast.success("Volte Sempre =)");
+  };
   return (
     <Container>
-      <img
-        alt="logo"
-        src={BigLogoIMG}
-        className="bigLogo"
-        onClick={() => history.push("/feed")}
-      />
-      <img
-        alt="logo"
-        src={logoIMG}
-        className="logoimg"
-        onClick={() => history.push("/feed")}
-      />
+      <figure>
+        <img
+          alt="logo"
+          src={logoIMG}
+          className="logoimg"
+          onClick={() => history.push("/feed")}
+        />
+        <div className="logoName">
+          <h3>MatchPlayers</h3>
+          <span>Social Media For Games</span>
+        </div>
+      </figure>
 
       <div className="modalMenu" appear={appearModal.menu}>
-        <div onClick={() => history.push("/")}>Início</div>
+        <div onClick={() => history.push("/feed")}>Início</div>
         <div>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
-        <div>Sair</div>
+        <div onClick={handleLogout}>Sair</div>
       </div>
       <div className="modalConfig" appear={appearModal.config}>
         <h5>Editar senha:</h5>
@@ -131,7 +139,7 @@ const Header = () => {
           onClick={() => handleModal("config")}
         />
         <img
-          src={userIMG}
+          src={photoProfile}
           alt="userPhoto"
           className="userimg"
           onClick={() => handleModal("photo")}

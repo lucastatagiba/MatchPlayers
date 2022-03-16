@@ -7,6 +7,30 @@ export const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
+  figure {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .logoName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    h3 {
+      display: none;
+      font-family: "Supermercado One", cursive;
+      font-size: 24px;
+      color: var(--Blue-primary);
+    }
+    span {
+      display: none;
+      font-family: "Supermercado One", cursive;
+      font-size: 20px;
+      color: var(--Blue-primary);
+    }
+  }
   .modalMenu {
     display: ${(props) => (!props.children[2].props.appear ? "none" : "flex")};
     width: 80%;
@@ -58,7 +82,7 @@ export const Container = styled.div`
 
   .logoimg {
     height: 50px;
-    width: 50px;
+    width: 45px;
   }
   .bigLogo {
     display: none;
@@ -107,13 +131,13 @@ export const Container = styled.div`
       position: absolute;
       top: 60px;
     }
-    .bigLogo {
-      height: 50px;
-      width: fit-content;
-      display: inline;
-    }
-    .logoimg {
-      display: none;
+    .logoName {
+      h3 {
+        display: block;
+      }
+      span {
+        display: block;
+      }
     }
 
     div {

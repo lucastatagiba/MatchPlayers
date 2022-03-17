@@ -45,13 +45,56 @@ export const Container = styled.div`
     padding: 0 10px;
     width: 95%;
     max-width: 450px;
+    margin: 12px 0;
     button {
       font-size: 11px;
       margin-right: 3px;
-      padding: 4px 7px;
+      padding: 0px 7px;
     }
     select {
+      text-align: center;
       font-size: 10px;
+      background-color: var(--Blue-primary);
+      color: var(--White-primary);
+      border-radius: 8px;
+      padding: 2px;
     }
+  }
+  .divStartPub {
+    display: flex;
+    width: 95%;
+    background-color: var(--White-primary);
+    padding: 0 10px;
+    height: 75px;
+    align-items: center;
+    max-width: 450px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    img {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+    .containPubDiv {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      border-radius: 8px;
+      button {
+        font-size: 12px;
+        text-align: start;
+      }
+      .buttonPubDiv {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        padding: 0 5px;
+        width: 100%;
+      }
+    }
+  }
+  .rightAside {
+    display: none;
   }
 `;

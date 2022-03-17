@@ -1,9 +1,12 @@
+import { useState } from "react";
+import { BsCardImage } from "react-icons/bs";
+
+import Header from "../../components/Header";
 import CardFeed from "../../components/CardFeed";
 import GeralButton from "../../components/GeneralButton";
-import Header from "../../components/Header";
 import { Container } from "./style";
-import UserImg from "../../Assets/img/Praia1_140220.jpg";
-import { useState } from "react";
+import ListCard from "../../components/ListCard";
+
 const FeedPage = ({
   gamelist,
   disponibilidadeHorario,
@@ -13,6 +16,7 @@ const FeedPage = ({
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
+  console.log(userData);
 
   return (
     <>
@@ -40,7 +44,7 @@ const FeedPage = ({
             <div>
               <GeralButton>Todos</GeralButton>
               <GeralButton>Jogos</GeralButton>
-              <GeralButton width={60}>Notícias</GeralButton>
+              <GeralButton>Notícias</GeralButton>
             </div>
             <select>
               <option value="all"> Todos </option>
@@ -48,15 +52,42 @@ const FeedPage = ({
             </select>
           </div>
           <div className="divStartPub">
-            <img alt="UserPhoto" src="" />
+            <img alt="UserPhoto" src={userData.profileIMG} />
             <div className="containPubDiv">
-              <div className="startPub"> Começar publicação</div>
+              <GeralButton bgcolor={"#F3F2EF"} width={"95%"} color={"#6C8394"}>
+                Começar Publicação
+              </GeralButton>
               <div className="buttonPubDiv">
-                <GeralButton> Foto </GeralButton>
+                <GeralButton>
+                  <BsCardImage />
+                  Foto
+                </GeralButton>
                 <GeralButton> Publicar </GeralButton>
               </div>
             </div>
           </div>
+          <ListCard
+            cardlist={[
+              {
+                nickname: "Lucas Giba",
+                profileIMG: "url",
+                plataformList: [],
+                postIMG: "img",
+                desc: "aqui entra o que a pessoa postou",
+                comments: [],
+                userId: 2,
+              },
+              {
+                nickname: "Lucas Giba2",
+                profileIMG: "url",
+                plataformList: [],
+                postIMG: "img",
+                desc: "aqui entra o que a pessoa postou",
+                comments: [],
+                userId: 2,
+              },
+            ]}
+          ></ListCard>
           {/* <ul>
             {postList.map((post) => (
               <li>{<CardFeed />}</li>

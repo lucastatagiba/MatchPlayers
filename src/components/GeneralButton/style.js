@@ -8,5 +8,5 @@ export const Container = styled.button`
   border: none;
   border-radius: ${(props) => (props.bdradius ? props.bdradius : "8px")};
   cursor: pointer;
-  height: ${(props) => (props.height ? props.height : "30px")};
+  height: ${(props) => (props.height ? props.height : "25px")};
 `;

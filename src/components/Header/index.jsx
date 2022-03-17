@@ -4,9 +4,8 @@ import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { RiUpload2Fill } from "react-icons/ri";
+import { RiUpload2Fill, RiCloseCircleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
-
 import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
 import Button from "../GeneralButton";
@@ -23,6 +22,7 @@ const Header = () => {
   const [photoProfile, setPhotoProfile] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
   );
+  const user = JSON.parse(localStorage.getItem("@matchplayers-userData")).name;
 
   const handleModal = (icon) => {
     switch (icon) {
@@ -86,6 +86,9 @@ const Header = () => {
       </figure>
 
       <div className="modalMenu" appear={appearModal.menu}>
+        <div onClick={() => handleModal("menu")} className="close">
+          <RiCloseCircleFill />
+        </div>
         <div onClick={() => history.push("/feed")}>Início</div>
         <div>Amigos</div>
         <div>Mensagens</div>
@@ -93,6 +96,9 @@ const Header = () => {
         <div onClick={handleLogout}>Sair</div>
       </div>
       <div className="modalConfig" appear={appearModal.config}>
+        <div onClick={() => handleModal("menu")} className="close">
+          <RiCloseCircleFill />
+        </div>
         <h5>Editar senha:</h5>
         <TextField
           fullWidth
@@ -111,14 +117,27 @@ const Header = () => {
         <h5>
           Imagem de perfil <RiUpload2Fill className="upload" />
         </h5>
-        <Button
-          bgcolor={"#002543"}
-          children={"Confirmar alterações"}
-          width={150}
-        />
+        <div onClick={() => handleModal("config")}>
+          <Button
+            bgcolor={"#002543"}
+            children={"Confirmar alterações"}
+            width={150}
+          />
+        </div>
       </div>
       <div className="modalPhoto" appear={appearModal.photo}>
-        Modal foto
+        <div onClick={() => handleModal("photo")} className="close">
+          <RiCloseCircleFill />
+        </div>
+        <div
+          className="modalPhotoText"
+          onClick={() => history.push(`/profile/${user}`)}
+        >
+          Ir para o meu perfil
+        </div>
+        <div className="modalPhotoText" onClick={() => handleLogout()}>
+          Sair
+        </div>
       </div>
 
       <div>

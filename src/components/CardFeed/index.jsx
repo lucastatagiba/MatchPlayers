@@ -15,31 +15,47 @@ const CardFeed = () => {
             <h3>Giba</h3>
             <span>20 h</span>
           </div>
-          <img
-            className="gameLogo"
-            src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-            alt=""
-          />
-          <img
-            className="gameLogo"
-            src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-            alt=""
-          />
-          <img
-            className="gameLogo"
-            src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-            alt=""
-          />
-          <img
-            className="gameLogo"
-            src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-            alt=""
-          />
-          <img
-            className="gameLogo"
-            src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-            alt=""
-          />
+          <div className="game">
+            <img
+              className="gameLogo"
+              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+              alt=""
+            />
+            <span className="gameName">Call of Duty</span>
+          </div>
+          <div className="game">
+            {" "}
+            <img
+              className="gameLogo"
+              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+              alt=""
+            />
+            <span className="gameName">Lol</span>
+          </div>
+          <div className="game">
+            <img
+              className="gameLogo"
+              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+              alt=""
+            />
+            <span className="gameName">PUBG</span>
+          </div>
+          <div className="game">
+            <img
+              className="gameLogo"
+              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+              alt=""
+            />
+            <span className="gameName">Valorant</span>
+          </div>
+          <div className="game">
+            <img
+              className="gameLogo"
+              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+              alt=""
+            />
+            <span className="gameName">Counter-strike</span>
+          </div>
         </Box>
         <div className="postContent">
           <p className="postText">

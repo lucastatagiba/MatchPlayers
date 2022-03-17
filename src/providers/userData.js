@@ -24,6 +24,7 @@ export const UserDataProvider = ({ children }) => {
           "@matchplayers-userData",
           JSON.stringify(res.data.user)
         );
+        setUserData(res.data.user);
         toast.success("Bem vindo ao Match Players");
         history.push("/feed");
       })

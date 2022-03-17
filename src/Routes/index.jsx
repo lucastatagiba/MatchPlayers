@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 
 import FeedPage from "../Pages/FeedPage";
 import LandingPage from "../Pages/LandingPage";
-import ProfilePage from "../Pages/ProfilePage";
+import ProfilePage from "../Pages/ProfilePage/index.jsx";
 import RegisterPage from "../Pages/RegisterPage";
 import NotFoundPage from "../Pages/NotFoundPage";
 

@@ -5,7 +5,6 @@ const FeedPage = () => {
   return (
     <>
       <Header />
-      <ModalPub />
     </>
   );
 };

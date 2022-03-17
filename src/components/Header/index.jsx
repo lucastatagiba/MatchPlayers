@@ -1,21 +1,28 @@
-import { Container } from "./style";
-import logoIMG from "../../Assets/img/logo.png";
-import BigLogoIMG from "../../Assets/img/image.png";
+import { TextField } from "@mui/material";
 import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
-import userIMG from "../../Assets/img/Praia1_140220.jpg";
 import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { RiUpload2Fill, RiCloseCircleFill } from "react-icons/ri";
+import { toast } from "react-toastify";
+import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
+import Button from "../GeneralButton";
+import { Container } from "./style";
 
 const Header = () => {
+  const history = useHistory();
   const [appearModal, setAppearModal] = useState({
     config: false,
     message: false,
     menu: false,
     photo: false,
   });
+  const [photoProfile, setPhotoProfile] = useState(
+    JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
+  );
+  const user = JSON.parse(localStorage.getItem("@matchplayers-userData")).name;
 
   const handleModal = (icon) => {
     switch (icon) {
@@ -58,30 +65,79 @@ const Header = () => {
         break;
     }
   };
-  const history = useHistory();
+  const handleLogout = () => {
+    localStorage.clear();
+    history.push("/");
+    toast.success("Volte Sempre =)");
+  };
   return (
     <Container>
-      <img
-        alt="logo"
-        src={BigLogoIMG}
-        className="bigLogo"
-        onClick={() => history.push("/feed")}
-      />
-      <img
-        alt="logo"
-        src={logoIMG}
-        className="logoimg"
-        onClick={() => history.push("/feed")}
-      />
+      <figure>
+        <img
+          alt="logo"
+          src={logoIMG}
+          className="logoimg"
+          onClick={() => history.push("/feed")}
+        />
+        <div className="logoName">
+          <h3>MatchPlayers</h3>
+          <span>Social Media For Games</span>
+        </div>
+      </figure>
 
       <div className="modalMenu" appear={appearModal.menu}>
-        Modal menu
+        <div onClick={() => handleModal("menu")} className="close">
+          <RiCloseCircleFill />
+        </div>
+        <div onClick={() => history.push("/feed")}>Início</div>
+        <div>Amigos</div>
+        <div>Mensagens</div>
+        <div onClick={() => handleModal("config")}>Configurações</div>
+        <div onClick={handleLogout}>Sair</div>
       </div>
       <div className="modalConfig" appear={appearModal.config}>
-        Modal config
+        <div onClick={() => handleModal("menu")} className="close">
+          <RiCloseCircleFill />
+        </div>
+        <h5>Editar senha:</h5>
+        <TextField
+          fullWidth
+          label="Senha"
+          variant="outlined"
+          size="small"
+          margin="normal"
+        />
+        <TextField
+          fullWidth
+          label="Confirmar Senha"
+          variant="outlined"
+          size="small"
+          margin="normal"
+        />
+        <h5>
+          Imagem de perfil <RiUpload2Fill className="upload" />
+        </h5>
+        <div onClick={() => handleModal("config")}>
+          <Button
+            bgcolor={"#002543"}
+            children={"Confirmar alterações"}
+            width={150}
+          />
+        </div>
       </div>
       <div className="modalPhoto" appear={appearModal.photo}>
-        Modal foto
+        <div onClick={() => handleModal("photo")} className="close">
+          <RiCloseCircleFill />
+        </div>
+        <div
+          className="modalPhotoText"
+          onClick={() => history.push(`/profile/${user}`)}
+        >
+          Ir para o meu perfil
+        </div>
+        <div className="modalPhotoText" onClick={() => handleLogout()}>
+          Sair
+        </div>
       </div>
 
       <div>
@@ -102,7 +158,7 @@ const Header = () => {
           onClick={() => handleModal("config")}
         />
         <img
-          src={userIMG}
+          src={photoProfile}
           alt="userPhoto"
           className="userimg"
           onClick={() => handleModal("photo")}

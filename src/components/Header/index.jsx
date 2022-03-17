@@ -81,17 +81,19 @@ const Header = () => {
       </figure>
 
       <div className="modalMenu" appear={appearModal.menu}>
-        <div onClick={() => handleModal("menu")} className="close">
-          <RiCloseCircleFill />
+        <div onClick={() => history.push("/feed")}>
+          <div onClick={() => handleModal("menu")} className="close">
+            <RiCloseCircleFill />
+          </div>
+          Início
         </div>
-        <div onClick={() => history.push("/feed")}>Início</div>
         <div>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
         <div onClick={handleLogout}>Sair</div>
       </div>
       <div className="modalConfig" appear={appearModal.config}>
-        <div onClick={() => handleModal("menu")} className="close">
+        <div onClick={() => handleModal("config")} className="close">
           <RiCloseCircleFill />
         </div>
         <h5>Editar senha:</h5>
@@ -121,12 +123,12 @@ const Header = () => {
         </div>
       </div>
       <div className="modalPhoto" appear={appearModal.photo}>
-        <div onClick={() => handleModal("photo")} className="close">
-          <RiCloseCircleFill />
+        <div className="close">
+          <RiCloseCircleFill onClick={() => handleModal("photo")} />
         </div>
         <div
-          className="modalPhotoText"
           onClick={() => history.push(`/profile/${user}`)}
+          className="modalPhotoText"
         >
           Ir para o meu perfil
         </div>

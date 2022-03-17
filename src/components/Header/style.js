@@ -4,6 +4,7 @@ export const Container = styled.div`
   height: 60px;
   display: flex;
   width: 100%;
+  max-width: 100vw;
   justify-content: space-evenly;
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
@@ -33,9 +34,9 @@ export const Container = styled.div`
   }
   .close {
     position: absolute;
-    left: 358px;
-    bottom: 172px;
-    font-size: 24px;
+    font-size: 30px;
+    left: 45%;
+    width: 25px;
   }
   .close:hover {
     cursor: pointer;
@@ -56,8 +57,12 @@ export const Container = styled.div`
     z-index: 3;
 
     .close {
-      font-size: 24px;
-      width: 25px;
+      font-size: 30px;
+      width: 30px;
+      left: 85%;
+    }
+    div:nth-child(1) {
+      width: 50px;
     }
 
     div {
@@ -91,8 +96,10 @@ export const Container = styled.div`
     background-color: white;
     z-index: 3;
     .close {
-      left: 358px;
-      bottom: 297px;
+      left: 88%;
+      bottom: 90%;
+      font-size: 30px;
+      width: 30px;
     }
     .upload {
       width: 25px;
@@ -146,9 +153,10 @@ export const Container = styled.div`
       border-radius: 8px;
       top: 60px;
       .close {
-        left: 356px;
-        bottom: 297px;
-        font-size: 24px;
+        left: 92%;
+        bottom: 90%;
+        font-size: 30px;
+        width: 30px;
       }
       h5 {
         display: flex;
@@ -161,7 +169,7 @@ export const Container = styled.div`
     .modalPhoto {
       display: ${(props) => props.children[3].props.appear && "inline"};
       width: 150px;
-      height: 55px;
+      height: 80px;
       background-color: white;
       border-radius: 8px;
       position: absolute;
@@ -172,18 +180,21 @@ export const Container = styled.div`
       z-index: 3;
       div {
         font-size: 12px;
-        height: 26px;
+        height: 40px;
         align-items: center;
         justify-content: center;
       }
+
       div:hover {
         cursor: pointer;
         opacity: 0.5;
       }
       .close {
-        left: 128px;
-        bottom: 50px;
-        font-size: 24px;
+        left: 82%;
+        bottom: 95%;
+        font-size: 30px;
+        margin: none;
+        height: 40px;
       }
     }
     .logoName {

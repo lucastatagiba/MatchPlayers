@@ -84,7 +84,6 @@ const Header = () => {
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
-        <div onClick={() => history.push("/feed")}>Início</div>
         <div>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
@@ -125,8 +124,8 @@ const Header = () => {
           <RiCloseCircleFill />
         </div>
         <div
-          className="modalPhotoText"
           onClick={() => history.push(`/profile/${user}`)}
+          className="modalPhotoText"
         >
           Ir para o meu perfil
         </div>

@@ -8,7 +8,6 @@ export const Container = styled.div`
   min-height: 235px;
   border: transparent;
   border-radius: 8px;
-  background-color: white;
 
   .postContent {
     min-height: 50px;
@@ -71,6 +70,60 @@ export const Container = styled.div`
     border: none;
     border-radius: 4px;
   }
+  .gameName {
+    display: none;
+  }
+  .game {
+    display: flex;
+    background-color: var(--Gray-2);
+    border-radius: 8px;
+    margin-left: 5px;
+  }
+
+  @media screen and (min-width: 768px) {
+    min-width: 540px;
+    min-height: 235px;
+
+    .userInformation {
+      height: 86px;
+    }
+    .gameName {
+      display: flex;
+      border-radius: 8px;
+      padding: 2px;
+    }
+    .imageBox {
+    }
+    .postImage {
+      height: auto;
+      width: auto;
+      max-width: 540px;
+    }
+    .postText {
+      font-size: 16px;
+      width: 540px;
+      padding: 0px 16px;
+      margin: 0px;
+    }
+    .likes {
+      width: 540px;
+      font-size: 20px;
+      margin-top: 10px;
+      color: var(--Gray-4);
+      padding: 0px 25px;
+      span {
+        font-size: 16px;
+      }
+      div {
+      }
+    }
+    input {
+      width: 475px;
+      height: 24px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+  }
 `;
 
 export const Box = styled.div`
@@ -99,5 +152,19 @@ export const Box = styled.div`
     font-weight: 500;
     font-size: 6px;
     margin-right: 5px;
+  }
+  @media screen and (min-width: 768px) {
+    .userPhoto {
+      max-width: 60px;
+      max-height: 60px;
+      border-radius: 50%;
+      margin: 8px 0px 5px 12px;
+    }
+    h3 {
+      font-size: 16px;
+    }
+    span {
+      font-size: 10px;
+    }
   }
 `;

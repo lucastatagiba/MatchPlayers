@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   background: var(--Background-Color);
   border-radius: 5px;
   padding: 5px;
@@ -12,8 +13,8 @@ export const Container = styled.div`
 
 export const Image = styled.img`
   border-radius: 5px;
-  width: 18px;
-  height: 18px;
+  width: 25px;
+  height: 25px;
 `;
 
 export const Name = styled.h2`

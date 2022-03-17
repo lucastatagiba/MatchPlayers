@@ -35,4 +35,9 @@ a{
 //fontsizes
 
 }
+
+body{
+    background: var(--Background-Color);
+}
+
 `;

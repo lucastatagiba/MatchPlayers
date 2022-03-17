@@ -52,6 +52,9 @@ export const Container = styled.div`
     flex-direction: column;
     margin-top: 20px;
     border: 2px solid var(--Blue-primary);
+    background-color: white;
+    z-index: 3;
+
     .close {
       font-size: 24px;
       width: 25px;
@@ -85,6 +88,8 @@ export const Container = styled.div`
     margin-top: 20px;
     padding: 20px 30px;
     border: 2px solid var(--Blue-primary);
+    background-color: white;
+    z-index: 3;
     .close {
       left: 358px;
       bottom: 297px;
@@ -164,6 +169,7 @@ export const Container = styled.div`
       left: 73%;
       border: 2px solid var(--Blue-primary);
       justify-content: space-between;
+      z-index: 3;
       div {
         font-size: 12px;
         height: 26px;

@@ -9,4 +9,7 @@ export const Container = styled.button`
   border-radius: ${(props) => (props.bdradius ? props.bdradius : "8px")};
   cursor: pointer;
   height: ${(props) => (props.height ? props.height : "30px")};
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;

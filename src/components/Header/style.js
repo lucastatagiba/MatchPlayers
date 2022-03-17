@@ -31,6 +31,16 @@ export const Container = styled.div`
       color: var(--Blue-primary);
     }
   }
+  .close {
+    position: absolute;
+    left: 358px;
+    bottom: 172px;
+    font-size: 24px;
+  }
+  .close:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
   .modalMenu {
     display: ${(props) => (!props.children[1].props.appear ? "none" : "flex")};
     width: 80%;
@@ -42,6 +52,11 @@ export const Container = styled.div`
     flex-direction: column;
     margin-top: 20px;
     border: 2px solid var(--Blue-primary);
+    .close {
+      font-size: 24px;
+      width: 25px;
+    }
+
     div {
       width: 100%;
       border-top: 1px solid var(--Gray-3);
@@ -50,12 +65,16 @@ export const Container = styled.div`
       font-size: 14px;
       padding-top: 5px;
     }
+    div:hover {
+      opacity: 0.5;
+      cursor: pointer;
+    }
   }
   .modalMenu :nth-child(1) {
     border-top: none;
   }
   .modalConfig {
-    display: ${(props) => (!props.children[3].props.appear ? "none" : "flex")};
+    display: ${(props) => (!props.children[2].props.appear ? "none" : "flex")};
     flex-direction: column;
     width: 80%;
     max-width: 380px;
@@ -64,8 +83,12 @@ export const Container = styled.div`
     position: absolute;
     top: 60px;
     margin-top: 20px;
-    padding-top: 20px;
+    padding: 20px 30px;
     border: 2px solid var(--Blue-primary);
+    .close {
+      left: 358px;
+      bottom: 297px;
+    }
     .upload {
       width: 25px;
       height: 25px;
@@ -87,7 +110,6 @@ export const Container = styled.div`
   .bigLogo {
     display: none;
   }
-
   div {
     display: flex;
     align-items: center;
@@ -112,24 +134,51 @@ export const Container = styled.div`
       display: none;
     }
     .modalConfig {
-      display: ${(props) => props.children[3].props.appear && "inline"};
+      display: ${(props) => props.children[2].props.appear && "flex"};
       width: 80%;
       max-width: 380px;
-      height: 400px;
-      background-color: var(--Gray-2);
+      background-color: white;
       border-radius: 8px;
-      position: absolute;
       top: 60px;
+      .close {
+        left: 356px;
+        bottom: 297px;
+        font-size: 24px;
+      }
+      h5 {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .modalPhoto :nth-child(2) {
+      border-bottom: 1px solid var(--Gray-3);
     }
     .modalPhoto {
-      display: ${(props) => props.children[4].props.appear && "inline"};
-      width: 80%;
-      max-width: 380px;
-      height: 400px;
-      background-color: var(--Gray-2);
+      display: ${(props) => props.children[3].props.appear && "inline"};
+      width: 150px;
+      height: 55px;
+      background-color: white;
       border-radius: 8px;
       position: absolute;
-      top: 60px;
+      top: 8.5%;
+      left: 73%;
+      border: 2px solid var(--Blue-primary);
+      justify-content: space-between;
+      div {
+        font-size: 12px;
+        height: 26px;
+        align-items: center;
+        justify-content: center;
+      }
+      div:hover {
+        cursor: pointer;
+        opacity: 0.5;
+      }
+      .close {
+        left: 128px;
+        bottom: 50px;
+        font-size: 24px;
+      }
     }
     .logoName {
       h3 {
@@ -139,7 +188,6 @@ export const Container = styled.div`
         display: block;
       }
     }
-
     div {
       display: flex;
       align-items: center;
@@ -147,7 +195,6 @@ export const Container = styled.div`
       .menu {
         display: none;
       }
-
       .houseIcon,
       .messageIcon,
       .configIcon {

@@ -27,7 +27,7 @@ export const UserDataProvider = ({ children }) => {
         toast.success("Bem vindo ao Match Players");
         history.push("/feed");
       })
-      .catch((err) => console.log(err));
+      .catch(() => toast.error("Usuário ou Senha Inválidos"));
   };
 
   const handleUserProfile = (id) => {

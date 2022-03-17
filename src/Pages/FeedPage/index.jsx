@@ -6,6 +6,7 @@ import CardFeed from "../../components/CardFeed";
 import GeralButton from "../../components/GeneralButton";
 import { Container } from "./style";
 import ListCard from "../../components/ListCard";
+import ModalPub from "../../components/ModalPub";
 
 const FeedPage = ({
   gamelist,
@@ -17,10 +18,12 @@ const FeedPage = ({
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
   console.log(userData);
+  const [modalPub, setModalPub] = useState(false);
 
   return (
     <>
       <Header />
+      {modalPub ? <ModalPub closeModal={() => setModalPub(false)} /> : <></>}
       <Container>
         <aside className="leftAside">
           <div className="divProfile">
@@ -54,15 +57,25 @@ const FeedPage = ({
           <div className="divStartPub">
             <img alt="UserPhoto" src={userData.profileIMG} />
             <div className="containPubDiv">
-              <GeralButton bgcolor={"#F3F2EF"} width={"95%"} color={"#6C8394"}>
+              <GeralButton
+                bgcolor={"#F3F2EF"}
+                width={"95%"}
+                color={"#6C8394"}
+                onClick={() => setModalPub(true)}
+              >
                 Começar Publicação
               </GeralButton>
               <div className="buttonPubDiv">
-                <GeralButton>
+                <GeralButton onClick={() => setModalPub(true)}>
                   <BsCardImage />
                   Foto
                 </GeralButton>
-                <GeralButton> Publicar </GeralButton>
+                <GeralButton
+                  onClick={() => setModalPub(true)}
+                  bgcolor={"#6C8394"}
+                >
+                  Publicar
+                </GeralButton>
               </div>
             </div>
           </div>

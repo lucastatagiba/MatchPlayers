@@ -47,10 +47,15 @@ export const Container = styled.div`
     width: 95%;
     max-width: 450px;
     margin: 12px 0;
+    div {
+      display: flex;
+    }
     button {
       font-size: 11px;
       margin-right: 3px;
       padding: 0px 7px;
+      height: max-content;
+      padding: 5px 8px;
     }
     select {
       text-align: center;
@@ -85,6 +90,7 @@ export const Container = styled.div`
       button {
         font-size: 12px;
         text-align: start;
+        height: max-content;
       }
       .buttonPubDiv {
         display: flex;

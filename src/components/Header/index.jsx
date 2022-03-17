@@ -72,13 +72,8 @@ const Header = () => {
   };
   return (
     <Container>
-      <figure>
-        <img
-          alt="logo"
-          src={logoIMG}
-          className="logoimg"
-          onClick={() => history.push("/feed")}
-        />
+      <figure onClick={() => history.push("/feed")}>
+        <img alt="logo" src={logoIMG} className="logoimg" />
         <div className="logoName">
           <h3>MatchPlayers</h3>
           <span>Social Media For Games</span>

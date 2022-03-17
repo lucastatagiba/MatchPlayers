@@ -22,6 +22,7 @@ const ProfilePage = () => {
     posts,
     profileIMG,
     timeAvailability,
+    profileBackgroundIMG,
   } = userData;
 
   return (
@@ -41,7 +42,7 @@ const ProfilePage = () => {
               <styles.UserEmail>{email}</styles.UserEmail>
             </styles.ProfileCardUserInfo>
 
-            <styles.ProfileCardTop />
+            <styles.ProfileCardTop background={profileBackgroundIMG} />
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>

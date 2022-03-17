@@ -80,7 +80,7 @@ const Header = () => {
         </div>
       </figure>
 
-      <div className="modalMenu" appear={appearModal.menu}>
+      <div className="modalMenu" display={appearModal.menu}>
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
@@ -90,7 +90,7 @@ const Header = () => {
         <div onClick={() => handleModal("config")}>Configurações</div>
         <div onClick={handleLogout}>Sair</div>
       </div>
-      <div className="modalConfig" appear={appearModal.config}>
+      <div className="modalConfig" display={appearModal.config}>
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
@@ -120,7 +120,7 @@ const Header = () => {
           />
         </div>
       </div>
-      <div className="modalPhoto" appear={appearModal.photo}>
+      <div className="modalPhoto" display={appearModal.photo}>
         <div onClick={() => handleModal("photo")} className="close">
           <RiCloseCircleFill />
         </div>

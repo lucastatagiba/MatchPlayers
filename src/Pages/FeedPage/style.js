@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  margin: 0 auto;
+  max-width: 900px;
   .leftAside {
     display: none;
     flex-direction: column;
@@ -90,11 +91,47 @@ export const Container = styled.div`
         justify-content: space-between;
         margin-top: 8px;
         padding: 0 5px;
-        width: 100%;
+        width: 95%;
       }
     }
   }
   .rightAside {
     display: none;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+
+    .divButtonsFeed {
+      min-width: 450px;
+    }
+    .divStartPub {
+      min-width: 450px;
+    }
+    .leftAside {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      margin-top: 12px;
+      width: 200px;
+    }
+    .rightAside {
+      display: flex;
+      justify-content: center;
+      margin-top: 12px;
+      margin-left: 15px;
+      width: 200px;
+      background-color: var(--White-primary);
+      height: max-content;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .divButtonsFeed {
+      min-width: 500px;
+    }
+    .divStartPub {
+      min-width: 500px;
+    }
   }
 `;

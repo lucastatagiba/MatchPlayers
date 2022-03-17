@@ -43,7 +43,7 @@ export const Container = styled.div`
     opacity: 0.5;
   }
   .modalMenu {
-    display: ${(props) => (!props.children[1].props.appear ? "none" : "flex")};
+    display: ${(props) => (!props.children[1].props.display ? "none" : "flex")};
     width: 80%;
     max-width: 380px;
     height: 175px;
@@ -78,7 +78,7 @@ export const Container = styled.div`
     border-top: none;
   }
   .modalConfig {
-    display: ${(props) => (!props.children[2].props.appear ? "none" : "flex")};
+    display: ${(props) => (!props.children[2].props.display ? "none" : "flex")};
     flex-direction: column;
     width: 80%;
     max-width: 380px;
@@ -140,7 +140,7 @@ export const Container = styled.div`
       display: none;
     }
     .modalConfig {
-      display: ${(props) => props.children[2].props.appear && "flex"};
+      display: ${(props) => props.children[2].props.display && "flex"};
       width: 80%;
       max-width: 380px;
       background-color: white;
@@ -160,7 +160,7 @@ export const Container = styled.div`
       border-bottom: 1px solid var(--Gray-3);
     }
     .modalPhoto {
-      display: ${(props) => props.children[3].props.appear && "inline"};
+      display: ${(props) => props.children[3].props.display && "inline"};
       width: 150px;
       height: 55px;
       background-color: white;

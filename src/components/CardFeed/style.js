@@ -96,8 +96,8 @@ export const Container = styled.div`
     padding-left: 15px;
   }
 
-  @media screen and (min-width: 768px) {
-    min-width: 540px;
+  @media screen and (min-width: 1024px) {
+    min-width: 500px;
     min-height: 235px;
 
     .userInformation {
@@ -108,21 +108,14 @@ export const Container = styled.div`
       border-radius: 8px;
       padding: 2px;
     }
-    .imageBox {
-    }
-    .postImage {
-      height: auto;
-      width: auto;
-      max-width: 540px;
-    }
     .postText {
       font-size: 16px;
-      width: 540px;
+      width: 500px;
       padding: 0px 16px;
       margin: 0px;
     }
     .likes {
-      width: 540px;
+      width: 500px;
       font-size: 20px;
       margin-top: 10px;
       color: var(--Gray-4);
@@ -168,7 +161,7 @@ export const Box = styled.div`
     font-size: 6px;
     margin-right: 5px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     .userPhoto {
       max-width: 60px;
       max-height: 60px;

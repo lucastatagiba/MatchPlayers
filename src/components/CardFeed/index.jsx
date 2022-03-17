@@ -26,7 +26,6 @@ const CardFeed = ({ profileIMG, nickname }) => {
             <span className="gameName">Call of Duty</span>
           </div>
           <div className="game">
-            {" "}
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"

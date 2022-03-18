@@ -12,6 +12,12 @@ export const Container = styled.div`
   background-color: var(--White-primary);
   margin: 0 auto;
   margin-bottom: 10px;
+  svg {
+    margin-top: 10px;
+    margin-right: 10px;
+    align-self: flex-end;
+    cursor: pointer;
+  }
 
   .postContent {
     min-height: 50px;
@@ -146,7 +152,6 @@ export const Box = styled.div`
   width: max-content;
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 
   .gameLogo {
     max-width: 18px;

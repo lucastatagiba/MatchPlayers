@@ -29,6 +29,7 @@ export const PostListProvider = ({ children }) => {
           plataformList: userData.plataformList,
           desc: res.data.desc,
           comments: [],
+          id: res.data.id,
           createdAt: res.data.createdAt,
         };
         const newPostUser = {
@@ -55,7 +56,6 @@ export const PostListProvider = ({ children }) => {
       },
     })
       .then((res) => {
-        // console.log(res.data);
         localStorage.setItem(
           "@matchplayers-userData",
           JSON.stringify(res.data)
@@ -66,9 +66,51 @@ export const PostListProvider = ({ children }) => {
       .catch((res) => toast.error("Tente Novamente!"));
   };
 
+  const handleDeletePost = (idPost) => {
+    Api.delete(`/posts/${idPost}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then(() => {
+        const newListPostUser = userData.posts.filter((item) => {
+          return item.id !== idPost;
+        });
+
+        const newPosts = {
+          userId: userData.id,
+          posts: newListPostUser,
+        };
+
+        handleListPosts(newPosts);
+      })
+      .catch((err) => toast.error("Falha ao Remover Publicação."));
+  };
+
+  const handleListPosts = (data) => {
+    Api.patch(`/644/users/${userData.id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    }).then((res) => {
+      localStorage.setItem("@matchplayers-userData", JSON.stringify(res.data));
+      setUserData(res.data);
+      toast.success("Publicação Removida.");
+    });
+  };
+
   return (
     <PostListContext.Provider
-      value={{ postList, userData, userToken, handlePost, handlePostUser }}
+      value={{
+        postList,
+        userData,
+        userToken,
+        handlePost,
+        handlePostUser,
+        handleDeletePost,
+      }}
     >
       {children}
     </PostListContext.Provider>

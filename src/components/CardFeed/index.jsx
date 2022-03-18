@@ -1,14 +1,32 @@
-import { Container, Box } from "./style";
+import { useContext } from "react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdMessage } from "react-icons/md";
-import GeralButton from "../GeneralButton";
+import { CgCloseR } from "react-icons/cg";
 import moment from "moment";
 import "moment/locale/pt";
 
-const CardFeed = ({ profileIMG, username, desc, createdAt }) => {
+import { PostListContext } from "../../providers/posts";
+import GeralButton from "../GeneralButton";
+import { Container, Box } from "./style";
+
+const CardFeed = ({
+  profileIMG,
+  username,
+  desc,
+  createdAt,
+  idPost,
+  userId,
+}) => {
+  const { handleDeletePost, userData } = useContext(PostListContext);
+
   return (
     <>
       <Container>
+        {userId === userData.userId ? (
+          <CgCloseR onClick={() => handleDeletePost(idPost)} />
+        ) : (
+          <></>
+        )}
         <Box className="userInformation">
           <img className="userPhoto" src={profileIMG} alt="userPhoto" />
           <div className="userName">

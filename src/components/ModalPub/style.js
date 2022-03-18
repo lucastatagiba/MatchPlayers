@@ -10,6 +10,9 @@ export const Container = styled.div`
   background-color: var(--White-primary);
   margin-left: 180px;
   margin-top: 160px;
+  svg {
+    cursor: pointer;
+  }
   h1 {
     font-size: 22px;
     font-weight: 500;

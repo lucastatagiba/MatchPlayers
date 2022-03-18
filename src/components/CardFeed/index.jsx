@@ -2,8 +2,10 @@ import { Container, Box } from "./style";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdMessage } from "react-icons/md";
 import GeralButton from "../GeneralButton";
+import moment from "moment";
+import "moment/locale/pt";
 
-const CardFeed = ({ profileIMG, username, desc }) => {
+const CardFeed = ({ profileIMG, username, desc, createdAt }) => {
   return (
     <>
       <Container>
@@ -15,7 +17,7 @@ const CardFeed = ({ profileIMG, username, desc }) => {
           />
           <div className="userName">
             <h3>{username}</h3>
-            <span>20 h</span>
+            <span>{moment(createdAt).locale("pt").fromNow()}</span>
           </div>
           <div className="gameContent">
             <div className="game">

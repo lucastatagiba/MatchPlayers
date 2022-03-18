@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: absolute;
   width: 100%;
   max-width: 540px;
   border: 1px solid var(--Blue-primary);
@@ -10,7 +11,14 @@ export const Container = styled.div`
   h1 {
     font-size: 22px;
     font-weight: 500;
+  }
+  .headerModalPub {
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid var(--Gray-3);
+    svg {
+      font-size: 25px;
+    }
   }
   .ContainModalPub {
     margin-top: 10px;

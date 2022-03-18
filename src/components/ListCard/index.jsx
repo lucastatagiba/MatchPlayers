@@ -1,8 +1,10 @@
+import CardFeed from "../CardFeed";
+
 const ListCard = ({ cardlist }) => {
   return (
     <ul>
       {cardlist.map((post) => (
-        <li key={post.id} post={post} /> //ai ser o component card no lugaar da li
+        <CardFeed nickname={post.nickname} /> //ai ser o component card no lugaar da li
       ))}
     </ul>
   );

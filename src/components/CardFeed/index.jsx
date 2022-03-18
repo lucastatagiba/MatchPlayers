@@ -1,7 +1,9 @@
 import { Container, Box } from "./style";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { MdMessage } from "react-icons/md";
+import GeralButton from "../GeneralButton";
 
-const CardFeed = () => {
+const CardFeed = ({ profileIMG, nickname }) => {
   return (
     <>
       <Container>
@@ -9,26 +11,25 @@ const CardFeed = () => {
           <img
             className="userPhoto"
             src="https://media-exp1.licdn.com/dms/image/C4D03AQEibJeZALawbw/profile-displayphoto-shrink_100_100/0/1610116021938?e=1652918400&v=beta&t=jMpRwH_Y0PpuAb-4eBRPPvQDtAnRWgB39ekW4uauaZM"
-            alt=""
+            alt="userPhoto"
           />
           <div className="userName">
-            <h3>Giba</h3>
+            <h3>{nickname}</h3>
             <span>20 h</span>
           </div>
           <div className="game">
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
+              alt="gameLogo"
             />
             <span className="gameName">Call of Duty</span>
           </div>
           <div className="game">
-            {" "}
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
+              alt="gameLogo"
             />
             <span className="gameName">Lol</span>
           </div>
@@ -36,7 +37,7 @@ const CardFeed = () => {
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
+              alt="gameLogo"
             />
             <span className="gameName">PUBG</span>
           </div>
@@ -44,7 +45,7 @@ const CardFeed = () => {
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
+              alt="gameLogo"
             />
             <span className="gameName">Valorant</span>
           </div>
@@ -52,7 +53,7 @@ const CardFeed = () => {
             <img
               className="gameLogo"
               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
+              alt="gameLogo"
             />
             <span className="gameName">Counter-strike</span>
           </div>
@@ -69,7 +70,7 @@ const CardFeed = () => {
             <img
               className="postImage"
               src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/07/28/Photos/Processed/fifagame-krQ--621x414@LiveMint.jpg"
-              alt=""
+              alt="postImage"
             />
           </div>
         </div>
@@ -85,7 +86,9 @@ const CardFeed = () => {
             <span>Comentários</span>
           </div>
         </Box>
-        <input placeholder="Adicionar Comentário" type="text" />
+        <GeralButton>
+          <MdMessage /> Adicionar Comentário
+        </GeralButton>
       </Container>
     </>
   );

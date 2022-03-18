@@ -1,6 +1,14 @@
 import { Container } from "./style";
 
-const GeralButton = ({ bgcolor, children, color, bdradius, width, height }) => {
+const GeralButton = ({
+  bgcolor,
+  children,
+  color,
+  bdradius,
+  width,
+  height,
+  onClick,
+}) => {
   return (
     <>
       <Container
@@ -9,6 +17,7 @@ const GeralButton = ({ bgcolor, children, color, bdradius, width, height }) => {
         bdradius={bdradius}
         width={width}
         height={height}
+        onClick={onClick}
       >
         {children}
       </Container>

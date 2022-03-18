@@ -9,7 +9,7 @@ export const PostListProvider = ({ children }) => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
-  const [userToken, setUserToken] = useState(
+  const [userToken] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-token")) || []
   );
 

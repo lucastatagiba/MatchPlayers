@@ -9,7 +9,7 @@ import ModalPub from "../../components/ModalPub";
 import { PostListContext } from "../../providers/posts";
 
 const FeedPage = () => {
-  const [userData, setUserData] = useState(
+  const [userData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
   const [modalPub, setModalPub] = useState(false);

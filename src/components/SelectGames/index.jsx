@@ -6,6 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
+import { Label } from "./style";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -41,16 +42,13 @@ export default function SelectGames() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-checkbox-label">
+      <FormControl sx={{ width: 300 }}>
+        <Label id="demo-multiple-checkbox-label" className="change--position">
           Selecione seus jogos
-        </InputLabel>
+        </Label>
         <Select
-          sx={{
-            width: 300,
-            height: 50,
-            fontSize: 12,
-          }}
+          fullWidth
+          size="small"
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple

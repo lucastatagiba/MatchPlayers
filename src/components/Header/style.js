@@ -35,8 +35,9 @@ export const Container = styled.div`
   }
   .close {
     position: absolute;
+    top: 2%;
+    right: 2.5%;
     font-size: 30px;
-    left: 45%;
     width: 25px;
   }
   .close:hover {
@@ -86,8 +87,7 @@ export const Container = styled.div`
     display: ${(props) => (!props.children[2].props.display ? "none" : "flex")};
     flex-direction: column;
     width: 80%;
-    max-width: 380px;
-    height: 300px;
+    max-width: 360px;
     border-radius: 8px;
     position: absolute;
     top: 60px;
@@ -96,12 +96,7 @@ export const Container = styled.div`
     border: 2px solid var(--Blue-primary);
     background-color: white;
     z-index: 3;
-    .close {
-      left: 88%;
-      bottom: 90%;
-      font-size: 30px;
-      width: 30px;
-    }
+
     .upload {
       width: 25px;
       height: 25px;
@@ -115,7 +110,6 @@ export const Container = styled.div`
   .modalPhoto {
     display: none;
   }
-
   .logoimg {
     height: 50px;
     width: 45px;
@@ -141,6 +135,17 @@ export const Container = styled.div`
       cursor: pointer;
     }
   }
+  form {
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    width: 100%;
+    gap: 15px 0;
+
+    button {
+      margin-bottom: 25px;
+    }
+  }
 
   @media screen and (min-width: 768px) {
     .modalMenu {
@@ -149,16 +154,11 @@ export const Container = styled.div`
     .modalConfig {
       display: ${(props) => props.children[2].props.display && "flex"};
       width: 80%;
-      max-width: 380px;
+      max-width: 360px;
       background-color: white;
       border-radius: 8px;
       top: 60px;
-      .close {
-        left: 92%;
-        bottom: 90%;
-        font-size: 30px;
-        width: 30px;
-      }
+
       h5 {
         display: flex;
         align-items: center;

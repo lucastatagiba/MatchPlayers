@@ -4,14 +4,20 @@ import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { RiUpload2Fill, RiCloseCircleFill } from "react-icons/ri";
+import { RiCloseCircleFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
+import FileField from "../FileField";
+import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
 import { Container } from "./style";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Header = () => {
+  const { register, handleSubmit } = useForm();
+
   const history = useHistory();
   const [appearModal, setAppearModal] = useState({
     config: false,
@@ -70,6 +76,17 @@ const Header = () => {
     history.push("/");
     toast.success("Volte Sempre =)");
   };
+
+  const onImageSubmit = (data) => {
+    const formData = new FormData();
+
+    axios.post("https://api.imgur.com/3/upload", data, {
+      headers: {
+        Authorization: "0f39bc04e159b9a",
+      },
+    });
+  };
+
   return (
     <Container>
       <figure onClick={() => history.push("/feed")}>
@@ -93,31 +110,63 @@ const Header = () => {
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
-        <h5>Editar senha:</h5>
-        <TextField
-          fullWidth
-          label="Senha"
-          variant="outlined"
-          size="small"
-          margin="normal"
-        />
-        <TextField
-          fullWidth
-          label="Confirmar Senha"
-          variant="outlined"
-          size="small"
-          margin="normal"
-        />
-        <h5>
-          Imagem de perfil <RiUpload2Fill className="upload" />
-        </h5>
-        <div onClick={() => handleModal("config")}>
+
+        <form>
+          <h5>Adicionar jogos:</h5>
+
+          <SelectGames />
+
           <Button
             bgcolor={"#002543"}
-            children={"Confirmar alterações"}
+            children={"Salvar alteração"}
             width={150}
           />
-        </div>
+        </form>
+
+        <form onSubmit={handleSubmit(onImageSubmit)}>
+          <h5>Alterar perfil:</h5>
+
+          <FileField
+            name={"perfil"}
+            register={register}
+            id="perfil"
+            placeholder="Imagem de Perfil"
+            type="file"
+          />
+
+          {/* <FileField
+            name={"fundo"}
+            register={register}
+            id="fundo"
+            placeholder="Imagem de Fundo"
+            type="file"
+          /> */}
+
+          <Button
+            bgcolor={"#002543"}
+            children={"Salvar alteração"}
+            width={150}
+          />
+        </form>
+
+        <form>
+          <h5>Editar senha:</h5>
+
+          <TextField fullWidth label="Senha" variant="outlined" size="small" />
+
+          <TextField
+            fullWidth
+            label="Confirmar Senha"
+            variant="outlined"
+            size="small"
+          />
+
+          <Button
+            bgcolor={"#002543"}
+            children={"Salvar alteração"}
+            width={150}
+          />
+        </form>
       </div>
       <div className="modalPhoto" display={appearModal.photo}>
         <div onClick={() => handleModal("photo")} className="close">

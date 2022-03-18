@@ -1,24 +1,20 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { BsCardImage } from "react-icons/bs";
 
 import Header from "../../components/Header";
-import CardFeed from "../../components/CardFeed";
 import GeralButton from "../../components/GeneralButton";
 import { Container } from "./style";
 import ListCard from "../../components/ListCard";
 import ModalPub from "../../components/ModalPub";
+import { PostListContext } from "../../providers/posts";
 
-const FeedPage = ({
-  gamelist,
-  disponibilidadeHorario,
-  postList,
-  friendList,
-}) => {
+const FeedPage = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
-  console.log(userData);
   const [modalPub, setModalPub] = useState(false);
+
+  const { postList } = useContext(PostListContext);
 
   return (
     <>
@@ -86,28 +82,7 @@ const FeedPage = ({
               </div>
             </div>
           </div>
-          <ListCard
-            cardlist={[
-              {
-                nickname: "Lucas Giba",
-                profileIMG: "url",
-                plataformList: [],
-                postIMG: "img",
-                desc: "aqui entra o que a pessoa postou",
-                comments: [],
-                userId: 2,
-              },
-              {
-                nickname: "Lucas Giba2",
-                profileIMG: "url",
-                plataformList: [],
-                postIMG: "img",
-                desc: "aqui entra o que a pessoa postou",
-                comments: [],
-                userId: 2,
-              },
-            ]}
-          ></ListCard>
+          <ListCard postList={postList}></ListCard>
           {/* <ul>
             {postList.map((post) => (
               <li>{<CardFeed />}</li>

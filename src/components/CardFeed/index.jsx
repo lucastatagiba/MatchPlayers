@@ -3,7 +3,7 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdMessage } from "react-icons/md";
 import GeralButton from "../GeneralButton";
 
-const CardFeed = ({ profileIMG, nickname }) => {
+const CardFeed = ({ profileIMG, username, desc }) => {
   return (
     <>
       <Container>
@@ -14,7 +14,7 @@ const CardFeed = ({ profileIMG, nickname }) => {
             alt="userPhoto"
           />
           <div className="userName">
-            <h3>{nickname}</h3>
+            <h3>{username}</h3>
             <span>20 h</span>
           </div>
           <div className="gameContent">
@@ -61,13 +61,7 @@ const CardFeed = ({ profileIMG, nickname }) => {
           </div>
         </Box>
         <div className="postContent">
-          <p className="postText">
-            Aqui vai entrar o post sem uma imagem, chamando alguém para jogar
-            algum jogo em tal horário. Lorem Ipsum is simply dummy text of the
-            printing and typesetting industryvai entrar o post sem uma imagem,
-            chamando alguém para jogar algum jogo em tal horário. Lorem Ipsum is
-            simply dummy text of the printing and types
-          </p>
+          <p className="postText">{desc}</p>
           <div className="imageBox">
             <img
               className="postImage"

@@ -57,6 +57,24 @@ export const Container = styled.div`
         width: 90%;
         justify-content: end;
         gap: 20px;
+        svg {
+          text-align: center;
+          height: 20px;
+          width: 20px;
+          margin-right: 5px;
+        }
+        label {
+          display: flex;
+          align-items: center;
+          width: max-content;
+          padding: 2px 8px;
+          background-color: #f75f30;
+          border-radius: 8px;
+          color: var(--White-primary);
+        }
+        input {
+          display: none;
+        }
       }
     }
   }

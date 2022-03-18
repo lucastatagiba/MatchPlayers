@@ -23,8 +23,15 @@ const FeedPage = ({
   return (
     <>
       <Header />
-      {modalPub ? <ModalPub closeModal={() => setModalPub(false)} /> : <></>}
+
       <Container>
+        <div className="divModal">
+          {modalPub ? (
+            <ModalPub closeModal={() => setModalPub(false)} />
+          ) : (
+            <></>
+          )}
+        </div>
         <aside className="leftAside">
           <div className="divProfile">
             <img alt="userPhoto" src={userData.profileIMG} />

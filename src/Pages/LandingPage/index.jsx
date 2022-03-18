@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import * as styles from "./style";
 import logo from "../../Assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
-import { useHistory } from "react-router-dofeedm";
+import { useHistory } from "react-router-dom";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);

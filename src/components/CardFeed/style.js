@@ -28,13 +28,21 @@ export const Container = styled.div`
     box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   }
   .postText {
-    font-size: 10px;
-    margin: 0px 16px;
+    font-size: 12px;
+    margin: 20px 16px;
   }
   .userInformation {
     height: 36px;
     align-items: center;
     padding-left: 4px;
+    width: 100%;
+    display: flex;
+    flex-wrap: no-wrap;
+    .gameContent {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
   }
   .userName {
     display: flex;
@@ -110,9 +118,8 @@ export const Container = styled.div`
     }
     .postText {
       font-size: 16px;
-      width: 500px;
-      padding: 0px 16px;
-      margin: 0px;
+      width: fit-content;
+      margin-bottom: 20px;
     }
     .likes {
       width: 500px;
@@ -148,8 +155,8 @@ export const Box = styled.div`
     border-radius: 50%;
   }
   .userPhoto {
-    max-width: 25px;
-    max-height: 25px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
     margin: 8px 0px 5px 12px;
   }

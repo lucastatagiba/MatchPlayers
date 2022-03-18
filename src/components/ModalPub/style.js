@@ -8,6 +8,8 @@ export const Container = styled.div`
   border-radius: 8px;
   padding: 10px;
   background-color: var(--White-primary);
+  margin-left: 180px;
+  margin-top: 160px;
   h1 {
     font-size: 22px;
     font-weight: 500;
@@ -54,5 +56,9 @@ export const Container = styled.div`
         gap: 20px;
       }
     }
+  }
+  @media screen and (max-width: 768px) {
+    max-width: 400px;
+    margin: 150px auto;
   }
 `;

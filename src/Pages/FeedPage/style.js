@@ -5,6 +5,8 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 0 auto;
   max-width: 900px;
+  .divModal {
+  }
   .leftAside {
     display: none;
     flex-direction: column;

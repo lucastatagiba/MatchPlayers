@@ -146,6 +146,7 @@ export const Box = styled.div`
   width: max-content;
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
 
   .gameLogo {
     max-width: 18px;

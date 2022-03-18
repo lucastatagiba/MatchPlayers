@@ -22,6 +22,7 @@ const ModalPub = ({ closeModal }) => {
       comments: [],
     };
     handlePost(newPost, userToken);
+    closeModal();
     // handlePostUser(newPostUser, userToken, userData.id);
   };
 

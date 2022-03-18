@@ -10,11 +10,7 @@ const CardFeed = ({ profileIMG, username, desc, createdAt }) => {
     <>
       <Container>
         <Box className="userInformation">
-          <img
-            className="userPhoto"
-            src="https://media-exp1.licdn.com/dms/image/C4D03AQEibJeZALawbw/profile-displayphoto-shrink_100_100/0/1610116021938?e=1652918400&v=beta&t=jMpRwH_Y0PpuAb-4eBRPPvQDtAnRWgB39ekW4uauaZM"
-            alt="userPhoto"
-          />
+          <img className="userPhoto" src={profileIMG} alt="userPhoto" />
           <div className="userName">
             <h3>{username}</h3>
             <span>{moment(createdAt).locale("pt").fromNow()}</span>

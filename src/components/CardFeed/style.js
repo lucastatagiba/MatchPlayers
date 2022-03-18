@@ -4,10 +4,20 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
+  width: 100%;
+  max-width: 450px;
   min-height: 235px;
   border: transparent;
   border-radius: 8px;
+  background-color: var(--White-primary);
+  margin: 0 auto;
+  margin-bottom: 10px;
+  svg {
+    margin-top: 10px;
+    margin-right: 10px;
+    align-self: flex-end;
+    cursor: pointer;
+  }
 
   .postContent {
     min-height: 50px;
@@ -16,21 +26,29 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     margin: 5px 0px;
+    padding: 0 5px;
   }
   .postImage {
     height: auto;
-    width: auto;
-    max-width: 300px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
   }
   .postText {
-    font-size: 10px;
-    width: 275px;
-    margin: 0px 16px;
+    font-size: 12px;
+    margin: 20px 16px;
   }
   .userInformation {
     height: 36px;
     align-items: center;
     padding-left: 4px;
+    width: 100%;
+    display: flex;
+    flex-wrap: no-wrap;
+    .gameContent {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
   }
   .userName {
     display: flex;
@@ -79,9 +97,21 @@ export const Container = styled.div`
     border-radius: 8px;
     margin-left: 5px;
   }
+  button {
+    margin: 5px 0;
+    text-align: start;
+    align-self: center;
+    width: 95%;
+    background-color: var(--Background-Color);
+    color: var(--Color-Secondary);
+    font-size: 12px;
+    height: max-content;
+    padding: 2px 0;
+    padding-left: 15px;
+  }
 
-  @media screen and (min-width: 768px) {
-    min-width: 540px;
+  @media screen and (min-width: 1024px) {
+    min-width: 500px;
     min-height: 235px;
 
     .userInformation {
@@ -92,21 +122,13 @@ export const Container = styled.div`
       border-radius: 8px;
       padding: 2px;
     }
-    .imageBox {
-    }
-    .postImage {
-      height: auto;
-      width: auto;
-      max-width: 540px;
-    }
     .postText {
       font-size: 16px;
-      width: 540px;
-      padding: 0px 16px;
-      margin: 0px;
+      width: fit-content;
+      margin-bottom: 20px;
     }
     .likes {
-      width: 540px;
+      width: 500px;
       font-size: 20px;
       margin-top: 10px;
       color: var(--Gray-4);
@@ -132,16 +154,15 @@ export const Box = styled.div`
   flex-direction: row;
 
   .gameLogo {
-    max-width: 14px;
-    max-height: 14px;
-    margin-left: 4px;
+    max-width: 18px;
+    max-height: 18px;
     background-color: #f3f2ef;
     padding: 1px;
     border-radius: 50%;
   }
   .userPhoto {
-    max-width: 25px;
-    max-height: 25px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
     margin: 8px 0px 5px 12px;
   }
@@ -153,12 +174,15 @@ export const Box = styled.div`
     font-size: 6px;
     margin-right: 5px;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
     .userPhoto {
       max-width: 60px;
       max-height: 60px;
       border-radius: 50%;
       margin: 8px 0px 5px 12px;
+    }
+    .gameLogo {
+      margin-left: 4px;
     }
     h3 {
       font-size: 16px;

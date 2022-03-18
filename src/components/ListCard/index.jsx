@@ -1,10 +1,22 @@
-const ListCard = ({ cardlist }) => {
+import CardFeed from "../CardFeed";
+import { Container } from "./style";
+
+const ListCard = ({ postList }) => {
+  console.log(postList);
   return (
-    <ul>
-      {cardlist.map((post) => (
-        <li key={post.id} post={post} /> //ai ser o component card no lugaar da li
+    <Container>
+      {postList.map((post) => (
+        <CardFeed
+          username={post.username}
+          profileIMG={post.profileIMG}
+          desc={post.desc}
+          createdAt={post.createdAt}
+          key={post.id}
+          idPost={post.id}
+          userId={post.userId}
+        />
       ))}
-    </ul>
+    </Container>
   );
 };
 export default ListCard;

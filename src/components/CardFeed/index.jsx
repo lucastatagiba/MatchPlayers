@@ -1,75 +1,88 @@
-import { Container, Box } from "./style";
+import { useContext } from "react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { MdMessage } from "react-icons/md";
+import { CgCloseR } from "react-icons/cg";
+import moment from "moment";
+import "moment/locale/pt";
 
-const CardFeed = () => {
+import { PostListContext } from "../../providers/posts";
+import GeralButton from "../GeneralButton";
+import { Container, Box } from "./style";
+
+const CardFeed = ({
+  profileIMG,
+  username,
+  desc,
+  createdAt,
+  idPost,
+  userId,
+}) => {
+  const { handleDeletePost, userData } = useContext(PostListContext);
+  console.log(userData);
   return (
     <>
       <Container>
+        {userId === userData.userId ? (
+          <CgCloseR onClick={() => handleDeletePost(idPost)} />
+        ) : (
+          <></>
+        )}
         <Box className="userInformation">
-          <img
-            className="userPhoto"
-            src="https://media-exp1.licdn.com/dms/image/C4D03AQEibJeZALawbw/profile-displayphoto-shrink_100_100/0/1610116021938?e=1652918400&v=beta&t=jMpRwH_Y0PpuAb-4eBRPPvQDtAnRWgB39ekW4uauaZM"
-            alt=""
-          />
+          <img className="userPhoto" src={profileIMG} alt="userPhoto" />
           <div className="userName">
-            <h3>Giba</h3>
-            <span>20 h</span>
+            <h3>{username}</h3>
+            <span>{moment(createdAt).locale("pt").fromNow()}</span>
           </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
-            />
-            <span className="gameName">Call of Duty</span>
-          </div>
-          <div className="game">
-            {" "}
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
-            />
-            <span className="gameName">Lol</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
-            />
-            <span className="gameName">PUBG</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
-            />
-            <span className="gameName">Valorant</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt=""
-            />
-            <span className="gameName">Counter-strike</span>
+          <div className="gameContent">
+            <div className="game">
+              <img
+                className="gameLogo"
+                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                alt="gameLogo"
+              />
+              <span className="gameName">Call of Duty</span>
+            </div>
+            <div className="game">
+              <img
+                className="gameLogo"
+                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                alt="gameLogo"
+              />
+              <span className="gameName">Lol</span>
+            </div>
+            <div className="game">
+              <img
+                className="gameLogo"
+                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                alt="gameLogo"
+              />
+              <span className="gameName">PUBG</span>
+            </div>
+            <div className="game">
+              <img
+                className="gameLogo"
+                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                alt="gameLogo"
+              />
+              <span className="gameName">Valorant</span>
+            </div>
+            <div className="game">
+              <img
+                className="gameLogo"
+                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                alt="gameLogo"
+              />
+              <span className="gameName">Counter-strike</span>
+            </div>
           </div>
         </Box>
         <div className="postContent">
-          <p className="postText">
-            Aqui vai entrar o post sem uma imagem, chamando alguém para jogar
-            algum jogo em tal horário. Lorem Ipsum is simply dummy text of the
-            printing and typesetting industryvai entrar o post sem uma imagem,
-            chamando alguém para jogar algum jogo em tal horário. Lorem Ipsum is
-            simply dummy text of the printing and types
-          </p>
+          <p className="postText">{desc}</p>
           <div className="imageBox">
             <img
               className="postImage"
               src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/07/28/Photos/Processed/fifagame-krQ--621x414@LiveMint.jpg"
-              alt=""
+              alt="postImage"
             />
           </div>
         </div>
@@ -85,7 +98,9 @@ const CardFeed = () => {
             <span>Comentários</span>
           </div>
         </Box>
-        <input placeholder="Adicionar Comentário" type="text" />
+        <GeralButton>
+          <MdMessage /> Adicionar Comentário
+        </GeralButton>
       </Container>
     </>
   );

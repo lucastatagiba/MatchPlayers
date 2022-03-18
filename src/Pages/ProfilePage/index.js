@@ -47,7 +47,7 @@ export const UserEmail = styled.h3`
 `;
 
 export const ProfileCardTop = styled.div`
-  background-image: url(${background});
+  background-image: ${(props) => `url(${props.background})`};
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

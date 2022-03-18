@@ -4,6 +4,7 @@ import FeedPage from "../Pages/FeedPage";
 import LandingPage from "../Pages/LandingPage";
 import ProfilePage from "../Pages/ProfilePage/index.jsx";
 import RegisterPage from "../Pages/RegisterPage";
+import About from "../Pages/About";
 import NotFoundPage from "../Pages/NotFoundPage";
 
 const Routes = () => {
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route exact path="/register" component={RegisterPage} />
       <Route exact path="/feed" component={FeedPage} />
       <Route exact path="/profile/:name" component={ProfilePage} />
+      <Route exact path="/about" component={About} />
       <Route component={NotFoundPage} />
     </Switch>
   );

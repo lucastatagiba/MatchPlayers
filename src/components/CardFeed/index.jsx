@@ -18,7 +18,7 @@ const CardFeed = ({
   userId,
 }) => {
   const { handleDeletePost, userData } = useContext(PostListContext);
-
+  console.log(userData);
   return (
     <>
       <Container>

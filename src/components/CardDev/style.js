@@ -18,6 +18,7 @@ export const liDev = styled.li`
 
 export const funcaoDev = styled.p`
   color: #2b4c64;
+  font-size: 14px;
 `;
 
 export const ImageDev = styled.img`
@@ -26,6 +27,6 @@ export const ImageDev = styled.img`
   height: 200px;
 `;
 
-export const NameDev = styled.strong`
-  font-size: 14px;
+export const NameDev = styled.p`
+  font-size: 16px;
 `;

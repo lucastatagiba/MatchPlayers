@@ -18,19 +18,19 @@ const About = () => {
   const [dataDev, setDataDev] = useState([
     {
       nome: "Leonardo Moraes",
-      funcao: "PO",
+      funcao: "Product Owner",
       img: imgLeonardo,
     },
-    { nome: "Paulo Lima", funcao: "SM", img: imgPaulo },
+    { nome: "Paulo Lima", funcao: "Scrum Master", img: imgPaulo },
     {
       nome: "Lucas Tatagiba",
       funcao: "Tech Leader",
       img: imgLucas,
     },
-    { nome: "André Machado", funcao: "QA", img: imgAndre },
+    { nome: "André Machado", funcao: "Quality Analist", img: imgAndre },
     {
       nome: "Rodrigo Firmo",
-      funcao: "QA",
+      funcao: "Quality Analist",
       img: imgRodrigo,
     },
   ]);

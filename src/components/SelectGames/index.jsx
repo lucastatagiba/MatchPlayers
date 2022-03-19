@@ -1,12 +1,13 @@
-import * as React from "react";
+import { useContext, useEffect, useState } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { Label } from "./style";
+import { GamesContext } from "../../providers/games";
+import { UserDataContext } from "../../providers/userData";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,53 +20,49 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Call of Duty",
-  "League of Legends",
-  "PUBG",
-  "Valorant",
-  "Counter-Strike",
-];
+const SelectGames = () => {
+  const [gamesNames, setGamesNames] = useState([]);
 
-export default function SelectGames() {
-  const [personName, setPersonName] = React.useState([]);
+  const { games } = useContext(GamesContext);
+  const { setUserGames } = useContext(UserDataContext);
+
+  const options = games.map((game) => game.name);
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
+    setGamesNames(typeof value === "string" ? value.split(",") : value);
   };
 
+  useEffect(() => setUserGames(gamesNames), [gamesNames]);
+
   return (
-    <div>
-      <FormControl sx={{ width: 300 }}>
-        <Label id="demo-multiple-checkbox-label" className="change--position">
-          Selecione seus jogos
-        </Label>
-        <Select
-          fullWidth
-          size="small"
-          labelId="demo-multiple-checkbox-label"
-          id="demo-multiple-checkbox"
-          multiple
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput label="Selecione seus jogos" />}
-          renderValue={(selected) => selected.join(", ")}
-          MenuProps={MenuProps}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.indexOf(name) > -1} />
-              <ListItemText primary={name} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl sx={{ width: 300 }}>
+      <Label id="demo-multiple-checkbox-label" className="change--position">
+        Selecione seus jogos
+      </Label>
+      <Select
+        fullWidth
+        size="small"
+        labelId="demo-multiple-checkbox-label"
+        id="demo-multiple-checkbox"
+        multiple
+        value={gamesNames}
+        onChange={handleChange}
+        input={<OutlinedInput label="Selecione seus jogos" />}
+        renderValue={(selected) => selected.join(", ")}
+        MenuProps={MenuProps}
+      >
+        {options.map((name) => (
+          <MenuItem key={name} value={name}>
+            <Checkbox checked={gamesNames.indexOf(name) > -1} />
+            <ListItemText primary={name} />
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
-}
+};
+
+export default SelectGames;

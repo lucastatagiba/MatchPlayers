@@ -30,10 +30,10 @@ const Header = () => {
     loadingPhoto,
     appearModal,
     setAppearModal,
+    handleGamesRegister,
     isloading,
     userData,
   } = useContext(UserDataContext);
-
   const [inputvalue, setInputvalue] = useState("");
   const handleModal = (icon) => {
     switch (icon) {
@@ -120,6 +120,10 @@ const Header = () => {
             bgcolor={"#002543"}
             children={"Salvar alteração"}
             width={150}
+            onClick={(event) => {
+              event.preventDefault();
+              handleGamesRegister();
+            }}
           />
         </form>
 
@@ -134,7 +138,6 @@ const Header = () => {
             type="file"
             onchangeFunc={getImgUser}
           />
-          {isloading && <img className="loading" alt="" src={loadingPhoto} />}
 
           {/* <FileField
             name={"fundo"}
@@ -143,6 +146,8 @@ const Header = () => {
             placeholder="Imagem de Fundo"
             type="file"
           /> */}
+
+          {isloading && <img className="loading" alt="" src={loadingPhoto} />}
 
           <Button
             bgcolor={"#002543"}

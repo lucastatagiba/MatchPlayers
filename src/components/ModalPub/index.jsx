@@ -2,14 +2,15 @@ import GeralButton from "../GeneralButton";
 import { Container } from "./style";
 import { BsFillImageFill } from "react-icons/bs";
 import { RiCloseCircleFill } from "react-icons/ri";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { PostListContext } from "../../providers/posts";
+import { useState } from "react";
 
 const ModalPub = ({ closeModal }) => {
   const { handlePost, handlePostUser, userData, userToken } =
     useContext(PostListContext);
-
+  const [imgBase64Post, setImgBase64Post] = useState("");
   const { register, handleSubmit } = useForm();
 
   const handlePostData = (data) => {
@@ -25,7 +26,6 @@ const ModalPub = ({ closeModal }) => {
     closeModal();
     // handlePostUser(newPostUser, userToken, userData.id);
   };
-
   return (
     <Container>
       <div className="headerModalPub">
@@ -48,7 +48,17 @@ const ModalPub = ({ closeModal }) => {
               type="file"
               placeholder="Arquivo Selecionado"
               {...register("postIMG")}
+              onChange={function (event) {
+                const reader = new FileReader();
+                reader.addEventListener("load", () => {
+                  setImgBase64Post(reader.result);
+                });
+                reader.readAsDataURL(event.target.files[0]);
+              }}
             />
+            {/* <video width={300} controls={true}>
+              <source src={imgBase64Post} />
+            </video> */}
             <GeralButton width="max-content" bgcolor={"#6C8394"} type="Submit">
               Publicar
             </GeralButton>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Api } from "../services";
 
@@ -11,6 +11,20 @@ export const UserDataProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-token")) || []
   );
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem("@matchplayers-token"));
+
+    if (token) {
+      return setIsAuth(true);
+    }
+  }, [isAuth]);
+  const handleLogout = () => {
+    localStorage.clear();
+    toast.success("Volte Sempre =)");
+    setIsAuth(false);
+  };
 
   const handleLogin = (data, history) => {
     Api.post("/login", data, {
@@ -30,6 +44,7 @@ export const UserDataProvider = ({ children }) => {
         setUserData(res.data.user);
         toast.success("Bem vindo ao Match Players");
         history.push("/feed");
+        setIsAuth(true);
       })
       .catch(() => toast.error("Usuário ou Senha Inválidos"));
   };
@@ -113,7 +128,14 @@ export const UserDataProvider = ({ children }) => {
 
   return (
     <UserDataContext.Provider
-      value={{ userData, handleLogin, handleRegister, handleUserProfile }}
+      value={{
+        userData,
+        handleLogin,
+        handleRegister,
+        handleUserProfile,
+        isAuth,
+        handleLogout,
+      }}
     >
       {children}
     </UserDataContext.Provider>

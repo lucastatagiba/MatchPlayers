@@ -68,7 +68,6 @@ export const ProfileCardBottom = styled.div`
     align-items: center;
     background: var(--Background-Color);
     color: var(--Gray-4);
-    width: 185px;
     height: 35px;
     gap: 0 5px;
 

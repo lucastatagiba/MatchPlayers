@@ -7,15 +7,21 @@ import { Container } from "./style";
 import ListCard from "../../components/ListCard";
 import ModalPub from "../../components/ModalPub";
 import { PostListContext } from "../../providers/posts";
+import { UserDataContext } from "../../providers/userData";
+import { Redirect } from "react-router-dom";
 
 const FeedPage = () => {
-  const [userData] = useState(
+  const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
   const [modalPub, setModalPub] = useState(false);
 
   const { postList } = useContext(PostListContext);
-
+  const { isAuth } = useContext(UserDataContext);
+  if (!isAuth) {
+    return <Redirect to="/" />;
+  }
+  console.log(postList);
   return (
     <>
       <Header />
@@ -83,11 +89,6 @@ const FeedPage = () => {
             </div>
           </div>
           <ListCard postList={postList}></ListCard>
-          {/* <ul>
-            {postList.map((post) => (
-              <li>{<CardFeed />}</li>
-            ))}
-          </ul> */}
         </section>
         <aside className="rightAside">
           {/* <ul>

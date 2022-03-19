@@ -2,14 +2,14 @@ import { TextField } from "@mui/material";
 import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RiUpload2Fill, RiCloseCircleFill } from "react-icons/ri";
-import { toast } from "react-toastify";
 import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
 import Button from "../GeneralButton";
 import { Container } from "./style";
+import { UserDataContext } from "../../providers/userData";
 
 const Header = () => {
   const history = useHistory();
@@ -23,6 +23,9 @@ const Header = () => {
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
   );
   const user = JSON.parse(localStorage.getItem("@matchplayers-userData")).name;
+
+  const { handleLogout } = useContext(UserDataContext);
+  const [inputvalue, setInputvalue] = useState("");
 
   const handleModal = (icon) => {
     switch (icon) {
@@ -65,11 +68,7 @@ const Header = () => {
         break;
     }
   };
-  const handleLogout = () => {
-    localStorage.clear();
-    history.push("/");
-    toast.success("Volte Sempre =)");
-  };
+  console.log(inputvalue);
   return (
     <Container>
       <figure onClick={() => history.push("/feed")}>
@@ -80,7 +79,7 @@ const Header = () => {
         </div>
       </figure>
 
-      <div className="modalMenu" display={appearModal.menu}>
+      <div className="modalMenu" display={appearModal.menu ? "inline" : "none"}>
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
@@ -89,7 +88,10 @@ const Header = () => {
         <div onClick={() => handleModal("config")}>Configurações</div>
         <div onClick={handleLogout}>Sair</div>
       </div>
-      <div className="modalConfig" display={appearModal.config}>
+      <div
+        className="modalConfig"
+        display={appearModal.config ? "flex" : "none"}
+      >
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
@@ -119,7 +121,10 @@ const Header = () => {
           />
         </div>
       </div>
-      <div className="modalPhoto" display={appearModal.photo}>
+      <div
+        className="modalPhoto"
+        display={appearModal.photo ? "inline" : "none"}
+      >
         <div onClick={() => handleModal("photo")} className="close">
           <RiCloseCircleFill />
         </div>
@@ -135,7 +140,12 @@ const Header = () => {
       </div>
 
       <div>
-        <Input Icon={AiOutlineSearch} width="250" placeholder="Pesquisar" />
+        <Input
+          Icon={AiOutlineSearch}
+          width="250"
+          placeholder="Pesquisar"
+          onChange={(event) => setInputvalue(event.target.value)}
+        />
 
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
 

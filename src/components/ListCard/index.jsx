@@ -2,7 +2,6 @@ import CardFeed from "../CardFeed";
 import { Container } from "./style";
 
 const ListCard = ({ postList }) => {
-  console.log(postList);
   return (
     <Container>
       {postList.map((post) => (

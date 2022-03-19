@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { BsCardImage } from "react-icons/bs";
 
 import Header from "../../components/Header";
@@ -14,10 +14,11 @@ const FeedPage = () => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
+
   const [modalPub, setModalPub] = useState(false);
 
   const { postList } = useContext(PostListContext);
-  const { isAuth } = useContext(UserDataContext);
+  const { isAuth, imgBase64User } = useContext(UserDataContext);
   if (!isAuth) {
     return <Redirect to="/" />;
   }
@@ -36,7 +37,10 @@ const FeedPage = () => {
         </div>
         <aside className="leftAside">
           <div className="divProfile">
-            <img alt="userPhoto" src={userData.profileIMG} />
+            <img
+              alt="userPhoto"
+              src={imgBase64User === "" ? userData.profileIMG : imgBase64User}
+            />
             <h2>{userData.nickname}</h2>
             {/* <ul>
               {gamelist.map((game) => (
@@ -64,7 +68,10 @@ const FeedPage = () => {
             </select>
           </div>
           <div className="divStartPub">
-            <img alt="UserPhoto" src={userData.profileIMG} />
+            <img
+              alt="UserPhoto"
+              src={imgBase64User === "" ? userData.profileIMG : imgBase64User}
+            />
             <div className="containPubDiv">
               <GeralButton
                 bgcolor={"#F3F2EF"}

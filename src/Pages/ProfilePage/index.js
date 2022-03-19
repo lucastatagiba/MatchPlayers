@@ -29,7 +29,7 @@ export const ProfileCardUserInfo = styled.div`
 export const UserPhoto = styled.img`
   border-radius: 50%;
   width: 130px;
-  width: 130px;
+  height: 130px;
 `;
 
 export const UserNickname = styled.h2`

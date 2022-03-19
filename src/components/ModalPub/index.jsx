@@ -6,11 +6,12 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { PostListContext } from "../../providers/posts";
 import { useState } from "react";
+import { UserDataContext } from "../../providers/userData";
 
 const ModalPub = ({ closeModal }) => {
   const { handlePost, handlePostUser, userData, userToken } =
     useContext(PostListContext);
-  const [imgBase64Post, setImgBase64Post] = useState("");
+  const { imgBase64Post, setImgBase64Post } = useContext(UserDataContext);
   const { register, handleSubmit } = useForm();
 
   const handlePostData = (data) => {
@@ -26,6 +27,7 @@ const ModalPub = ({ closeModal }) => {
     closeModal();
     // handlePostUser(newPostUser, userToken, userData.id);
   };
+  console.log(imgBase64Post);
   return (
     <Container>
       <div className="headerModalPub">

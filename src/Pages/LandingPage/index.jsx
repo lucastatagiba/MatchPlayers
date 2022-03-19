@@ -14,6 +14,7 @@ import { Redirect } from "react-router-dom";
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin, isAuth } = useContext(UserDataContext);
+
   const history = useHistory();
 
   const formSchema = yup.object().shape({

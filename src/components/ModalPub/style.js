@@ -10,6 +10,7 @@ export const Container = styled.div`
   background-color: var(--White-primary);
   margin-left: 180px;
   margin-top: 160px;
+  z-index: 10;
   svg {
     cursor: pointer;
   }

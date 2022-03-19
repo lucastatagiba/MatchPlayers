@@ -12,11 +12,17 @@ export const Container = styled.div`
   background-color: var(--White-primary);
   margin: 0 auto;
   margin-bottom: 10px;
+  padding-top: 30px;
+  position: relative;
   svg {
     margin-top: 10px;
     margin-right: 10px;
     align-self: flex-end;
     cursor: pointer;
+  }
+  .deletePost {
+    position: absolute;
+    top: 10px;
   }
 
   .postContent {
@@ -161,8 +167,8 @@ export const Box = styled.div`
     border-radius: 50%;
   }
   .userPhoto {
-    max-width: 40px;
-    max-height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin: 8px 0px 5px 12px;
   }

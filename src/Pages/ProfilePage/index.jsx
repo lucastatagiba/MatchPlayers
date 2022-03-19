@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { IoMdPersonAdd } from "react-icons/io";
 
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
-import CardFeed from "../../components/CardFeed";
 import { UserDataContext } from "../../providers/userData";
 
 import * as styles from "./index";
@@ -15,19 +14,22 @@ import { PostListContext } from "../../providers/posts";
 
 const ProfilePage = () => {
   const { userData, isAuth } = useContext(UserDataContext);
-  const { UserpostList } = useContext(PostListContext);
-
+  const { UserpostList, setUserPostList, postList } =
+    useContext(PostListContext);
+  const [photoProfile] = useState(
+    JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
+  );
   const {
     email,
-    friendList,
     gameList,
     name,
     nickname,
-    posts,
-    profileIMG,
     timeAvailability,
     profileBackgroundIMG,
   } = userData;
+  useEffect(() => {
+    setUserPostList(postList.filter((post) => post.userId === userData.id));
+  }, []);
   if (!isAuth) {
     return <Redirect to="/" />;
   }
@@ -39,7 +41,14 @@ const ProfilePage = () => {
         <styles.ProfileCardContainer>
           <styles.ProfileCard>
             <styles.ProfileCardUserInfo>
-              <styles.UserPhoto src={profileIMG} alt={`Pessoa ${name}`} />
+              <styles.UserPhoto
+                src={
+                  userData.profileIMG === ""
+                    ? photoProfile
+                    : userData.profileIMG
+                }
+                alt={`Pessoa ${name}`}
+              />
 
               <styles.UserNickname>{nickname}</styles.UserNickname>
 

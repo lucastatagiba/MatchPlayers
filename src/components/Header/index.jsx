@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
 import logoIMG from "../../Assets/img/logo.png";
@@ -12,7 +12,6 @@ import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
 import { Container } from "./style";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { UserDataContext } from "../../providers/userData";
 
 const Header = () => {
@@ -20,31 +19,22 @@ const Header = () => {
 
   const history = useHistory();
 
-  const [photoProfile, setPhotoProfile] = useState(
+  const [photoProfile] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
   );
   const user = JSON.parse(localStorage.getItem("@matchplayers-userData")).name;
   const {
     handleLogout,
-    imgBase64User,
     setImgBase64User,
     handlechangeUserIMG,
     loadingPhoto,
     appearModal,
     setAppearModal,
     isloading,
+    userData,
   } = useContext(UserDataContext);
-  useEffect(() => {
-    setAppearModal({
-      message: false,
-      menu: false,
-      photo: false,
-      config: false,
-    });
-  }, [setImgBase64User]);
 
   const [inputvalue, setInputvalue] = useState("");
-  console.log(imgBase64User);
   const handleModal = (icon) => {
     switch (icon) {
       case "config":
@@ -188,12 +178,21 @@ const Header = () => {
           <RiCloseCircleFill />
         </div>
         <div
-          onClick={() => history.push(`/profile/${user}`)}
+          onClick={() => {
+            history.push(`/profile/${user}`);
+            handleModal("photo");
+          }}
           className="modalPhotoText"
         >
           Ir para o meu perfil
         </div>
-        <div className="modalPhotoText2" onClick={() => handleLogout()}>
+        <div
+          className="modalPhotoText2"
+          onClick={() => {
+            handleLogout();
+            handleModal("photo");
+          }}
+        >
           Sair
         </div>
       </div>
@@ -221,7 +220,7 @@ const Header = () => {
           onClick={() => handleModal("config")}
         />
         <img
-          src={imgBase64User === "" ? photoProfile : imgBase64User}
+          src={userData.profileIMG === "" ? photoProfile : userData.profileIMG}
           alt="userPhoto"
           className="userimg"
           onClick={() => handleModal("photo")}

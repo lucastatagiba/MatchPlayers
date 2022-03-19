@@ -11,18 +11,22 @@ import { UserDataContext } from "../../providers/userData";
 import { Redirect } from "react-router-dom";
 
 const FeedPage = () => {
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
+  const [photoProfile] = useState(
+    localStorage.getItem("@matchplayers-userData")
+      ? JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG
+      : ""
   );
-
   const [modalPub, setModalPub] = useState(false);
+  const { postList, setUserData } = useContext(PostListContext);
+  const { isAuth, userData } = useContext(UserDataContext);
 
-  const { postList } = useContext(PostListContext);
-  const { isAuth, imgBase64User } = useContext(UserDataContext);
+  useEffect(() => {
+    setUserData(JSON.parse(localStorage.getItem("@matchplayers-userData")));
+  }, [modalPub]);
   if (!isAuth) {
     return <Redirect to="/" />;
   }
-  console.log(postList);
+
   return (
     <>
       <Header />
@@ -39,7 +43,9 @@ const FeedPage = () => {
           <div className="divProfile">
             <img
               alt="userPhoto"
-              src={imgBase64User === "" ? userData.profileIMG : imgBase64User}
+              src={
+                userData.profileIMG === "" ? photoProfile : userData.profileIMG
+              }
             />
             <h2>{userData.nickname}</h2>
             {/* <ul>
@@ -70,7 +76,9 @@ const FeedPage = () => {
           <div className="divStartPub">
             <img
               alt="UserPhoto"
-              src={imgBase64User === "" ? userData.profileIMG : imgBase64User}
+              src={
+                userData.profileIMG === "" ? photoProfile : userData.profileIMG
+              }
             />
             <div className="containPubDiv">
               <GeralButton

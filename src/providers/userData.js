@@ -8,7 +8,7 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
-  const [userToken, setUserToken] = useState(
+  const [userToken] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-token")) || []
   );
   const [isAuth, setIsAuth] = useState(false);
@@ -31,6 +31,7 @@ export const UserDataProvider = ({ children }) => {
       return setIsAuth(true);
     }
   }, [isAuth]);
+
   const handleLogout = () => {
     localStorage.clear();
     toast.success("Volte Sempre =)");
@@ -59,12 +60,6 @@ export const UserDataProvider = ({ children }) => {
       .catch(() => toast.error("Usuário ou Senha Inválidos"));
   };
 
-  const handleUserProfile = (id) => {
-    Api.get(`/644/users/${id}`)
-      .then((res) => console.log(res))
-      .catch((res) => console.log(res));
-  };
-
   const handleRegister = (data, history) => {
     Api.post("/users", data, {
       headers: {
@@ -72,7 +67,6 @@ export const UserDataProvider = ({ children }) => {
       },
     })
       .then((res) => {
-        console.log(res);
         toast.success("Conta cadastrada com sucesso");
 
         history.push("/");
@@ -110,11 +104,9 @@ export const UserDataProvider = ({ children }) => {
           JSON.stringify(res.data)
         );
         setUserData(res.data);
-        toast.success("Jogos Adicionados");
       })
       .catch((res) => toast.error("Tente Novamente"));
   };
-
   // a data do handleGames Register deve entrar somente
   /*
 
@@ -125,23 +117,23 @@ export const UserDataProvider = ({ children }) => {
 
   */
 
-  const handleGamesRegister = (data) => {
-    Api.patch(`/644/users/${userData.id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
-      },
-    })
-      .then((res) => {
-        localStorage.setItem(
-          "@matchplayers-userData",
-          JSON.stringify(res.data)
-        );
-        setUserData(res.data);
-        toast.success("Jogos Adicionados");
-      })
-      .catch((res) => toast.error("Tente Novamente"));
-  };
+  // const handleGamesRegister = (data) => {
+  //   Api.patch(`/644/users/${userData.id}`, data, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${userToken}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       localStorage.setItem(
+  //         "@matchplayers-userData",
+  //         JSON.stringify(res.data)
+  //       );
+  //       setUserData(res.data);
+  //       toast.success("Jogos Adicionados");
+  //     })
+  //     .catch((res) => toast.error("Tente Novamente"));
+  // };
 
   // a data do handleGames Edit deve entrar somente
   /*
@@ -153,23 +145,23 @@ export const UserDataProvider = ({ children }) => {
 
   */
 
-  const handleGamesEdit = (data) => {
-    Api.patch(`/644/users/${userData.id}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
-      },
-    })
-      .then((res) => {
-        localStorage.setItem(
-          "@matchplayers-userData",
-          JSON.stringify(res.data)
-        );
-        setUserData(res.data);
-        toast.success("Jogos Adicionados");
-      })
-      .catch((res) => toast.error("Tente Novamente"));
-  };
+  // const handleGamesEdit = (data) => {
+  //   Api.patch(`/644/users/${userData.id}`, data, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${userToken}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       localStorage.setItem(
+  //         "@matchplayers-userData",
+  //         JSON.stringify(res.data)
+  //       );
+  //       setUserData(res.data);
+  //       toast.success("Jogos Adicionados");
+  //     })
+  //     .catch((res) => toast.error("Tente Novamente"));
+  // };
 
   return (
     <UserDataContext.Provider
@@ -177,7 +169,6 @@ export const UserDataProvider = ({ children }) => {
         userData,
         handleLogin,
         handleRegister,
-        handleUserProfile,
         isAuth,
         handleLogout,
         setImgBase64Post,

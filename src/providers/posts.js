@@ -22,7 +22,6 @@ export const PostListProvider = ({ children }) => {
       },
     })
       .then((res) => {
-        console.log(res.data);
         const dataPost = {
           username: userData.nickname,
           userId: userData.id,
@@ -48,10 +47,6 @@ export const PostListProvider = ({ children }) => {
       setPostList(res.data);
     });
   }, [userData]);
-
-  useEffect(() => {
-    setUserPostList(postList.filter((post) => post.userId === userData.id));
-  }, [postList, userData.id]);
 
   const handlePostUser = (data, token, id) => {
     Api.patch(`/644/users/${id}`, data, {
@@ -116,6 +111,8 @@ export const PostListProvider = ({ children }) => {
         handlePostUser,
         handleDeletePost,
         UserpostList,
+        setUserPostList,
+        setUserData,
       }}
     >
       {children}

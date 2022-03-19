@@ -10,21 +10,22 @@ import GeralButton from "../GeneralButton";
 import { Container, Box } from "./style";
 
 const CardFeed = ({
-  profileIMG,
   username,
   desc,
   createdAt,
   idPost,
-  userId,
+  profileIMG,
+  postUpdate,
 }) => {
-  const { handleDeletePost, userData } = useContext(PostListContext);
+  const { handleDeletePost } = useContext(PostListContext);
   return (
     <>
       <Container>
-        {userId === userData.userId ? (
-          <CgCloseR onClick={() => handleDeletePost(idPost)} />
-        ) : (
-          <></>
+        {postUpdate && (
+          <CgCloseR
+            className="deletePost"
+            onClick={() => handleDeletePost(idPost)}
+          />
         )}
         <Box className="userInformation">
           <img className="userPhoto" src={profileIMG} alt="userPhoto" />

@@ -6,6 +6,7 @@ export const PostListContext = createContext([]);
 
 export const PostListProvider = ({ children }) => {
   const [postList, setPostList] = useState([]);
+  const [UserpostList, setUserPostList] = useState([]);
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
@@ -47,6 +48,10 @@ export const PostListProvider = ({ children }) => {
       setPostList(res.data);
     });
   }, [userData]);
+
+  useEffect(() => {
+    setUserPostList(postList.filter((post) => post.userId === userData.id));
+  }, [postList, userData.id]);
 
   const handlePostUser = (data, token, id) => {
     Api.patch(`/644/users/${id}`, data, {
@@ -110,6 +115,7 @@ export const PostListProvider = ({ children }) => {
         handlePost,
         handlePostUser,
         handleDeletePost,
+        UserpostList,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { Container } from "./style";
+import { Container, ContainerModal } from "./style";
 
 const Input = ({
   bgcolor,
@@ -9,6 +9,7 @@ const Input = ({
   placeholder,
   Icon,
   border = true,
+  ...rest
 }) => {
   return (
     <>
@@ -20,8 +21,9 @@ const Input = ({
         height={height}
         border={border}
       >
-        <input placeholder={placeholder} />
+        <input placeholder={placeholder} {...rest} />
         <Icon />
+        {/* <ContainerModal></ContainerModal> */}
       </Container>
     </>
   );

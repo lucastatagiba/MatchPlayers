@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   width: ${(props) => props.width}px;
   background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#F3F2EF")};
   color: ${(props) => (props.color ? props.color : "#6C8394")};
@@ -13,4 +14,12 @@ export const Container = styled.div`
     background-color: transparent;
     border: none;
   }
+`;
+export const ContainerModal = styled.div`
+  width: 300px;
+  height: 150px;
+  background-color: red;
+  position: absolute;
+  top: 30px;
+  right: 0;
 `;

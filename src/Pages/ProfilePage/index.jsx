@@ -9,9 +9,13 @@ import CardFeed from "../../components/CardFeed";
 import { UserDataContext } from "../../providers/userData";
 
 import * as styles from "./index";
+import { Redirect } from "react-router-dom";
+import ListCard from "../../components/ListCard";
+import { PostListContext } from "../../providers/posts";
 
 const ProfilePage = () => {
-  const { userData } = useContext(UserDataContext);
+  const { userData, isAuth } = useContext(UserDataContext);
+  const { UserpostList } = useContext(PostListContext);
 
   const {
     email,
@@ -24,7 +28,9 @@ const ProfilePage = () => {
     timeAvailability,
     profileBackgroundIMG,
   } = userData;
-
+  if (!isAuth) {
+    return <Redirect to="/" />;
+  }
   return (
     <>
       <Header />
@@ -62,7 +68,7 @@ const ProfilePage = () => {
                   <styles.Text>Disponibilidade de Horários</styles.Text>
 
                   <styles.Text>
-                    {timeAvailability[0]} ~ {timeAvailability[0]}
+                    {timeAvailability[0]} ~ {timeAvailability[1]}
                   </styles.Text>
                 </styles.Avaliable>
 
@@ -77,16 +83,11 @@ const ProfilePage = () => {
 
         <styles.ProfileContentContainer>
           <styles.Feed>
-            {
-              [1, 2, 3, 4, 5].map((post) => {
-                return <CardFeed />;
-              })
-              /*substituir por posts*/
-            }
+            <ListCard postList={UserpostList}></ListCard>
           </styles.Feed>
           <styles.PlaceHolder>
             {/*substituir por frinds list*/}
-          </styles.PlaceHolder>{" "}
+          </styles.PlaceHolder>
         </styles.ProfileContentContainer>
       </styles.Container>
     </>

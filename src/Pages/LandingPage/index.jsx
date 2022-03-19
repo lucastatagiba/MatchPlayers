@@ -9,10 +9,11 @@ import * as styles from "./style";
 import logo from "../../Assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { handleLogin } = useContext(UserDataContext);
+  const { handleLogin, isAuth } = useContext(UserDataContext);
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -32,6 +33,10 @@ const LandingPage = () => {
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
+
+  if (isAuth) {
+    return <Redirect to="/feed" />;
+  }
 
   return (
     <>

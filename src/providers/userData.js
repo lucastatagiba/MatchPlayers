@@ -24,6 +24,9 @@ export const UserDataProvider = ({ children }) => {
     photo: false,
   });
   const [userProfile, setUserProfile] = useState("");
+  const [listUsers, setListUsers] = useState([]);
+  const [searchUser, setSearchUser] = useState([]);
+  const [inputvalue, setInputvalue] = useState("");
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("@matchplayers-token"));
@@ -32,6 +35,12 @@ export const UserDataProvider = ({ children }) => {
       return setIsAuth(true);
     }
   }, [isAuth]);
+
+  useEffect(() => {
+    Api.get("/644/users").then((res) => {
+      setListUsers(res.data);
+    });
+  }, [inputvalue]);
 
   const handleLogout = () => {
     localStorage.clear();
@@ -239,6 +248,11 @@ export const UserDataProvider = ({ children }) => {
         handleProfileUser,
         handleAddFriend,
         handleRemoveFriend,
+        listUsers,
+        searchUser,
+        setSearchUser,
+        inputvalue,
+        setInputvalue,
       }}
     >
       {children}

@@ -1,4 +1,6 @@
 import { Container, ContainerModal } from "./style";
+import { useContext } from "react";
+import { UserDataContext } from "../../providers/userData";
 
 const Input = ({
   bgcolor,
@@ -12,6 +14,8 @@ const Input = ({
   display,
   ...rest
 }) => {
+  const { searchUser } = useContext(UserDataContext);
+
   return (
     <>
       <Container
@@ -28,24 +32,26 @@ const Input = ({
         <ContainerModal display={display}>
           <h3>Resultados:</h3>
           <div>
-            {[1, 2, 3, 4, 5].map((personSearch) => {
-              return (
-                <div>
-                  <img
-                    alt="personIMG"
-                    src={personSearch.img && personSearch.img}
-                  />
+            {!!searchUser &&
+              searchUser.map((personSearch) => {
+                console.log(personSearch);
+                return (
                   <div>
-                    <h2>personSearch</h2>
+                    <img
+                      alt="personIMG"
+                      src={personSearch.profileIMG && personSearch.profileIMG}
+                    />
                     <div>
-                      {/* {personSearch.jogos.map((jogo) => {
-                        return <div>iconeJogo</div>;
-                      })} */}
+                      <h2>{personSearch.name}</h2>
+                      <div>
+                        {personSearch.gameList.map((jogo) => {
+                          return <div>iconeJogo</div>;
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </ContainerModal>
       </Container>

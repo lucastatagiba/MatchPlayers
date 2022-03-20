@@ -35,6 +35,9 @@ export const ContainerModal = styled.div`
     display: flex;
     flex-wrap: wrap;
   }
+  img {
+    width: 50px;
+  }
   @media screen and (min-width: 768px) {
     right: 0px;
   }

@@ -34,8 +34,11 @@ const Header = () => {
     isloading,
     userData,
     setUserProfile,
+    listUsers,
+    setSearchUser,
+    setInputvalue,
   } = useContext(UserDataContext);
-  const [inputvalue, setInputvalue] = useState("");
+
   const handleModal = (icon) => {
     switch (icon) {
       case "config":
@@ -81,7 +84,7 @@ const Header = () => {
         setAppearModal({
           message: false,
           menu: false,
-          input: !appearModal.input,
+          input: false,
           config: false,
           photo: false,
         });
@@ -99,6 +102,36 @@ const Header = () => {
     reader.readAsDataURL(event.target.files[0]);
   };
 
+  const getValueSearch = (event) => {
+    const valueSearch = event.target.value.toLowerCase();
+    setInputvalue(valueSearch);
+    const newListUsers = listUsers.filter((usuario) => {
+      return usuario.name
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .includes(valueSearch.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+    });
+    handleModal("input");
+    if (valueSearch.length > 0) {
+      setAppearModal({
+        message: false,
+        menu: false,
+        input: true,
+        config: false,
+        photo: false,
+      });
+    } else {
+      setAppearModal({
+        message: false,
+        menu: false,
+        input: false,
+        config: false,
+        photo: false,
+      });
+    }
+    setSearchUser(newListUsers);
+  };
   return (
     <Container>
       <figure onClick={() => history.push("/feed")}>
@@ -124,9 +157,8 @@ const Header = () => {
           Icon={AiOutlineSearch}
           width="250"
           placeholder="Pesquisar"
-          onChange={(event) => setInputvalue(event.target.value)}
+          onChange={(event) => getValueSearch(event)}
           display={appearModal.input ? "flex" : "none"}
-          onClick={() => handleModal("input")}
         />
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
         <BsHouseFill

@@ -1,14 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { BsCardImage } from "react-icons/bs";
+import { Redirect, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
 import GeralButton from "../../components/GeneralButton";
-import { Container } from "./style";
 import ListCard from "../../components/ListCard";
 import ModalPub from "../../components/ModalPub";
 import { PostListContext } from "../../providers/posts";
 import { UserDataContext } from "../../providers/userData";
-import { Redirect, useHistory } from "react-router-dom";
+import ListNews from "../../components/ListNews";
+import { Container } from "./style";
 
 const FeedPage = () => {
   const [photoProfile] = useState(
@@ -17,8 +18,10 @@ const FeedPage = () => {
       : ""
   );
   const [modalPub, setModalPub] = useState(false);
-  const { postList, setUserData } = useContext(PostListContext);
-  const { isAuth, userData, handleProfileUser } = useContext(UserDataContext);
+  const { postList, setUserData, handleGetNews } = useContext(PostListContext);
+  const { isAuth, userData, handleProfileUser, setImgBase64Post } =
+    useContext(UserDataContext);
+  const [feedSwitch, setFeedSwitch] = useState(true);
 
   const history = useHistory();
 
@@ -29,18 +32,16 @@ const FeedPage = () => {
   if (!isAuth) {
     return <Redirect to="/" />;
   }
+
+  const handleNewsList = () => {
+    handleGetNews();
+    setFeedSwitch(false);
+  };
   return (
     <>
       <Header />
 
       <Container>
-        <div className="divModal">
-          {modalPub ? (
-            <ModalPub closeModal={() => setModalPub(false)} />
-          ) : (
-            <></>
-          )}
-        </div>
         <aside className="leftAside">
           <div className="divProfile">
             <img
@@ -70,8 +71,10 @@ const FeedPage = () => {
         <section>
           <div className="divButtonsFeed">
             <div>
-              <GeralButton>Publicações</GeralButton>
-              <GeralButton>Notícias</GeralButton>
+              <GeralButton onClick={() => setFeedSwitch(true)}>
+                Publicações
+              </GeralButton>
+              <GeralButton onClick={handleNewsList}>Notícias</GeralButton>
             </div>
             <select>
               <option value="all"> Todos </option>
@@ -79,6 +82,18 @@ const FeedPage = () => {
             </select>
           </div>
           <div className="divStartPub">
+            <>
+              {modalPub ? (
+                <ModalPub
+                  closeModal={() => {
+                    setImgBase64Post(false);
+                    setModalPub(false);
+                  }}
+                />
+              ) : (
+                <></>
+              )}
+            </>
             <img
               alt="UserPhoto"
               src={
@@ -108,7 +123,7 @@ const FeedPage = () => {
               </div>
             </div>
           </div>
-          <ListCard postList={postList}></ListCard>
+          {feedSwitch ? <ListCard postList={postList} /> : <ListNews />}
         </section>
         <aside className="rightAside">
           <h3>Amigos</h3>

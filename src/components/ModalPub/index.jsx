@@ -22,10 +22,11 @@ const ModalPub = ({ closeModal }) => {
       comments: [],
       postIMG: imgBase64Post,
     };
+    setImgBase64Post(false);
     handlePost(newPost, userToken);
     closeModal();
-    // handlePostUser(newPostUser, userToken, userData.id);
   };
+
   return (
     <Container>
       <div className="headerModalPub">
@@ -39,8 +40,9 @@ const ModalPub = ({ closeModal }) => {
             placeholder="No que você está pensando?"
             {...register("desc")}
           />
+          {imgBase64Post && <img src={imgBase64Post} alt="Thumbnail" />}
           <div className="buttonsModalPub">
-            <label for="selector-file">
+            <label htmlFor="selector-file">
               <BsFillImageFill color="black" /> Foto
             </label>
             <input
@@ -52,14 +54,10 @@ const ModalPub = ({ closeModal }) => {
                 const reader = new FileReader();
                 reader.addEventListener("load", () => {
                   setImgBase64Post(reader.result);
-                  console.log(imgBase64Post);
                 });
                 reader.readAsDataURL(event.target.files[0]);
               }}
             />
-            {/* <video width={300} controls={true}>
-              <source src={imgBase64Post} />
-            </video> */}
             <GeralButton width="max-content" bgcolor={"#6C8394"} type="Submit">
               Publicar
             </GeralButton>

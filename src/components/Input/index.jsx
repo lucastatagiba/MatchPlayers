@@ -53,9 +53,10 @@ const Input = ({
                         {personSearch.name}
                       </h2>
                       <div>
-                        {personSearch.gameList.map((jogo) => {
+                        {personSearch.gameList.map((jogo, index) => {
                           return (
                             <img
+                              key={index}
                               src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
                               alt="GameLogo"
                             />

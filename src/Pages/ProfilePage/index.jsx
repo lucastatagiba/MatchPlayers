@@ -40,7 +40,8 @@ const ProfilePage = () => {
   } = userData;
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
-  }, []);
+  }, [userProfile]);
+
   const handleAddUser = () => {
     console.log("adicionou");
     const newFriend = {

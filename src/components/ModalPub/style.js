@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
+  top: 75px;
+  left: 0px;
   width: 100%;
   max-width: 540px;
   border: 1px solid var(--Blue-primary);
   border-radius: 8px;
   padding: 10px;
   background-color: var(--White-primary);
-  margin-left: 180px;
-  margin-top: 160px;
   z-index: 10;
   svg {
     cursor: pointer;
@@ -36,7 +36,17 @@ export const Container = styled.div`
       border-radius: 50%;
     }
     .rightSidePub {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
+      gap: 10px;
+      img {
+        margin: 0 auto;
+        width: 80%;
+        height: 60%;
+        border-radius: 0%;
+      }
       textarea {
         height: 160px;
         width: 90%;
@@ -78,9 +88,5 @@ export const Container = styled.div`
         }
       }
     }
-  }
-  @media screen and (max-width: 768px) {
-    max-width: 400px;
-    margin: 150px auto;
   }
 `;

@@ -36,7 +36,7 @@ export const ContainerModal = styled.div`
     display: flex;
     flex-wrap: wrap;
     max-height: 300px;
-    overflow-x: scroll;
+    overflow-y: auto;
   }
   li {
     display: flex;

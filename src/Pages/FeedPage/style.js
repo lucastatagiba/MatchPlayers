@@ -5,8 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 0 auto;
   max-width: 900px;
-  .divModal {
-  }
   .leftAside {
     display: none;
     flex-direction: column;
@@ -73,6 +71,7 @@ export const Container = styled.div`
     }
   }
   .divStartPub {
+    position: relative;
     display: flex;
     width: 95%;
     background-color: var(--White-primary);
@@ -93,6 +92,7 @@ export const Container = styled.div`
       align-items: center;
       width: 100%;
       border-radius: 8px;
+
       button {
         font-size: 12px;
         text-align: start;
@@ -119,6 +119,8 @@ export const Container = styled.div`
     }
     .divStartPub {
       min-width: 450px;
+      .divModal {
+      }
     }
     .leftAside {
       display: flex;

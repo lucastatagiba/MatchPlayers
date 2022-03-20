@@ -3,17 +3,19 @@ import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
 import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { RiCloseCircleFill } from "react-icons/ri";
+
 import logoIMG from "../../Assets/img/logo.png";
 import Input from "../Input";
 import FileField from "../FileField";
 import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
 import { Container } from "./style";
-import { useForm } from "react-hook-form";
 import { UserDataContext } from "../../providers/userData";
-import { useParams } from "react-router-dom";
+import ListFriendsModal from "../ListFriendsModal";
 
 const Header = () => {
   const { register, handleSubmit } = useForm();
@@ -39,6 +41,10 @@ const Header = () => {
     setSearchUser,
     setInputvalue,
   } = useContext(UserDataContext);
+  const [listFriends, setListFriends] = useState(
+    JSON.parse(localStorage.getItem("@matchplayers-userData")).friendList || []
+  );
+  const [modalFriends, setModalFriends] = useState(false);
 
   const handleModal = (icon) => {
     switch (icon) {
@@ -95,6 +101,15 @@ const Header = () => {
         break;
     }
   };
+
+  const handleModalFriends = () => {
+    setListFriends(
+      JSON.parse(localStorage.getItem("@matchplayers-userData")).friendList
+    );
+    setModalFriends(!modalFriends);
+    handleModal("menu");
+  };
+
   const getImgUser = (event) => {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -137,6 +152,7 @@ const Header = () => {
   useEffect(() => {
     handleModal("input");
   }, [params]);
+
   return (
     <Container>
       <figure onClick={() => history.push("/feed")}>
@@ -146,12 +162,11 @@ const Header = () => {
           <span>Social Media For Games</span>
         </div>
       </figure>
-
       <div className="modalMenu" display={appearModal.menu ? "flex" : "none"}>
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
-        <div>Amigos</div>
+        <div onClick={() => handleModalFriends()}>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
         <div onClick={() => handleLogout(history)}>Sair</div>
@@ -295,6 +310,12 @@ const Header = () => {
           </div>
         </div>
       </div>
+      {modalFriends && (
+        <ListFriendsModal
+          listFriends={listFriends}
+          modalClose={setModalFriends}
+        />
+      )}
     </Container>
   );
 };

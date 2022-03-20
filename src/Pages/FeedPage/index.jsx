@@ -70,8 +70,7 @@ const FeedPage = () => {
         <section>
           <div className="divButtonsFeed">
             <div>
-              <GeralButton>Todos</GeralButton>
-              <GeralButton>Jogos</GeralButton>
+              <GeralButton>Publicações</GeralButton>
               <GeralButton>Notícias</GeralButton>
             </div>
             <select>
@@ -112,6 +111,7 @@ const FeedPage = () => {
           <ListCard postList={postList}></ListCard>
         </section>
         <aside className="rightAside">
+          <h3>Amigos</h3>
           <ul>
             {userData.friendList.map((friend) => (
               <li

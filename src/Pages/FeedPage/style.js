@@ -138,7 +138,15 @@ export const Container = styled.div`
       background-color: var(--White-primary);
       height: max-content;
       padding-bottom: 20px;
-      min-width: 210px;
+      min-width: 120px;
+      width: 80%;
+      h3 {
+        font-size: 18px;
+        text-align: center;
+        border-bottom: 1px solid var(--Gray-3);
+        padding: 10px 0;
+        width: 100%;
+      }
       ul {
         width: 100%;
       }

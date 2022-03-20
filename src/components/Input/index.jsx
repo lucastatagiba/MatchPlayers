@@ -32,11 +32,11 @@ const Input = ({
         <Icon />
         <ContainerModal display={display}>
           <h3>Resultados:</h3>
-          <div>
+          <ul>
             {!!searchUser &&
               searchUser.map((personSearch) => {
                 return (
-                  <div>
+                  <li key={personSearch.userId}>
                     <img
                       alt="personIMG"
                       src={personSearch.profileIMG && personSearch.profileIMG}
@@ -44,7 +44,7 @@ const Input = ({
                         handleProfileUser(personSearch.id, history)
                       }
                     />
-                    <div>
+                    <div className="div--games">
                       <h2
                         onClick={() =>
                           handleProfileUser(personSearch.id, history)
@@ -54,14 +54,19 @@ const Input = ({
                       </h2>
                       <div>
                         {personSearch.gameList.map((jogo) => {
-                          return <div>iconeJogo</div>;
+                          return (
+                            <img
+                              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                              alt="GameLogo"
+                            />
+                          );
                         })}
                       </div>
                     </div>
-                  </div>
+                  </li>
                 );
               })}
-          </div>
+          </ul>
         </ContainerModal>
       </Container>
     </>

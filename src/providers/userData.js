@@ -222,6 +222,29 @@ export const UserDataProvider = ({ children }) => {
       .catch(() => toast.error("Tente Novamente!"));
   };
 
+  const handleSetTimeAvailability = (data) => {
+    const time = {
+      timeAvailability: data,
+    };
+    const token = JSON.parse(localStorage.getItem("@matchplayers-token"));
+
+    Api.patch(`/644/users/${userData.id}`, time, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem(
+          "@matchplayers-userData",
+          JSON.stringify(res.data)
+        );
+        setUserData(res.data);
+        toast.success("Horário alterado");
+      })
+      .catch(() => toast.error("Tente Novamente!"));
+  };
+
   return (
     <UserDataContext.Provider
       value={{
@@ -253,6 +276,7 @@ export const UserDataProvider = ({ children }) => {
         setSearchUser,
         inputvalue,
         setInputvalue,
+        handleSetTimeAvailability,
       }}
     >
       {children}

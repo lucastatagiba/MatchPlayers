@@ -57,9 +57,7 @@ const FeedPage = () => {
           </div>
           <div className="divSchedules">
             <h3>Disponibilidade de Horários</h3>
-            <span>
-              {/* {`${disponibilidadeHorario[0]} ~ ${disponibilidadeHorario[1]}`} */}
-            </span>
+            <span>{userData.timeAvailability}</span>
           </div>
         </aside>
         <section>

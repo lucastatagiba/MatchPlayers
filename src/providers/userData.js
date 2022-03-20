@@ -16,7 +16,7 @@ export const UserDataProvider = ({ children }) => {
   const [imgBase64User, setImgBase64User] = useState("");
   const [loadingPhoto, setLoadingPhoto] = useState("");
   const [isloading, setIsloading] = useState(false);
-
+  const [userGames, setUserGames] = useState([]);
   const [appearModal, setAppearModal] = useState({
     config: false,
     message: false,
@@ -59,7 +59,6 @@ export const UserDataProvider = ({ children }) => {
       })
       .catch(() => toast.error("Usuário ou Senha Inválidos"));
   };
-
   const handleRegister = (data, history) => {
     Api.post("/users", data, {
       headers: {
@@ -117,23 +116,27 @@ export const UserDataProvider = ({ children }) => {
 
   */
 
-  // const handleGamesRegister = (data) => {
-  //   Api.patch(`/644/users/${userData.id}`, data, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${userToken}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       localStorage.setItem(
-  //         "@matchplayers-userData",
-  //         JSON.stringify(res.data)
-  //       );
-  //       setUserData(res.data);
-  //       toast.success("Jogos Adicionados");
-  //     })
-  //     .catch((res) => toast.error("Tente Novamente"));
-  // };
+  const handleGamesRegister = () => {
+    const data = {};
+
+    data.gameList = userGames;
+
+    Api.patch(`/644/users/${userData.id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem(
+          "@matchplayers-userData",
+          JSON.stringify(res.data)
+        );
+        setUserData(res.data);
+        toast.success("Jogos Adicionados");
+      })
+      .catch((res) => toast.error("Tente Novamente"));
+  };
 
   // a data do handleGames Edit deve entrar somente
   /*
@@ -181,6 +184,9 @@ export const UserDataProvider = ({ children }) => {
         appearModal,
         setAppearModal,
         isloading,
+        userGames,
+        setUserGames,
+        handleGamesRegister,
       }}
     >
       {children}

@@ -30,10 +30,10 @@ const Header = () => {
     loadingPhoto,
     appearModal,
     setAppearModal,
+    handleGamesRegister,
     isloading,
     userData,
   } = useContext(UserDataContext);
-
   const [inputvalue, setInputvalue] = useState("");
   const handleModal = (icon) => {
     switch (icon) {
@@ -153,11 +153,14 @@ const Header = () => {
               <h5>Adicionar jogos:</h5>
 
               <SelectGames />
-
               <Button
                 bgcolor={"#002543"}
                 children={"Salvar alteração"}
                 width={150}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleGamesRegister();
+                }}
               />
             </form>
 

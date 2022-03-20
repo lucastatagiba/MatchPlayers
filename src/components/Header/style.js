@@ -83,19 +83,31 @@ export const Container = styled.div`
   .modalMenu :nth-child(1) {
     border-top: none;
   }
-  .modalConfig {
-    display: ${(props) => props.children[2].props.display};
-    flex-direction: column;
-    width: 80%;
-    max-width: 360px;
-    border-radius: 8px;
-    position: absolute;
-    top: 60px;
-    margin-top: 20px;
-    padding: 20px 30px;
-    border: 2px solid var(--Blue-primary);
-    background-color: white;
-    z-index: 3;
+  .configDiv {
+    width: 0px;
+    height: 100px;
+    position: relative;
+
+    .modalConfig {
+      display: ${(props) =>
+        props.children[2].props.children[4].props.children[1].props.display};
+      flex-direction: column;
+      width: 320px;
+      max-width: 360px;
+      border-radius: 8px;
+      position: absolute;
+      top: 60px;
+      right: -3px;
+      margin-top: 20px;
+      padding: 20px 30px;
+      border: 2px solid var(--Blue-primary);
+      background-color: var(--Gray-1);
+      z-index: 3;
+      .loading {
+        width: 50px;
+        height: 50px;
+      }
+    }
 
     .upload {
       width: 25px;
@@ -107,8 +119,12 @@ export const Container = styled.div`
       align-items: center;
     }
   }
-  .modalPhoto {
-    display: none;
+  .profilePhoto {
+    width: 0px;
+    height: 100px;
+    .modalPhoto {
+      display: none;
+    }
   }
   .logoimg {
     height: 50px;
@@ -120,7 +136,7 @@ export const Container = styled.div`
   div {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
     input {
       width: 100%;
     }
@@ -151,16 +167,30 @@ export const Container = styled.div`
     .modalMenu {
       display: none;
     }
-    .modalConfig {
-      display: ${(props) => props.children[2].props.display};
-      width: 80%;
-      max-width: 360px;
-      background-color: white;
-      border-radius: 8px;
-      top: 60px;
-      .loading {
-        width: 50px;
-        height: 50px;
+    .configDiv {
+      width: 30px;
+      height: 100px;
+      position: relative;
+
+      .modalConfig {
+        display: ${(props) =>
+          props.children[2].props.children[4].props.children[1].props.display};
+        flex-direction: column;
+        width: 320px;
+        max-width: 360px;
+        border-radius: 8px;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        margin-top: 20px;
+        padding: 20px 30px;
+        border: 2px solid var(--Blue-primary);
+        background-color: var(--Gray-1);
+        z-index: 3;
+        .loading {
+          width: 50px;
+          height: 50px;
+        }
       }
 
       h5 {
@@ -171,28 +201,40 @@ export const Container = styled.div`
     .modalPhoto :nth-child(2) {
       border-bottom: 1px solid var(--Gray-3);
     }
-    .modalPhoto {
-      display: ${(props) => props.children[3].props.display};
-      height: 80px;
-      padding: 0 50px 0 10px;
-      background-color: white;
-      border-radius: 8px;
-      position: absolute;
-      top: 8.5%;
-      left: 73%;
-      border: 2px solid var(--Blue-primary);
-      justify-content: space-between;
-      z-index: 3;
-      .modalPhotoText {
-        font-size: 12px;
-        height: 40px;
-        align-items: center;
-        justify-content: center;
+    .profilePhoto {
+      width: 30px;
+      height: 100px;
+      position: relative;
+      .modalPhoto {
+        display: ${(props) =>
+          props.children[2].props.children[5].props.children[1].props.display};
+        width: 300px;
+        height: 80px;
+        padding: 0 50px 0 10px;
+        background-color: white;
+        border-radius: 8px;
+        position: absolute;
+        top: 80px;
+        right: 5px;
+        border: 2px solid var(--Blue-primary);
+        justify-content: space-between;
+        z-index: 3;
+        .modalPhotoText {
+          font-size: 16px;
+          height: 40px;
+          align-items: center;
+          justify-content: center;
+        }
+        .modalPhotoText2 {
+          font-size: 18px;
+          height: 40px;
+          align-items: center;
+          justify-content: center;
+        }
       }
 
       div:hover {
         cursor: pointer;
-        opacity: 0.5;
       }
       .close {
         left: 82%;
@@ -211,7 +253,6 @@ export const Container = styled.div`
       }
     }
     div {
-      display: flex;
       align-items: center;
       gap: 10px;
       .menu {

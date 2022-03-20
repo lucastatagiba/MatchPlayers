@@ -43,6 +43,7 @@ const Header = () => {
           menu: false,
           photo: false,
           config: !appearModal.config,
+          input: false,
         });
         return appearModal.config;
       case "message":
@@ -51,6 +52,7 @@ const Header = () => {
           menu: false,
           photo: false,
           config: false,
+          input: false,
         });
         return appearModal.message;
 
@@ -60,6 +62,7 @@ const Header = () => {
           menu: !appearModal.menu,
           photo: false,
           config: false,
+          input: false,
         });
         return appearModal.menu;
 
@@ -69,8 +72,19 @@ const Header = () => {
           menu: false,
           photo: !appearModal.photo,
           config: false,
+          input: false,
         });
         return appearModal.photo;
+
+      case "input":
+        setAppearModal({
+          message: false,
+          menu: false,
+          input: !appearModal.input,
+          config: false,
+          photo: false,
+        });
+        return appearModal.input;
 
       default:
         break;
@@ -103,99 +117,6 @@ const Header = () => {
         <div onClick={() => handleModal("config")}>Configurações</div>
         <div onClick={handleLogout}>Sair</div>
       </div>
-      <div
-        className="modalConfig"
-        display={appearModal.config ? "flex" : "none"}
-      >
-        <div onClick={() => handleModal("menu")} className="close">
-          <RiCloseCircleFill />
-        </div>
-
-        <form>
-          <h5>Adicionar jogos:</h5>
-
-          <SelectGames />
-
-          <Button
-            bgcolor={"#002543"}
-            children={"Salvar alteração"}
-            width={150}
-          />
-        </form>
-
-        <form onSubmit={handleSubmit(handlechangeUserIMG)}>
-          <h5>Alterar perfil:</h5>
-
-          <FileField
-            name={"perfil"}
-            register={register}
-            id="perfil"
-            placeholder="Imagem de Perfil"
-            type="file"
-            onchangeFunc={getImgUser}
-          />
-          {isloading && <img className="loading" alt="" src={loadingPhoto} />}
-
-          {/* <FileField
-            name={"fundo"}
-            register={register}
-            id="fundo"
-            placeholder="Imagem de Fundo"
-            type="file"
-          /> */}
-
-          <Button
-            bgcolor={"#002543"}
-            children={"Salvar alteração"}
-            width={150}
-          />
-        </form>
-
-        <form>
-          <h5>Editar senha:</h5>
-
-          <TextField fullWidth label="Senha" variant="outlined" size="small" />
-
-          <TextField
-            fullWidth
-            label="Confirmar Senha"
-            variant="outlined"
-            size="small"
-          />
-
-          <Button
-            bgcolor={"#002543"}
-            children={"Salvar alteração"}
-            width={150}
-          />
-        </form>
-      </div>
-      <div
-        className="modalPhoto"
-        display={appearModal.photo ? "inline" : "none"}
-      >
-        <div onClick={() => handleModal("photo")} className="close">
-          <RiCloseCircleFill />
-        </div>
-        <div
-          onClick={() => {
-            history.push(`/profile/${user}`);
-            handleModal("photo");
-          }}
-          className="modalPhotoText"
-        >
-          Ir para o meu perfil
-        </div>
-        <div
-          className="modalPhotoText2"
-          onClick={() => {
-            handleLogout();
-            handleModal("photo");
-          }}
-        >
-          Sair
-        </div>
-      </div>
 
       <div>
         <Input
@@ -203,10 +124,10 @@ const Header = () => {
           width="250"
           placeholder="Pesquisar"
           onChange={(event) => setInputvalue(event.target.value)}
+          display={appearModal.input ? "flex" : "none"}
+          onClick={() => handleModal("input")}
         />
-
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
-
         <BsHouseFill
           className="houseIcon"
           onClick={() => history.push("/feed")}
@@ -215,16 +136,122 @@ const Header = () => {
           className="messageIcon"
           onClick={() => handleModal("message")}
         />
-        <AiFillSetting
-          className="configIcon"
-          onClick={() => handleModal("config")}
-        />
-        <img
-          src={userData.profileIMG === "" ? photoProfile : userData.profileIMG}
-          alt="userPhoto"
-          className="userimg"
-          onClick={() => handleModal("photo")}
-        />
+        <div className="configDiv">
+          <AiFillSetting
+            className="configIcon"
+            onClick={() => handleModal("config")}
+          />
+          <div
+            className="modalConfig"
+            display={appearModal.config ? "flex" : "none"}
+          >
+            <div onClick={() => handleModal("menu")} className="close">
+              <RiCloseCircleFill />
+            </div>
+
+            <form>
+              <h5>Adicionar jogos:</h5>
+
+              <SelectGames />
+
+              <Button
+                bgcolor={"#002543"}
+                children={"Salvar alteração"}
+                width={150}
+              />
+            </form>
+
+            <form onSubmit={handleSubmit(handlechangeUserIMG)}>
+              <h5>Alterar perfil:</h5>
+
+              <FileField
+                name={"perfil"}
+                register={register}
+                id="perfil"
+                placeholder="Imagem de Perfil"
+                type="file"
+                onchangeFunc={getImgUser}
+              />
+              {isloading && (
+                <img className="loading" alt="" src={loadingPhoto} />
+              )}
+
+              {/* <FileField
+            name={"fundo"}
+            register={register}
+            id="fundo"
+            placeholder="Imagem de Fundo"
+            type="file"
+          /> */}
+
+              <Button
+                bgcolor={"#002543"}
+                children={"Salvar alteração"}
+                width={150}
+              />
+            </form>
+
+            <form>
+              <h5>Editar senha:</h5>
+
+              <TextField
+                fullWidth
+                label="Senha"
+                variant="outlined"
+                size="small"
+              />
+
+              <TextField
+                fullWidth
+                label="Confirmar Senha"
+                variant="outlined"
+                size="small"
+              />
+
+              <Button
+                bgcolor={"#002543"}
+                children={"Salvar alteração"}
+                width={150}
+              />
+            </form>
+          </div>
+        </div>
+        <div className="profilePhoto">
+          <img
+            src={
+              userData.profileIMG === "" ? photoProfile : userData.profileIMG
+            }
+            alt="userPhoto"
+            className="userimg"
+            onClick={() => handleModal("photo")}
+          />
+          <div
+            className="modalPhoto"
+            display={appearModal.photo ? "inline" : "none"}
+          >
+            <div onClick={() => handleModal("photo")} className="close">
+              <RiCloseCircleFill />
+            </div>
+            <div
+              onClick={() => {
+                history.push(`/profile/${user}`);
+                handleModal("photo");
+              }}
+              className="modalPhotoText"
+            >
+              Ir para o meu perfil
+            </div>
+            <div
+              className="modalPhotoText2"
+              onClick={() => {
+                handleLogout();
+                handleModal("photo");
+              }}
+            >
+              Sair
+            </div>
+          </div>
+        </div>
       </div>
     </Container>
   );

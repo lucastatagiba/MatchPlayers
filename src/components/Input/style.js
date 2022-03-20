@@ -16,10 +16,26 @@ export const Container = styled.div`
   }
 `;
 export const ContainerModal = styled.div`
+  display: ${(props) => props.display}!important;
+  align-items: start !important;
+  padding: 5px;
+  border: 1px solid var(--Gray-3);
+  border-radius: 8px;
   width: 300px;
-  height: 150px;
-  background-color: red;
+  background-color: var(--Gray-1);
   position: absolute;
   top: 30px;
-  right: 0;
+  right: -3px;
+  z-index: 20;
+
+  h3 {
+    display: flex;
+  }
+  div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @media screen and (min-width: 768px) {
+    right: 0px;
+  }
 `;

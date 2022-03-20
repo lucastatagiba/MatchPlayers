@@ -114,12 +114,13 @@ const FeedPage = () => {
         <aside className="rightAside">
           <ul>
             {userData.friendList.map((friend) => (
-              <>
-                <li onClick={() => handleProfileUser(friend.userId, history)}>
-                  <img alt="userPhoto" src={friend.profileIMG} />
-                  <h2>{friend.name}</h2>
-                </li>
-              </>
+              <li
+                key={friend.userId}
+                onClick={() => handleProfileUser(friend.userId, history)}
+              >
+                <img alt="userPhoto" src={friend.profileIMG} />
+                <h2>{friend.name}</h2>
+              </li>
             ))}
           </ul>
         </aside>

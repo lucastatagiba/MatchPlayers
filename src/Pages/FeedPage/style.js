@@ -138,6 +138,10 @@ export const Container = styled.div`
       background-color: var(--White-primary);
       height: max-content;
       padding-bottom: 20px;
+      min-width: 210px;
+      ul {
+        width: 100%;
+      }
       img {
         width: 40px;
         height: 40px;

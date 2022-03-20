@@ -2,20 +2,28 @@ import { useContext, useEffect, useState } from "react";
 
 import { IoMdPersonAdd } from "react-icons/io";
 import { IoPersonRemove } from "react-icons/io5";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
 import { UserDataContext } from "../../providers/userData";
-
-import * as styles from "./style";
 import { Redirect } from "react-router-dom";
 import ListCard from "../../components/ListCard";
 import { PostListContext } from "../../providers/posts";
+import * as styles from "./style";
 
 const ProfilePage = () => {
-  const { userData, userProfile, isAuth, handleAddFriend, handleRemoveFriend } =
-    useContext(UserDataContext);
+  const {
+    userData,
+    userProfile,
+    isAuth,
+    handleAddFriend,
+    handleRemoveFriend,
+    handleProfileUser,
+  } = useContext(UserDataContext);
+
+  const history = useHistory();
 
   const { UserpostList, setUserPostList, postList } =
     useContext(PostListContext);
@@ -117,7 +125,7 @@ const ProfilePage = () => {
                     <>
                       <GeneralButton onClick={() => handleAddUser()}>
                         <IoMdPersonAdd />
-                        Adicionar Amigo
+                        Seguir Amigo
                       </GeneralButton>
                     </>
                   ) : !userData.friendList.find((item) => {
@@ -126,14 +134,14 @@ const ProfilePage = () => {
                     <>
                       <GeneralButton onClick={() => handleAddUser()}>
                         <IoMdPersonAdd />
-                        Adicionar Amigo
+                        Seguir Amigo
                       </GeneralButton>
                     </>
                   ) : (
                     <>
                       <GeneralButton onClick={() => handleRemoveUser()}>
                         <IoPersonRemove />
-                        Remover Amigo
+                        Deixar de Seguir
                       </GeneralButton>
                     </>
                   ))}
@@ -147,7 +155,16 @@ const ProfilePage = () => {
             <ListCard postList={UserpostList}></ListCard>
           </styles.Feed>
           <styles.PlaceHolder>
-            {/*substituir por frinds list*/}
+            <h3>Lista de Amigos</h3>
+            {userProfile.friendList.map((friend) => (
+              <li
+                key={friend.userId}
+                onClick={() => handleProfileUser(friend.userId, history)}
+              >
+                <img alt="userPhoto" src={friend.profileIMG} />
+                <h2>{friend.name}</h2>
+              </li>
+            ))}
           </styles.PlaceHolder>
         </styles.ProfileContentContainer>
       </styles.Container>

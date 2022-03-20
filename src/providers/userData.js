@@ -42,7 +42,8 @@ export const UserDataProvider = ({ children }) => {
     });
   }, [inputvalue]);
 
-  const handleLogout = () => {
+  const handleLogout = (history) => {
+    history.push("/");
     localStorage.clear();
     toast.success("Volte Sempre =)");
     setIsAuth(false);

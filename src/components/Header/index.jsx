@@ -154,7 +154,7 @@ const Header = () => {
         <div>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
-        <div onClick={handleLogout}>Sair</div>
+        <div onClick={() => handleLogout(history)}>Sair</div>
       </div>
 
       <div>
@@ -286,7 +286,7 @@ const Header = () => {
             <div
               className="modalPhotoText2"
               onClick={() => {
-                handleLogout();
+                handleLogout(history);
                 handleModal("photo");
               }}
             >

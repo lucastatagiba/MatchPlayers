@@ -12,6 +12,8 @@ import { Redirect } from "react-router-dom";
 import ListCard from "../../components/ListCard";
 import { PostListContext } from "../../providers/posts";
 import * as styles from "./style";
+import GeralButton from "../../components/GeneralButton";
+import SelectTime from "../../components/SelectTime";
 
 const ProfilePage = () => {
   const {
@@ -21,6 +23,7 @@ const ProfilePage = () => {
     handleAddFriend,
     handleRemoveFriend,
     handleProfileUser,
+    handleSetTimeAvailability,
   } = useContext(UserDataContext);
 
   const history = useHistory();
@@ -30,6 +33,8 @@ const ProfilePage = () => {
   const [photoProfile] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
   );
+  const [initialSelect, setInitialSelect] = useState("");
+  const [finalSelect, setFinalSelect] = useState("");
   const {
     email,
     gameList,
@@ -38,6 +43,7 @@ const ProfilePage = () => {
     timeAvailability,
     profileBackgroundIMG,
   } = userData;
+
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
   }, [userProfile]);
@@ -115,10 +121,36 @@ const ProfilePage = () => {
               <styles.BottomRight>
                 <styles.Avaliable>
                   <styles.Text>Disponibilidade de Horários</styles.Text>
-
                   <styles.Text>
-                    {timeAvailability[0]} ~ {timeAvailability[1]}
+                    {userData.userId !== userProfile.userId
+                      ? userProfile.timeAvailability
+                      : userData.timeAvailability}
                   </styles.Text>
+                  {/* onChange={(e) => setInitialSelect(e.target.value)} */}
+                  {/* onChange={(e) => setFinalSelect(e.target.value)} */}
+
+                  {userData.userId !== userProfile.userId ? (
+                    ""
+                  ) : (
+                    <>
+                      <SelectTime
+                        handleFunction={(e) => setInitialSelect(e.target.value)}
+                      />
+                      <SelectTime
+                        handleFunction={(e) => setFinalSelect(e.target.value)}
+                      />
+
+                      <GeralButton
+                        children={"Salvar"}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSetTimeAvailability(
+                            `${initialSelect}:00 até ${finalSelect}:00 `
+                          );
+                        }}
+                      />
+                    </>
+                  )}
                 </styles.Avaliable>
 
                 {userData.userId !== userProfile.userId &&

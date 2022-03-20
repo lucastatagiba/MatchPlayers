@@ -152,7 +152,6 @@ export const UserDataProvider = ({ children }) => {
 
   const handleProfileUser = (idUser, history) => {
     Api.get(`644/users/${idUser}`).then((res) => {
-      console.log(res.data);
       setUserProfile(res.data);
       history.push(`/profile/${res.data.name}`);
     });

@@ -55,6 +55,11 @@ export const Container = styled.div`
       flex-wrap: wrap;
       gap: 10px;
     }
+    img {
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+    }
   }
   .userName {
     display: flex;
@@ -62,6 +67,8 @@ export const Container = styled.div`
     justify-content: space-around;
     padding-top: 8px;
     margin-left: 10px;
+    cursor: pointer;
+
     span {
       color: var(--Gray-3);
     }
@@ -122,6 +129,11 @@ export const Container = styled.div`
 
     .userInformation {
       height: 86px;
+      img {
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+      }
     }
     .gameName {
       display: flex;
@@ -182,8 +194,8 @@ export const Box = styled.div`
   }
   @media screen and (min-width: 1024px) {
     .userPhoto {
-      max-width: 60px;
-      max-height: 60px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       margin: 8px 0px 5px 12px;
     }

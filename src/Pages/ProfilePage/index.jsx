@@ -33,7 +33,6 @@ const ProfilePage = () => {
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
   }, []);
-
   const handleAddUser = () => {
     console.log("adicionou");
     const newFriend = {
@@ -93,7 +92,7 @@ const ProfilePage = () => {
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
-                {gameList.map((game, index) => {
+                {userProfile.gameList.map((game, index) => {
                   return (
                     <CardGames
                       key={index}

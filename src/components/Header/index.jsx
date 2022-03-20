@@ -2,7 +2,7 @@ import { TextField } from "@mui/material";
 import { BsHouseFill } from "react-icons/bs";
 import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
 import { GrMoreVertical } from "react-icons/gr";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { RiCloseCircleFill } from "react-icons/ri";
 import logoIMG from "../../Assets/img/logo.png";
@@ -13,6 +13,7 @@ import Button from "../GeneralButton";
 import { Container } from "./style";
 import { useForm } from "react-hook-form";
 import { UserDataContext } from "../../providers/userData";
+import { useParams } from "react-router-dom";
 
 const Header = () => {
   const { register, handleSubmit } = useForm();
@@ -132,6 +133,10 @@ const Header = () => {
     }
     setSearchUser(newListUsers);
   };
+  const params = useParams();
+  useEffect(() => {
+    handleModal("input");
+  }, [params]);
   return (
     <Container>
       <figure onClick={() => history.push("/feed")}>

@@ -8,7 +8,7 @@ import ListCard from "../../components/ListCard";
 import ModalPub from "../../components/ModalPub";
 import { PostListContext } from "../../providers/posts";
 import { UserDataContext } from "../../providers/userData";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const FeedPage = () => {
   const [photoProfile] = useState(
@@ -18,7 +18,9 @@ const FeedPage = () => {
   );
   const [modalPub, setModalPub] = useState(false);
   const { postList, setUserData } = useContext(PostListContext);
-  const { isAuth, userData } = useContext(UserDataContext);
+  const { isAuth, userData, handleProfileUser } = useContext(UserDataContext);
+
+  const history = useHistory();
 
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("@matchplayers-userData")));
@@ -27,7 +29,6 @@ const FeedPage = () => {
   if (!isAuth) {
     return <Redirect to="/" />;
   }
-
   return (
     <>
       <Header />
@@ -47,8 +48,12 @@ const FeedPage = () => {
               src={
                 userData.profileIMG === "" ? photoProfile : userData.profileIMG
               }
+              onClick={() => handleProfileUser(userData.id, history)}
             />
-            <h2>{userData.nickname}</h2>
+
+            <h2 onClick={() => handleProfileUser(userData.id, history)}>
+              {userData.nickname}
+            </h2>
             {/* <ul>
               {gamelist.map((game) => (
                 <li> {game}</li>
@@ -109,13 +114,14 @@ const FeedPage = () => {
         <aside className="rightAside">
           <ul>
             {userData.friendList.map((friend) => (
-              <li>
-                <img alt="userPhoto" src={friend.photo} />
-                <h2>{friend.name}</h2>
-              </li>
+              <>
+                <li onClick={() => handleProfileUser(friend.userId, history)}>
+                  <img alt="userPhoto" src={friend.profileIMG} />
+                  <h2>{friend.name}</h2>
+                </li>
+              </>
             ))}
           </ul>
-          <h2>Ver Todos</h2>
         </aside>
       </Container>
     </>

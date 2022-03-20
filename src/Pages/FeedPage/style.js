@@ -23,6 +23,10 @@ export const Container = styled.div`
         border-radius: 50%;
         width: 80px;
         height: 80px;
+        cursor: pointer;
+      }
+      h2 {
+        cursor: pointer;
       }
     }
     .divSchedules {
@@ -125,12 +129,37 @@ export const Container = styled.div`
     }
     .rightAside {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       margin-top: 12px;
       margin-left: 15px;
-      width: 200px;
+      align-items: center;
+      border-radius: 8px;
       background-color: var(--White-primary);
       height: max-content;
+      padding-bottom: 20px;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      li {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        align-items: center;
+        border-bottom: 1px solid var(--Gray-3);
+        width: 100%;
+        cursor: pointer;
+
+        h2 {
+          width: 50%;
+
+          font-size: 1rem;
+          text-overflow: ellipsis;
+          overflow: auto;
+        }
+      }
     }
   }
 

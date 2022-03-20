@@ -1,6 +1,7 @@
 import { Container, ContainerModal } from "./style";
 import { useContext } from "react";
 import { UserDataContext } from "../../providers/userData";
+import { useHistory } from "react-router-dom";
 
 const Input = ({
   bgcolor,
@@ -14,8 +15,8 @@ const Input = ({
   display,
   ...rest
 }) => {
-  const { searchUser } = useContext(UserDataContext);
-
+  const { searchUser, handleProfileUser } = useContext(UserDataContext);
+  const history = useHistory();
   return (
     <>
       <Container
@@ -34,15 +35,23 @@ const Input = ({
           <div>
             {!!searchUser &&
               searchUser.map((personSearch) => {
-                console.log(personSearch);
                 return (
                   <div>
                     <img
                       alt="personIMG"
                       src={personSearch.profileIMG && personSearch.profileIMG}
+                      onClick={() =>
+                        handleProfileUser(personSearch.id, history)
+                      }
                     />
                     <div>
-                      <h2>{personSearch.name}</h2>
+                      <h2
+                        onClick={() =>
+                          handleProfileUser(personSearch.id, history)
+                        }
+                      >
+                        {personSearch.name}
+                      </h2>
                       <div>
                         {personSearch.gameList.map((jogo) => {
                           return <div>iconeJogo</div>;

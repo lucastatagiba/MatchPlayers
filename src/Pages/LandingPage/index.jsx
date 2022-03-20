@@ -10,10 +10,11 @@ import logo from "../../Assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { handleLogin, isAuth } = useContext(UserDataContext);
+  const { handleLogin, isAuth, userData } = useContext(UserDataContext);
 
   const history = useHistory();
 
@@ -34,7 +35,6 @@ const LandingPage = () => {
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
-
   if (isAuth) {
     return <Redirect to="/feed" />;
   }

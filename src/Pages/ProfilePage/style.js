@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const background = require("../../Assets/img/Praia1_140220.jpg");
-
 export const Container = styled.main`
   padding-top: 30px;
   padding-bottom: 50px;

@@ -9,7 +9,7 @@ import { UserDataContext } from "../../providers/userData";
 
 const ModalPub = ({ closeModal }) => {
   const { handlePost, userData, userToken } = useContext(PostListContext);
-  const { setImgBase64Post } = useContext(UserDataContext);
+  const { setImgBase64Post, imgBase64Post } = useContext(UserDataContext);
   const { register, handleSubmit } = useForm();
 
   const handlePostData = (data) => {
@@ -20,6 +20,7 @@ const ModalPub = ({ closeModal }) => {
       plataformList: userData.plataformList,
       desc: data.desc,
       comments: [],
+      postIMG: imgBase64Post,
     };
     handlePost(newPost, userToken);
     closeModal();
@@ -51,6 +52,7 @@ const ModalPub = ({ closeModal }) => {
                 const reader = new FileReader();
                 reader.addEventListener("load", () => {
                   setImgBase64Post(reader.result);
+                  console.log(imgBase64Post);
                 });
                 reader.readAsDataURL(event.target.files[0]);
               }}

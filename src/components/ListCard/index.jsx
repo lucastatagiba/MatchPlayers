@@ -19,6 +19,7 @@ const ListCard = ({ postList }) => {
               idPost={post.id}
               userId={post.userId}
               postUpdate={false}
+              postIMG={post.postIMG || ""}
             />
           );
         } else {
@@ -32,6 +33,7 @@ const ListCard = ({ postList }) => {
               idPost={post.id}
               userId={post.userId}
               postUpdate={true}
+              postIMG={post.postIMG || ""}
             />
           );
         }

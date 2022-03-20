@@ -23,6 +23,7 @@ export const UserDataProvider = ({ children }) => {
     menu: false,
     photo: false,
   });
+  const [userProfile, setUserProfile] = useState("");
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("@matchplayers-token"));
@@ -53,6 +54,7 @@ export const UserDataProvider = ({ children }) => {
           JSON.stringify(res.data.user)
         );
         setUserData(res.data.user);
+        setUserProfile(res.data.user);
         toast.success("Bem vindo ao Match Players");
         history.push("/feed");
         setIsAuth(true);
@@ -106,6 +108,7 @@ export const UserDataProvider = ({ children }) => {
       })
       .catch((res) => toast.error("Tente Novamente"));
   };
+
   // a data do handleGames Register deve entrar somente
   /*
 
@@ -138,6 +141,14 @@ export const UserDataProvider = ({ children }) => {
       .catch((res) => toast.error("Tente Novamente"));
   };
 
+  const handleProfileUser = (idUser, history) => {
+    Api.get(`644/users/${idUser}`).then((res) => {
+      console.log(res.data);
+      setUserProfile(res.data);
+      history.push(`/profile/${res.data.name}`);
+    });
+  };
+
   // a data do handleGames Edit deve entrar somente
   /*
 
@@ -166,10 +177,48 @@ export const UserDataProvider = ({ children }) => {
   //     .catch((res) => toast.error("Tente Novamente"));
   // };
 
+  const handleAddFriend = (data) => {
+    Api.patch(`/644/users/${userData.id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem(
+          "@matchplayers-userData",
+          JSON.stringify(res.data)
+        );
+        setUserData(res.data);
+        toast.success("Adicionado com Sucesso");
+      })
+      .catch(() => toast.error("Tente Novamente!"));
+  };
+
+  const handleRemoveFriend = (data) => {
+    Api.patch(`/644/users/${userData.id}`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+    })
+      .then((res) => {
+        localStorage.setItem(
+          "@matchplayers-userData",
+          JSON.stringify(res.data)
+        );
+        setUserData(res.data);
+        toast.success("Removido com Sucesso");
+      })
+      .catch(() => toast.error("Tente Novamente!"));
+  };
+
   return (
     <UserDataContext.Provider
       value={{
         userData,
+        userProfile,
+        setUserProfile,
         handleLogin,
         handleRegister,
         isAuth,
@@ -187,6 +236,9 @@ export const UserDataProvider = ({ children }) => {
         userGames,
         setUserGames,
         handleGamesRegister,
+        handleProfileUser,
+        handleAddFriend,
+        handleRemoveFriend,
       }}
     >
       {children}

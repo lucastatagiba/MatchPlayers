@@ -1,19 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 
 import { IoMdPersonAdd } from "react-icons/io";
+import { IoPersonRemove } from "react-icons/io5";
 
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
 import { UserDataContext } from "../../providers/userData";
 
-import * as styles from "./index";
+import * as styles from "./style";
 import { Redirect } from "react-router-dom";
 import ListCard from "../../components/ListCard";
 import { PostListContext } from "../../providers/posts";
 
 const ProfilePage = () => {
-  const { userData, isAuth } = useContext(UserDataContext);
+  const { userData, userProfile, isAuth, handleAddFriend, handleRemoveFriend } =
+    useContext(UserDataContext);
+
   const { UserpostList, setUserPostList, postList } =
     useContext(PostListContext);
   const [photoProfile] = useState(
@@ -28,8 +31,35 @@ const ProfilePage = () => {
     profileBackgroundIMG,
   } = userData;
   useEffect(() => {
-    setUserPostList(postList.filter((post) => post.userId === userData.id));
+    setUserPostList(postList.filter((post) => post.userId === userProfile.id));
   }, []);
+
+  const handleAddUser = () => {
+    console.log("adicionou");
+    const newFriend = {
+      name: userProfile.name,
+      profileIMG: userProfile.profileIMG,
+      userId: userProfile.userId,
+    };
+
+    const newListFriend = {
+      userId: userData.id,
+      friendList: [...userData.friendList, newFriend],
+    };
+    handleAddFriend(newListFriend);
+  };
+
+  const handleRemoveUser = () => {
+    const newList = userData.friendList.filter((item) => {
+      return item.userId !== userProfile.userId;
+    });
+    const newListFriend = {
+      userId: userData.id,
+      friendList: [...newList],
+    };
+    handleRemoveFriend(newListFriend);
+  };
+
   if (!isAuth) {
     return <Redirect to="/" />;
   }
@@ -43,21 +73,23 @@ const ProfilePage = () => {
             <styles.ProfileCardUserInfo>
               <styles.UserPhoto
                 src={
-                  userData.profileIMG === ""
+                  userProfile.profileIMG === ""
                     ? photoProfile
-                    : userData.profileIMG
+                    : userProfile.profileIMG
                 }
-                alt={`Pessoa ${name}`}
+                alt={`Pessoa ${userProfile.name}`}
               />
 
-              <styles.UserNickname>{nickname}</styles.UserNickname>
+              <styles.UserNickname>{userProfile.nickname}</styles.UserNickname>
 
-              <styles.UserName>{name}</styles.UserName>
+              <styles.UserName>{userProfile.name}</styles.UserName>
 
-              <styles.UserEmail>{email}</styles.UserEmail>
+              <styles.UserEmail>{userProfile.email}</styles.UserEmail>
             </styles.ProfileCardUserInfo>
 
-            <styles.ProfileCardTop background={profileBackgroundIMG} />
+            <styles.ProfileCardTop
+              background={userProfile.profileBackgroundIMG}
+            />
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
@@ -81,10 +113,31 @@ const ProfilePage = () => {
                   </styles.Text>
                 </styles.Avaliable>
 
-                <GeneralButton>
-                  <IoMdPersonAdd />
-                  Adicionar Amigo
-                </GeneralButton>
+                {userData.userId !== userProfile.userId &&
+                  (userData.friendList.length === 0 ? (
+                    <>
+                      <GeneralButton onClick={() => handleAddUser()}>
+                        <IoMdPersonAdd />
+                        Adicionar Amigo
+                      </GeneralButton>
+                    </>
+                  ) : !userData.friendList.find((item) => {
+                      return item.userId === userProfile.userId;
+                    }) ? (
+                    <>
+                      <GeneralButton onClick={() => handleAddUser()}>
+                        <IoMdPersonAdd />
+                        Adicionar Amigo
+                      </GeneralButton>
+                    </>
+                  ) : (
+                    <>
+                      <GeneralButton onClick={() => handleRemoveUser()}>
+                        <IoPersonRemove />
+                        Remover Amigo
+                      </GeneralButton>
+                    </>
+                  ))}
               </styles.BottomRight>
             </styles.ProfileCardBottom>
           </styles.ProfileCard>

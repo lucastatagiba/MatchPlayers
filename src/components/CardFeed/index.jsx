@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { MdMessage } from "react-icons/md";
 import { CgCloseR } from "react-icons/cg";
@@ -8,6 +9,7 @@ import "moment/locale/pt";
 import { PostListContext } from "../../providers/posts";
 import GeralButton from "../GeneralButton";
 import { Container, Box } from "./style";
+import { UserDataContext } from "../../providers/userData";
 
 const CardFeed = ({
   username,
@@ -16,8 +18,12 @@ const CardFeed = ({
   idPost,
   profileIMG,
   postUpdate,
+  postIMG,
+  userId,
 }) => {
+  const { handleProfileUser } = useContext(UserDataContext);
   const { handleDeletePost } = useContext(PostListContext);
+  const history = useHistory();
   return (
     <>
       <Container>
@@ -28,9 +34,16 @@ const CardFeed = ({
           />
         )}
         <Box className="userInformation">
-          <img className="userPhoto" src={profileIMG} alt="userPhoto" />
+          <img
+            className="userPhoto"
+            src={profileIMG}
+            alt="userPhoto"
+            onClick={() => handleProfileUser(userId, history)}
+          />
           <div className="userName">
-            <h3>{username}</h3>
+            <h3 onClick={() => handleProfileUser(userId, history)}>
+              {username}
+            </h3>
             <span>{moment(createdAt).locale("pt").fromNow()}</span>
           </div>
           <div className="gameContent">
@@ -79,11 +92,13 @@ const CardFeed = ({
         <div className="postContent">
           <p className="postText">{desc}</p>
           <div className="imageBox">
-            <img
-              className="postImage"
-              src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/07/28/Photos/Processed/fifagame-krQ--621x414@LiveMint.jpg"
-              alt="postImage"
-            />
+            {postIMG && (
+              <img
+                className="postImage"
+                src={postIMG}
+                alt="Imagem da Publicação"
+              />
+            )}
           </div>
         </div>
 

@@ -33,6 +33,7 @@ const Header = () => {
     handleGamesRegister,
     isloading,
     userData,
+    setUserProfile,
   } = useContext(UserDataContext);
   const [inputvalue, setInputvalue] = useState("");
   const handleModal = (icon) => {
@@ -237,6 +238,7 @@ const Header = () => {
             </div>
             <div
               onClick={() => {
+                setUserProfile(userData);
                 history.push(`/profile/${user}`);
                 handleModal("photo");
               }}

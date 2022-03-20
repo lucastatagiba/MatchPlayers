@@ -23,6 +23,7 @@ const FeedPage = () => {
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("@matchplayers-userData")));
   }, [modalPub]);
+
   if (!isAuth) {
     return <Redirect to="/" />;
   }
@@ -106,14 +107,14 @@ const FeedPage = () => {
           <ListCard postList={postList}></ListCard>
         </section>
         <aside className="rightAside">
-          {/* <ul>
-            {friendList.map((friend) => (
+          <ul>
+            {userData.friendList.map((friend) => (
               <li>
                 <img alt="userPhoto" src={friend.photo} />
                 <h2>{friend.name}</h2>
               </li>
             ))}
-          </ul> */}
+          </ul>
           <h2>Ver Todos</h2>
         </aside>
       </Container>

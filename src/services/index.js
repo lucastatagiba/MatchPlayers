@@ -4,5 +4,5 @@ export const Api = axios.create({
 });
 
 export const ApiNews = axios.create({
-  baseURL: "https://bing-news-search1.p.rapidapi.com",
+  baseURL: "https://newscatcher.p.rapidapi.com/v1",
 });

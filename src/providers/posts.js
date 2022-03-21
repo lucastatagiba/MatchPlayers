@@ -49,6 +49,10 @@ export const PostListProvider = ({ children }) => {
     });
   }, [userData]);
 
+  useEffect(() => {
+    handleGetNews();
+  }, []);
+
   const handlePostUser = (data, token, id) => {
     Api.patch(`/644/users/${id}`, data, {
       headers: {
@@ -138,16 +142,15 @@ export const PostListProvider = ({ children }) => {
   };
 
   const handleGetNews = () => {
-    ApiNews.get("/news/search?q=games", {
+    ApiNews.get("/search_free?q=games&lang=pt&media=true&page_size=10", {
       headers: {
-        "x-bingapis-sdk": true,
-        "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
+        "x-rapidapi-host": "newscatcher.p.rapidapi.com",
         "x-rapidapi-key": "5debe1370bmsh16d2555477e95fep143602jsn7206065dd7e6",
       },
     })
       .then((res) => {
-        console.log(res.data.value);
-        return setListNews(res.data.value);
+        console.log(res.data.articles);
+        return setListNews(res.data.articles);
       })
       .catch((err) => console.log(err));
   };

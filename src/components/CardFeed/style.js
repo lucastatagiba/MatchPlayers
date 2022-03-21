@@ -162,6 +162,7 @@ export const Container = styled.div`
     border-radius: 8px;
     width: 95%;
     background-color: var(--Background-Color);
+    margin-top: 5px;
     margin-bottom: 10px;
     align-items: center;
     justify-content: space-between;

@@ -12,10 +12,10 @@ const ListNews = () => {
       {listNews.map((news, index) => {
         return (
           <CardNews
-            urlNews={news.url}
-            title={news.name}
-            desc={news.description}
-            imgNews={news.image.thumbnail.contentUrl}
+            urlNews={news.link}
+            title={news.title}
+            desc={news.summary}
+            imgNews={news.media}
             key={index}
           />
         );

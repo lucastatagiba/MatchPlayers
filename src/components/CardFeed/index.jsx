@@ -124,12 +124,12 @@ const CardFeed = ({
             </GeralButton>
           </div>
           <div>
-            <span
+            <h5
               onClick={() => setCommentsList(!commentsList)}
               className="button--comments"
             >
               {comments.length > 0 && comments.length} Comentários
-            </span>
+            </h5>
           </div>
         </Box>
         <form

@@ -14,7 +14,7 @@ import "moment/locale/pt";
 import CardGames from "../CardGames";
 import { PostListContext } from "../../providers/posts";
 import GeralButton from "../GeneralButton";
-import { Container, Box } from "./style";
+import { Container, Box, Comments } from "./style";
 import { UserDataContext } from "../../providers/userData";
 import { GamesContext } from "../../providers/games";
 
@@ -38,9 +38,11 @@ const CardFeed = ({
     like: false,
     unlike: false,
   });
+  const [commentsList, setCommentsList] = useState(false);
   const history = useHistory();
 
   const handleSubmitComment = (data) => {
+    setCommentsList(true);
     const newListComments = { comments: [...comments, data.comment] };
     handleCommentPost(newListComments, idPost);
   };
@@ -122,7 +124,12 @@ const CardFeed = ({
             </GeralButton>
           </div>
           <div>
-            <span>Comentários</span>
+            <span
+              onClick={() => setCommentsList(!commentsList)}
+              className="button--comments"
+            >
+              {comments.length > 0 && comments.length} Comentários
+            </span>
           </div>
         </Box>
         <form
@@ -134,10 +141,10 @@ const CardFeed = ({
             <IoMdSend />
           </GeralButton>
         </form>
-        <ul className="comments--list">
+        <Comments modalOn={commentsList}>
           {comments &&
             comments.map((comment, index) => <li key={index}>{comment}</li>)}
-        </ul>
+        </Comments>
       </Container>
     </>
   );

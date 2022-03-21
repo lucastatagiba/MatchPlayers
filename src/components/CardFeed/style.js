@@ -182,26 +182,6 @@ export const Container = styled.div`
       background-color: transparent;
     }
   }
-  .comments--list {
-    align-self: center;
-    border-top: 1px solid var(--Gray-2);
-    list-style: none;
-    width: 95%;
-    padding-top: 10px;
-    max-height: 110px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    li {
-      background-color: var(--Background-Color);
-      border-radius: 8px;
-      font-size: 12px;
-      margin-bottom: 10px;
-      width: max-content;
-      padding: 8px 10px;
-    }
-  }
 
   @media screen and (min-width: 1024px) {
     min-width: 500px;
@@ -265,6 +245,9 @@ export const Box = styled.div`
     font-size: 6px;
     margin-right: 5px;
   }
+  .button--comments {
+    cursor: pointer;
+  }
   @media screen and (min-width: 1024px) {
     .userPhoto {
       width: 60px;
@@ -281,5 +264,26 @@ export const Box = styled.div`
     span {
       font-size: 10px;
     }
+  }
+`;
+
+export const Comments = styled.ul`
+  display: ${(props) => (props.modalOn ? "flex" : "none")};
+  align-self: center;
+  border-top: 1px solid var(--Gray-2);
+  list-style: none;
+  width: 95%;
+  padding-top: 10px;
+  max-height: 110px;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: flex-end;
+  li {
+    background-color: var(--Background-Color);
+    border-radius: 8px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    width: max-content;
+    padding: 8px 10px;
   }
 `;

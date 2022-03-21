@@ -97,6 +97,13 @@ export const BottomRight = styled.div`
     margin: 0px auto;
     color: var(--Gray-3);
   }
+  span:nth-of-type(2) {
+    background-color: var(--Gray-2);
+    border-radius: 8px;
+    width: fit-content;
+    text-align: center;
+    margin: 5px auto;
+  }
   div > button:first-of-type {
     background-color: var(--Blue-primary);
     color: white;

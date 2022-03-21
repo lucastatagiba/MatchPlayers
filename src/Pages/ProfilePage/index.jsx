@@ -14,6 +14,7 @@ import { PostListContext } from "../../providers/posts";
 import * as styles from "./style";
 import GeralButton from "../../components/GeneralButton";
 import SelectTime from "../../components/SelectTime";
+import { GamesContext } from "../../providers/games";
 
 const ProfilePage = () => {
   const {
@@ -27,7 +28,7 @@ const ProfilePage = () => {
   } = useContext(UserDataContext);
 
   const history = useHistory();
-
+  const { games } = useContext(GamesContext);
   const { UserpostList, setUserPostList, postList } =
     useContext(PostListContext);
   const [photoProfile] = useState(
@@ -107,15 +108,17 @@ const ProfilePage = () => {
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
-                {userProfile.gameList.map((game, index) => {
-                  return (
-                    <CardGames
-                      key={index}
-                      image={game.image}
-                      name={game.name}
-                    />
-                  );
-                })}
+                {games
+                  .filter((game) => gameList.includes(game.name))
+                  .map((game) => {
+                    return (
+                      <CardGames
+                        key={game.name}
+                        image={game.image}
+                        name={game.name}
+                      />
+                    );
+                  })}
               </styles.BottomLeft>
 
               <styles.BottomRight>

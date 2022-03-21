@@ -11,11 +11,12 @@ import { CgCloseR } from "react-icons/cg";
 import { useForm } from "react-hook-form";
 import moment from "moment";
 import "moment/locale/pt";
-
+import CardGames from "../CardGames";
 import { PostListContext } from "../../providers/posts";
 import GeralButton from "../GeneralButton";
 import { Container, Box } from "./style";
 import { UserDataContext } from "../../providers/userData";
+import { GamesContext } from "../../providers/games";
 
 const CardFeed = ({
   username,
@@ -28,7 +29,11 @@ const CardFeed = ({
   userId,
   comments,
 }) => {
-  const { handleProfileUser } = useContext(UserDataContext);
+  const { games } = useContext(GamesContext);
+  const {
+    userData: { gameList },
+    handleProfileUser,
+  } = useContext(UserDataContext);
   const { handleDeletePost, handleCommentPost } = useContext(PostListContext);
   const { register, handleSubmit } = useForm();
   const [buttonsLike, setButtonsLike] = useState({
@@ -52,46 +57,17 @@ const CardFeed = ({
           />
         )}
         <div className="gameContent">
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt="gameLogo"
-            />
-            <span className="gameName">Call of Duty</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt="gameLogo"
-            />
-            <span className="gameName">Lol</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt="gameLogo"
-            />
-            <span className="gameName">PUBG</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt="gameLogo"
-            />
-            <span className="gameName">Valorant</span>
-          </div>
-          <div className="game">
-            <img
-              className="gameLogo"
-              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-              alt="gameLogo"
-            />
-            <span className="gameName">Counter-strike</span>
-          </div>
+          {games
+            .filter((game) => gameList.includes(game.name))
+            .map((game) => {
+              return (
+                <CardGames
+                  key={game.name}
+                  image={game.image}
+                  name={game.name}
+                />
+              );
+            })}
         </div>
         <Box className="userInformation">
           <img

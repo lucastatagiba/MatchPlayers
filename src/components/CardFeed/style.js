@@ -5,7 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  max-width: 500px;
   min-height: 235px;
   border: transparent;
   border-radius: 8px;
@@ -228,7 +227,6 @@ export const Container = styled.div`
       margin-bottom: 20px;
     }
     .likes {
-      width: 500px;
       font-size: 20px;
       margin-top: 10px;
       color: var(--Gray-4);

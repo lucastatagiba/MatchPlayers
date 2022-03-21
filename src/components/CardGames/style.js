@@ -2,13 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   background: var(--Background-Color);
   border-radius: 5px;
-  padding: 5px;
-  max-width: 130px;
-  gap: 0 5px;
+  padding: 2.5px 5px;
+  max-width: 95px;
+  gap: 0 2.5px;
 `;
 
 export const Image = styled.img`

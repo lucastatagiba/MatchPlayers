@@ -36,7 +36,8 @@ export const ContainerModal = styled.div`
     display: flex;
     flex-wrap: wrap;
     max-height: 300px;
-    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
   }
   li {
     display: flex;
@@ -55,6 +56,7 @@ export const ContainerModal = styled.div`
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      width: 100%;
       div {
         display: flex;
         flex-wrap: wrap;
@@ -62,6 +64,19 @@ export const ContainerModal = styled.div`
           height: 20px;
           width: 20px;
           border-radius: 50%;
+        }
+      }
+      .gameModaList {
+        width: max-content;
+
+        div {
+          margin-right: 0px;
+
+          gap: 0px;
+          justify-content: center;
+          img {
+            margin: 0px;
+          }
         }
       }
     }

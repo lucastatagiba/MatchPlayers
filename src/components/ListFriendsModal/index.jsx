@@ -13,7 +13,7 @@ const ListFriendsModal = ({ listFriends, modalClose }) => {
   return (
     <Container>
       <RiCloseCircleFill onClick={() => modalClose(false)} />
-      <h3>Lista de Amigos</h3>
+      <h5>Lista de Amigos</h5>
       {listFriends.map((friend) => (
         <li
           key={friend.userId}

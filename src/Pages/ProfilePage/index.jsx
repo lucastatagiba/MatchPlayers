@@ -91,26 +91,28 @@ const ProfilePage = () => {
       <styles.Container>
         <styles.ProfileCardContainer>
           <styles.ProfileCard>
-            <styles.ProfileCardUserInfo>
-              <styles.UserPhoto
-                src={
-                  userProfile.profileIMG === ""
-                    ? photoProfile
-                    : userProfile.profileIMG
-                }
-                alt={`Pessoa ${userProfile.name}`}
-              />
-
-              <styles.UserNickname>{userProfile.nickname}</styles.UserNickname>
-
-              <styles.UserName>{userProfile.name}</styles.UserName>
-
-              <styles.UserEmail>{userProfile.email}</styles.UserEmail>
-            </styles.ProfileCardUserInfo>
-
             <styles.ProfileCardTop
               background={userProfile.profileBackgroundIMG}
-            />
+            >
+              <styles.ProfileCardUserInfo>
+                <styles.UserPhoto
+                  src={
+                    userProfile.profileIMG === ""
+                      ? photoProfile
+                      : userProfile.profileIMG
+                  }
+                  alt={`Pessoa ${userProfile.name}`}
+                />
+
+                <styles.UserNickname>
+                  {userProfile.nickname}
+                </styles.UserNickname>
+
+                <styles.UserInfo>{userProfile.name}</styles.UserInfo>
+
+                <styles.UserInfo>{userProfile.email}</styles.UserInfo>
+              </styles.ProfileCardUserInfo>
+            </styles.ProfileCardTop>
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
@@ -210,7 +212,7 @@ const ProfilePage = () => {
           <styles.Feed>
             <ListCard postList={UserpostList}></ListCard>
           </styles.Feed>
-          <styles.PlaceHolder>
+          <styles.FriendsList>
             <h3>Lista de Amigos</h3>
             {userProfile.friendList.map((friend) => (
               <li
@@ -221,7 +223,7 @@ const ProfilePage = () => {
                 <h2>{friend.name}</h2>
               </li>
             ))}
-          </styles.PlaceHolder>
+          </styles.FriendsList>
         </styles.ProfileContentContainer>
       </styles.Container>
     </>

@@ -46,7 +46,6 @@ const CardFeed = ({
     const newListComments = { comments: [...comments, data.comment] };
     handleCommentPost(newListComments, idPost);
   };
-
   return (
     <>
       <Container>

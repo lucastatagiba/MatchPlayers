@@ -1,9 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-
 import { IoMdPersonAdd } from "react-icons/io";
 import { IoPersonRemove } from "react-icons/io5";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { useHistory } from "react-router-dom";
+import { BsPencilFill } from "react-icons/bs";
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
@@ -15,6 +14,8 @@ import * as styles from "./style";
 import GeralButton from "../../components/GeneralButton";
 import SelectTime from "../../components/SelectTime";
 import { GamesContext } from "../../providers/games";
+import FileField from "../../components/FileField";
+import { useForm } from "react-hook-form";
 
 const ProfilePage = () => {
   const {
@@ -25,8 +26,10 @@ const ProfilePage = () => {
     handleRemoveFriend,
     handleProfileUser,
     handleSetTimeAvailability,
+    imgBase64Background,
+    setImgBase64Background,
+    handleChangeUserBackground,
   } = useContext(UserDataContext);
-
   const history = useHistory();
   const { games } = useContext(GamesContext);
   const { UserpostList, setUserPostList, postList } =
@@ -36,15 +39,9 @@ const ProfilePage = () => {
   );
   const [initialSelect, setInitialSelect] = useState("");
   const [finalSelect, setFinalSelect] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [timeModal, setTimeModal] = useState(false);
-  const {
-    email,
-    gameList,
-    name,
-    nickname,
-    timeAvailability,
-    profileBackgroundIMG,
-  } = userData;
+  const { handleSubmit } = useForm();
 
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
@@ -81,11 +78,46 @@ const ProfilePage = () => {
     handleRemoveFriend(newListFriend);
   };
 
+  const onSubmitForm = () => {
+    setIsModalOpen((state) => !state);
+
+    handleChangeUserBackground();
+  };
+
   if (!isAuth) {
     return <Redirect to="/" />;
   }
   return (
     <>
+      <styles.ModalBackground
+        onClick={() => setIsModalOpen((state) => !state)}
+        display={isModalOpen ? "flex" : "none"}
+      >
+        <styles.ModalContainer onSubmit={handleSubmit(onSubmitForm)}>
+          <styles.Title>Pré-visualizar Imagem:</styles.Title>
+
+          <styles.Preview
+            src={
+              imgBase64Background === ""
+                ? userData.profileBackgroundIMG
+                : imgBase64Background
+            }
+            alt="Pré-visualizar imagem de fundo"
+          />
+
+          <FileField
+            state={setImgBase64Background}
+            id="background"
+            placeholder="Imagem de Fundo"
+            type="file"
+          />
+
+          <GeneralButton onClick={() => setIsModalOpen((state) => !state)}>
+            Salvar
+          </GeneralButton>
+        </styles.ModalContainer>
+      </styles.ModalBackground>
+
       <Header />
 
       <styles.Container>
@@ -112,6 +144,12 @@ const ProfilePage = () => {
 
                 <styles.UserInfo>{userProfile.email}</styles.UserInfo>
               </styles.ProfileCardUserInfo>
+
+              {userProfile.nickname === userData.nickname && (
+                <styles.Edit onClick={() => setIsModalOpen((state) => !state)}>
+                  <BsPencilFill />
+                </styles.Edit>
+              )}
             </styles.ProfileCardTop>
 
             <styles.ProfileCardBottom>

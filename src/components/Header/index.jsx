@@ -110,14 +110,6 @@ const Header = () => {
     handleModal("menu");
   };
 
-  const getImgUser = (event) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      setImgBase64User(reader.result);
-    });
-    reader.readAsDataURL(event.target.files[0]);
-  };
-
   const getValueSearch = (event) => {
     const valueSearch = event.target.value.toLowerCase();
     setInputvalue(valueSearch);
@@ -236,24 +228,14 @@ const Header = () => {
               <h5>Alterar perfil:</h5>
 
               <FileField
-                name={"perfil"}
-                register={register}
+                state={setImgBase64User}
                 id="perfil"
                 placeholder="Imagem de Perfil"
                 type="file"
-                onchangeFunc={getImgUser}
               />
               {isloading && (
                 <img className="loading" alt="" src={loadingPhoto} />
               )}
-
-              {/* <FileField
-            name={"fundo"}
-            register={register}
-            id="fundo"
-            placeholder="Imagem de Fundo"
-            type="file"
-          /> */}
 
               <Button
                 bgcolor={"#002543"}

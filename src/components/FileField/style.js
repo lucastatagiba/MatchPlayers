@@ -39,7 +39,7 @@ export const Label = styled.span`
     }
   }};
   text-align: center;
-  background: white;
+  background: var(--Gray-1);
   color: rgba(0, 0, 0, 0.6);
   min-width: ${(props) => {
     switch (props.selected) {
@@ -54,7 +54,7 @@ export const Label = styled.span`
   transform: ${(props) => {
     switch (props.selected) {
       case "translated":
-        return "translate(-2px, -20px)";
+        return "translate(-5px, -20px)";
 
       default:
         return "";

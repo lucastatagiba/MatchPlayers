@@ -5,6 +5,43 @@ export const Container = styled.main`
   padding-bottom: 50px;
 `;
 
+export const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: ${(props) => props.display};
+  justify-content: center;
+  align-items: center;
+  background: rgba(134, 142, 150, 0.25);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+`;
+
+export const ModalContainer = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  background: var(--White-primary);
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 340px;
+  gap: 25px 0;
+  box-shadow: 0px 0px 40px -20px #000000;
+`;
+
+export const Title = styled.h2`
+  font-size: 14px;
+  margin-right: auto;
+`;
+
+export const Preview = styled.img`
+  border-radius: 4px;
+  width: 100%;
+  height: auto;
+`;
+
 export const ProfileCardContainer = styled.section`
   margin: 0 auto;
   max-width: 1000px;
@@ -38,6 +75,36 @@ export const ProfileCardTop = styled.div`
   }
 `;
 
+export const Edit = styled.button`
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--White-primary);
+  color: var(--Gray-3);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--Gray-3);
+    color: var(--White-primary);
+    transition: all 0.2s;
+  }
+
+  &:active {
+    background: rgba(134, 142, 150, 0.25);
+    backdrop-filter: blur(2px);
+  }
+
+  /* svg {
+    pointer-events: none;
+  } */
+`;
+
 export const ProfileCardUserInfo = styled.div`
   position: absolute;
   display: flex;
@@ -54,12 +121,21 @@ export const ProfileCardUserInfo = styled.div`
     width: 250px;
     transform: translateX(0%);
   }
+
+  @media only screen and (min-width: 1024px) {
+    top: 90px;
+  }
 `;
 
 export const UserPhoto = styled.img`
   border-radius: 50%;
   width: 100px;
   height: 100px;
+
+  @media only screen and (min-width: 1024px) {
+    width: 130px;
+    height: 130px;
+  }
 `;
 
 export const UserNickname = styled.h2`
@@ -116,6 +192,7 @@ export const ProfileCardBottom = styled.div`
 `;
 
 export const BottomLeft = styled.div`
+  flex: 2;
   display: flex;
   flex-flow: row wrap;
   gap: 15px 26px;

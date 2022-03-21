@@ -10,6 +10,7 @@ import { PostListContext } from "../../providers/posts";
 import { UserDataContext } from "../../providers/userData";
 import ListNews from "../../components/ListNews";
 import { Container } from "./style";
+import { Button } from "@mui/material";
 
 const FeedPage = () => {
   const [photoProfile] = useState(
@@ -18,16 +19,30 @@ const FeedPage = () => {
       : ""
   );
   const [modalPub, setModalPub] = useState(false);
-  const { postList, setUserData, handleGetNews } = useContext(PostListContext);
+  const {
+    postList,
+    setPostList,
+    postListFriends,
+    setPostListFriends,
+    setUserData,
+    handleGetNews,
+  } = useContext(PostListContext);
   const { isAuth, userData, handleProfileUser, setImgBase64Post } =
     useContext(UserDataContext);
   const [feedSwitch, setFeedSwitch] = useState(true);
+
+  const [listFriendSwitch, setListFriendSwitch] = useState(false);
 
   const history = useHistory();
 
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("@matchplayers-userData")));
   }, [modalPub]);
+
+  useEffect(() => {
+    setPostListFriends(postList);
+    console.log(postListFriends);
+  }, []);
 
   if (!isAuth) {
     return <Redirect to="/" />;
@@ -37,6 +52,27 @@ const FeedPage = () => {
     handleGetNews();
     setFeedSwitch(false);
   };
+
+  const filterFriends = (event) => {
+    const friends = userData.friendList.map((friend) => friend.userId);
+
+    console.log(event.target.value);
+
+    setPostListFriends(
+      postList.filter((post) => friends.indexOf(post.userId) !== -1)
+    );
+
+    if (event.target.value === "justFriends") {
+      setListFriendSwitch(true);
+    } else {
+      setListFriendSwitch(false);
+    }
+  };
+
+  const consoleList = (event) => {
+    console.log(event.target.value);
+  };
+
   return (
     <>
       <Header />
@@ -74,8 +110,11 @@ const FeedPage = () => {
               </GeralButton>
               <GeralButton onClick={handleNewsList}>Notícias</GeralButton>
             </div>
-            <select>
-              <option value="all"> Todos </option>
+            <Button onClick={() => filterFriends({ postList, userData })}>
+              Aperte
+            </Button>
+            <select onChange={filterFriends}>
+              <option value="all">Todos</option>
               <option value="justFriends"> Somente amigos </option>
             </select>
           </div>
@@ -121,7 +160,13 @@ const FeedPage = () => {
               </div>
             </div>
           </div>
-          {feedSwitch ? <ListCard postList={postList} /> : <ListNews />}
+          {feedSwitch ? (
+            <ListCard
+              postList={listFriendSwitch ? postListFriends : postList}
+            />
+          ) : (
+            <ListNews />
+          )}
         </section>
         <aside className="rightAside">
           <h3>Amigos</h3>

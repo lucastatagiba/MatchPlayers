@@ -6,6 +6,7 @@ export const PostListContext = createContext([]);
 
 export const PostListProvider = ({ children }) => {
   const [postList, setPostList] = useState([]);
+  const [postListFriends, setPostListFriends] = useState(postList);
   const [UserpostList, setUserPostList] = useState([]);
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
@@ -156,6 +157,9 @@ export const PostListProvider = ({ children }) => {
     <PostListContext.Provider
       value={{
         postList,
+        setPostList,
+        postListFriends,
+        setPostListFriends,
         userData,
         userToken,
         handlePost,

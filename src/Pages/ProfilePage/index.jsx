@@ -53,7 +53,6 @@ const ProfilePage = () => {
   };
 
   const handleAddUser = () => {
-    console.log("adicionou");
     const newFriend = {
       name: userProfile.name,
       profileIMG: userProfile.profileIMG,

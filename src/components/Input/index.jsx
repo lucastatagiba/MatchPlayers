@@ -22,8 +22,6 @@ const Input = ({
   const history = useHistory();
   const { games } = useContext(GamesContext);
 
-  console.log(games);
-  console.log(userProfile);
   return (
     <>
       <Container

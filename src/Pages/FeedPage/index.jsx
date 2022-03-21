@@ -44,7 +44,6 @@ const FeedPage = () => {
 
   useEffect(() => {
     setPostListFriends(postList);
-    console.log(postListFriends);
   }, []);
 
   if (!isAuth) {
@@ -58,8 +57,6 @@ const FeedPage = () => {
 
   const filterFriends = (event) => {
     const friends = userData.friendList.map((friend) => friend.userId);
-
-    console.log(event.target.value);
 
     setPostListFriends(
       postList.filter((post) => friends.indexOf(post.userId) !== -1)

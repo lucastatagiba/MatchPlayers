@@ -132,7 +132,6 @@ export const PostListProvider = ({ children }) => {
         timeAvailability: userData.timeAvailability,
         userId: userData.userId,
       };
-      console.log([...newListPost, res.data]);
       localStorage.setItem(
         "@matchplayers-userData",
         JSON.stringify(newUserData)
@@ -150,7 +149,6 @@ export const PostListProvider = ({ children }) => {
       },
     })
       .then((res) => {
-        console.log(res.data.articles);
         return setListNews(res.data.articles);
       })
       .catch((err) => console.log(err));

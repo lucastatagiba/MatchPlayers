@@ -27,6 +27,7 @@ a{
     --Background-Color: #F3F2EF;
     --White-primary: #FFFFFF;
     --Black-primary: #000000;
+    --Orange-primary: #F75F30;
 //tons de cinza
     --Gray-4: #212529;
     --Gray-3: #868E96;

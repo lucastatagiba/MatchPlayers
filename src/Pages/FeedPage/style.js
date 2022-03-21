@@ -15,23 +15,64 @@ export const Container = styled.div`
       justify-content: center;
       align-items: center;
       background-color: var(--White-primary);
-      width: 100%;
+      width: 180px;
       border-radius: 8px;
       img {
         border-radius: 50%;
-        width: 80px;
-        height: 80px;
+        width: 120px;
+        height: 120px;
         cursor: pointer;
+        margin-bottom: 10px;
       }
       h2 {
         cursor: pointer;
       }
+      .gameContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 150px;
+        margin-top: 20px;
+        div {
+          display: flex;
+          justify-content: flex-start;
+          height: max-content;
+          width: 150px;
+          margin-right: 0;
+          margin-bottom: 10px;
+          max-width: 150px;
+          h2 {
+            font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 0px;
+          }
+        }
+      }
     }
     .divSchedules {
-      height: 110px;
+      height: max-content;
       border-radius: 8px;
       background-color: var(--White-primary);
       margin-top: 15px;
+      width: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 5px 0;
+      h3 {
+        font-size: 18px;
+      }
+      span {
+        font-size: 16px;
+        background-color: var(--Gray-2);
+        padding: 2px;
+        border-radius: 5px;
+      }
     }
   }
   section {
@@ -49,7 +90,6 @@ export const Container = styled.div`
     border-radius: 8px;
     padding: 0 10px;
     width: 95%;
-    max-width: 450px;
     margin: 12px 0;
     div {
       display: flex;
@@ -68,6 +108,7 @@ export const Container = styled.div`
       color: var(--White-primary);
       border-radius: 8px;
       padding: 2px;
+      cursor: pointer;
     }
   }
   .divStartPub {
@@ -78,7 +119,6 @@ export const Container = styled.div`
     padding: 0 10px;
     height: 75px;
     align-items: center;
-    max-width: 450px;
     margin-bottom: 12px;
     border-radius: 8px;
     img {
@@ -116,10 +156,29 @@ export const Container = styled.div`
 
     .divButtonsFeed {
       min-width: 450px;
+      width: 100%;
+      div {
+        button {
+          font-size: 14px;
+        }
+      }
+      select {
+        font-size: 12px;
+      }
     }
     .divStartPub {
       min-width: 450px;
-      .divModal {
+      width: 100%;
+      height: 100px;
+      .containPubDiv {
+        .buttonPubDiv {
+          :first-child {
+            background-color: var(--Orange-primary);
+          }
+        }
+        button {
+          font-size: 16px;
+        }
       }
     }
     .leftAside {
@@ -142,6 +201,7 @@ export const Container = styled.div`
       padding-bottom: 20px;
       min-width: 120px;
       width: 80%;
+      max-width: 162px;
       h3 {
         font-size: 18px;
         text-align: center;
@@ -165,13 +225,15 @@ export const Container = styled.div`
         border-bottom: 1px solid var(--Gray-3);
         width: 100%;
         cursor: pointer;
+        justify-content: center;
+        img {
+        }
 
         h2 {
+          display: none;
           width: 50%;
-
           font-size: 1rem;
           text-overflow: ellipsis;
-          overflow: auto;
         }
       }
     }
@@ -183,6 +245,15 @@ export const Container = styled.div`
     }
     .divStartPub {
       min-width: 500px;
+    }
+    .rightAside {
+      ul {
+        li {
+          h2 {
+            display: block;
+          }
+        }
+      }
     }
   }
 `;

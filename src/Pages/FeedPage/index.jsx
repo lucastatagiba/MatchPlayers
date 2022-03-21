@@ -11,6 +11,8 @@ import { UserDataContext } from "../../providers/userData";
 import ListNews from "../../components/ListNews";
 import { Container } from "./style";
 import { Button } from "@mui/material";
+import { GamesContext } from "../../providers/games";
+import CardGames from "../../components/CardGames";
 
 const FeedPage = () => {
   const [photoProfile] = useState(
@@ -27,6 +29,7 @@ const FeedPage = () => {
     setUserData,
     handleGetNews,
   } = useContext(PostListContext);
+  const { games } = useContext(GamesContext);
   const { isAuth, userData, handleProfileUser, setImgBase64Post } =
     useContext(UserDataContext);
   const [feedSwitch, setFeedSwitch] = useState(true);
@@ -69,10 +72,6 @@ const FeedPage = () => {
     }
   };
 
-  const consoleList = (event) => {
-    console.log(event.target.value);
-  };
-
   return (
     <>
       <Header />
@@ -91,14 +90,24 @@ const FeedPage = () => {
             <h2 onClick={() => handleProfileUser(userData.id, history)}>
               {userData.nickname}
             </h2>
-            {/* <ul>
-              {gamelist.map((game) => (
-                <li> {game}</li>
-              ))}
-            </ul> */}
+            <ul className="gameContent">
+              {userData.gameList &&
+                games
+                  .filter((game) => userData.gameList.includes(game.name))
+                  .map((game) => {
+                    return (
+                      <CardGames
+                        key={game.name}
+                        image={game.image}
+                        name={game.name}
+                        display={true}
+                      />
+                    );
+                  })}
+            </ul>
           </div>
           <div className="divSchedules">
-            <h3>Disponibilidade de Horários</h3>
+            <h3>Horários</h3>
             <span>{userData.timeAvailability}</span>
           </div>
         </aside>
@@ -110,9 +119,6 @@ const FeedPage = () => {
               </GeralButton>
               <GeralButton onClick={handleNewsList}>Notícias</GeralButton>
             </div>
-            <Button onClick={() => filterFriends({ postList, userData })}>
-              Aperte
-            </Button>
             <select onChange={filterFriends}>
               <option value="all">Todos</option>
               <option value="justFriends"> Somente amigos </option>
@@ -147,7 +153,10 @@ const FeedPage = () => {
                 Começar Publicação
               </GeralButton>
               <div className="buttonPubDiv">
-                <GeralButton onClick={() => setModalPub(true)}>
+                <GeralButton
+                  bgcolor={"var(--Orange-primary)"}
+                  onClick={() => setModalPub(true)}
+                >
                   <BsCardImage />
                   Foto
                 </GeralButton>

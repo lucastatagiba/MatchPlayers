@@ -172,7 +172,7 @@ const Header = () => {
             setUserProfile(userData);
           }}
         >
-          Ir para o meu perfil
+          Perfil
         </div>
         <div onClick={() => handleModalFriends()}>Amigos</div>
         <div>Mensagens</div>
@@ -182,7 +182,7 @@ const Header = () => {
             history.push(`/about`);
           }}
         >
-          About
+          Sobre Nós
         </div>
         <div onClick={() => handleLogout(history)}>Sair</div>
       </div>

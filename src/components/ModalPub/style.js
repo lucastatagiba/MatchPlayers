@@ -5,7 +5,6 @@ export const Container = styled.div`
   top: 75px;
   left: 0px;
   width: 100%;
-  max-width: 540px;
   border: 1px solid var(--Blue-primary);
   border-radius: 8px;
   padding: 10px;

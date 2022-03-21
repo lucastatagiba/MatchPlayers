@@ -20,18 +20,32 @@ const About = () => {
       nome: "Leonardo Moraes",
       funcao: "Product Owner",
       img: imgLeonardo,
+      linkedin: "https://www.linkedin.com/in/leonardo-moraes-4b754517b/",
     },
-    { nome: "Paulo Lima", funcao: "Scrum Master", img: imgPaulo },
+    {
+      nome: "Paulo Lima",
+      funcao: "Scrum Master",
+      img: imgPaulo,
+      linkedin:
+        "https://www.linkedin.com/in/paulo-henrique-rodrigues-de-lima-2a122a1ba/",
+    },
     {
       nome: "Lucas Tatagiba",
       funcao: "Tech Leader",
       img: imgLucas,
+      linkedin: "https://www.linkedin.com/in/lucas-tatagiba-de-oliveira/",
     },
-    { nome: "André Machado", funcao: "Quality Analist", img: imgAndre },
+    {
+      nome: "André Machado",
+      funcao: "Quality Analist",
+      img: imgAndre,
+      linkedin: "https://www.linkedin.com/in/andre-machado-6135a4179/",
+    },
     {
       nome: "Rodrigo Firmo",
       funcao: "Quality Analist",
       img: imgRodrigo,
+      linkedin: "https://www.linkedin.com/in/rodrigo-firmo/",
     },
   ]);
 
@@ -52,15 +66,14 @@ const About = () => {
               <CardDev Dev={programador} key={index} />
             ))}
           </ul>
-
-          <Link to="/">
-            <Button
-              bgcolor={"#6C8394"}
-              children={"Voltar ao Início"}
-              width={150}
-            />
-          </Link>
         </Box>
+        <Link to="/">
+          <Button
+            bgcolor={"#6C8394"}
+            children={"Voltar ao Início"}
+            width={150}
+          />
+        </Link>
       </Container>
     </>
   );

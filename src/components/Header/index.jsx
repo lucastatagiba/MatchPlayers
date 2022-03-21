@@ -166,9 +166,24 @@ const Header = () => {
         <div onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
         </div>
+        <div
+          onClick={() => {
+            history.push(`/profile/${user}`);
+            setUserProfile(userData);
+          }}
+        >
+          Ir para o meu perfil
+        </div>
         <div onClick={() => handleModalFriends()}>Amigos</div>
         <div>Mensagens</div>
         <div onClick={() => handleModal("config")}>Configurações</div>
+        <div
+          onClick={() => {
+            history.push(`/about`);
+          }}
+        >
+          About
+        </div>
         <div onClick={() => handleLogout(history)}>Sair</div>
       </div>
 

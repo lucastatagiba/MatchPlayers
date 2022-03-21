@@ -59,12 +59,17 @@ export const Container = styled.div`
     z-index: 3;
 
     .close {
-      font-size: 30px;
+      font-size: 25px;
       width: 30px;
-      left: 85%;
+      left: 90%;
+      align-items: flex-start;
+      padding: 0px;
+      z-index: 4;
+      top: 1%;
     }
-    div:nth-child(1) {
-      width: 50px;
+
+    div:nth-child(2) {
+      border: none;
     }
 
     div {
@@ -74,6 +79,7 @@ export const Container = styled.div`
       justify-content: center;
       font-size: 14px;
       padding-top: 5px;
+      height: 100px;
     }
     div:hover {
       opacity: 0.5;

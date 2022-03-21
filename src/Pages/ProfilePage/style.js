@@ -11,46 +11,72 @@ export const ProfileCardContainer = styled.section`
 `;
 
 export const ProfileCard = styled.div`
-  position: relative;
   background: var(--White-primary);
-  border-radius: 0 0 8px 8px;
-  height: 370px;
+
+  @media only screen and (min-width: 768px) {
+    margin: 0 auto;
+    border-radius: 8px 8px 0 0;
+    max-width: 750px;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    max-width: 1000px;
+    height: 330px;
+  }
+`;
+
+export const ProfileCardTop = styled.div`
+  position: relative;
+  background-image: ${(props) => `url(${props.background})`};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 155px;
+
+  @media only screen and (min-width: 768px) {
+    border-radius: 8px 8px 0 0;
+  }
 `;
 
 export const ProfileCardUserInfo = styled.div`
   position: absolute;
-  top: 90px;
+  display: flex;
+  align-items: center;
+  flex-flow: column nowrap;
+  top: 100px;
+  left: 50%;
   text-align: center;
-  width: 250px;
+  transform: translateX(-50%);
+  gap: 5px 0;
+
+  @media only screen and (min-width: 768px) {
+    left: 0%;
+    width: 250px;
+    transform: translateX(0%);
+  }
 `;
 
 export const UserPhoto = styled.img`
   border-radius: 50%;
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
 `;
 
 export const UserNickname = styled.h2`
   font-size: 24px;
 `;
 
-export const UserName = styled.h3`
+export const UserInfo = styled.h3`
+  display: none;
   font-size: 18px;
-  margin-top: 10px;
+
+  @media only screen and (min-width: 768px) {
+    display: block;
+  }
 `;
 
 export const UserEmail = styled.h3`
   font-size: 18px;
-  margin-top: 2.5px;
-`;
-
-export const ProfileCardTop = styled.div`
-  background-image: ${(props) => `url(${props.background})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 8px 8px 0 0;
-  min-height: 155px;
 `;
 
 export const ProfileCardBottom = styled.div`
@@ -75,14 +101,24 @@ export const ProfileCardBottom = styled.div`
       height: 20px;
     }
   }
+
+  @media only screen and (min-width: 768px) {
+    margin-left: auto;
+    padding: 25px 0 25px 0;
+    max-width: 500px;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    flex-flow: row;
+    padding: 25px;
+    max-width: 75%;
+  }
 `;
 
 export const BottomLeft = styled.div`
   display: flex;
   flex-flow: row wrap;
-  flex: 2;
-  padding-bottom: 50px;
-  gap: 30px 25px;
+  gap: 15px 26px;
 `;
 
 export const BottomRight = styled.div`
@@ -120,7 +156,6 @@ export const Avaliable = styled.h3`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 30px;
 
   & > span + span {
     margin-top: 15px;
@@ -131,28 +166,45 @@ export const Text = styled.span`
   display: block;
 `;
 
-export const ProfileContentContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const ProfileContentContainer = styled.section`
   margin: 0 auto;
-  margin-top: 20px;
-  max-width: 1000px;
+  margin-top: 10px;
+
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 750px;
+    gap: 0 25px;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    max-width: 1000px;
+  }
 `;
 
-export const Feed = styled.ul`
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 15px 0;
+export const Feed = styled.div`
+  flex: 2;
+
+  ul {
+    margin: 0 auto;
+  }
+
+  @media only screen and (min-width: 768px) {
+    ul {
+      width: 100;
+    }
+  }
 `;
 
-export const PlaceHolder = styled.ul`
+export const FriendsList = styled.ul`
+  display: none;
   background: var(--White-primary);
   width: 300px;
   list-style: none;
   border-radius: 8px;
   padding-bottom: 20px;
   height: max-content;
-  min-width: 210px;
+
   h3 {
     font-size: 22px;
     text-align: center;
@@ -176,6 +228,10 @@ export const PlaceHolder = styled.ul`
       border-radius: 50%;
       margin-right: 10px;
     }
+  }
+
+  @media only screen and (min-width: 768px) {
+    display: block;
   }
 `;
 

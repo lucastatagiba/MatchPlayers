@@ -12,7 +12,7 @@ export const Container = styled.div`
   background-color: var(--White-primary);
   margin: 0 auto;
   margin-bottom: 10px;
-  padding-top: 30px;
+  padding-top: 10px;
   position: relative;
   svg {
     margin-top: 10px;
@@ -50,10 +50,37 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     flex-wrap: no-wrap;
-    .gameContent {
+    img {
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+    }
+  }
+  .gameContent {
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--Gray-2);
+    justify-content: space-evenly;
+    width: 90%;
+    padding-bottom: 5px;
+    .game {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      background-color: var(--Gray-2);
+      border-radius: 8px;
+      margin-left: 5px;
+      align-items: center;
+      margin-bottom: 5px;
+
+      .gameLogo {
+        max-width: 18px;
+        max-height: 18px;
+        background-color: #f3f2ef;
+        padding: 1px;
+        border-radius: 50%;
+      }
     }
   }
   .userName {
@@ -62,13 +89,19 @@ export const Container = styled.div`
     justify-content: space-around;
     padding-top: 8px;
     margin-left: 10px;
+    cursor: pointer;
+    h3 {
+      font-size: 16px;
+    }
+
     span {
+      font-size: 10px;
       color: var(--Gray-3);
     }
   }
   .likes {
     display: flex;
-    width: 300px;
+    width: 100%;
     padding: 0px 20px;
     justify-content: space-between;
     align-items: center;
@@ -77,6 +110,20 @@ export const Container = styled.div`
     font-size: 10px;
     margin-top: 2px;
     color: var(--Gray-4);
+    div:nth-child(1) {
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        width: max-content;
+        svg {
+          margin: 0;
+          height: 20px;
+          width: 20px;
+        }
+      }
+    }
     span {
       font-size: 10px;
     }
@@ -97,12 +144,6 @@ export const Container = styled.div`
   .gameName {
     display: none;
   }
-  .game {
-    display: flex;
-    background-color: var(--Gray-2);
-    border-radius: 8px;
-    margin-left: 5px;
-  }
   button {
     margin: 5px 0;
     text-align: start;
@@ -115,13 +156,66 @@ export const Container = styled.div`
     padding: 2px 0;
     padding-left: 15px;
   }
+  .form--comments {
+    align-self: center;
+    display: flex;
+    border-radius: 8px;
+    width: 95%;
+    background-color: var(--Background-Color);
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    button {
+      width: max-content;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      svg {
+        height: 18px;
+        width: 18px;
+        margin: 0;
+      }
+    }
+    input {
+      margin: 0;
+      background-color: transparent;
+    }
+  }
+  .comments--list {
+    align-self: center;
+    border-top: 1px solid var(--Gray-2);
+    list-style: none;
+    width: 95%;
+    padding-top: 10px;
+    max-height: 110px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    li {
+      background-color: var(--Background-Color);
+      border-radius: 8px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      width: max-content;
+      padding: 8px 10px;
+    }
+  }
 
   @media screen and (min-width: 1024px) {
     min-width: 500px;
     min-height: 235px;
-
+    .gameContent {
+      justify-content: flex-start;
+    }
     .userInformation {
       height: 86px;
+      img {
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+      }
     }
     .gameName {
       display: flex;
@@ -142,8 +236,6 @@ export const Container = styled.div`
       span {
         font-size: 16px;
       }
-      div {
-      }
     }
     input {
       width: 475px;
@@ -159,13 +251,6 @@ export const Box = styled.div`
   display: flex;
   flex-direction: row;
 
-  .gameLogo {
-    max-width: 18px;
-    max-height: 18px;
-    background-color: #f3f2ef;
-    padding: 1px;
-    border-radius: 50%;
-  }
   .userPhoto {
     width: 60px;
     height: 60px;
@@ -182,8 +267,8 @@ export const Box = styled.div`
   }
   @media screen and (min-width: 1024px) {
     .userPhoto {
-      max-width: 60px;
-      max-height: 60px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       margin: 8px 0px 5px 12px;
     }

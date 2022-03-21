@@ -1,14 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import { BsCardImage } from "react-icons/bs";
+import { Redirect, useHistory } from "react-router-dom";
 
 import Header from "../../components/Header";
 import GeralButton from "../../components/GeneralButton";
-import { Container } from "./style";
 import ListCard from "../../components/ListCard";
 import ModalPub from "../../components/ModalPub";
 import { PostListContext } from "../../providers/posts";
 import { UserDataContext } from "../../providers/userData";
-import { Redirect } from "react-router-dom";
+import ListNews from "../../components/ListNews";
+import { Container } from "./style";
 
 const FeedPage = () => {
   const [photoProfile] = useState(
@@ -17,8 +18,12 @@ const FeedPage = () => {
       : ""
   );
   const [modalPub, setModalPub] = useState(false);
-  const { postList, setUserData } = useContext(PostListContext);
-  const { isAuth, userData } = useContext(UserDataContext);
+  const { postList, setUserData, handleGetNews } = useContext(PostListContext);
+  const { isAuth, userData, handleProfileUser, setImgBase64Post } =
+    useContext(UserDataContext);
+  const [feedSwitch, setFeedSwitch] = useState(true);
+
+  const history = useHistory();
 
   useEffect(() => {
     setUserData(JSON.parse(localStorage.getItem("@matchplayers-userData")));
@@ -28,18 +33,15 @@ const FeedPage = () => {
     return <Redirect to="/" />;
   }
 
+  const handleNewsList = () => {
+    handleGetNews();
+    setFeedSwitch(false);
+  };
   return (
     <>
       <Header />
 
       <Container>
-        <div className="divModal">
-          {modalPub ? (
-            <ModalPub closeModal={() => setModalPub(false)} />
-          ) : (
-            <></>
-          )}
-        </div>
         <aside className="leftAside">
           <div className="divProfile">
             <img
@@ -47,8 +49,12 @@ const FeedPage = () => {
               src={
                 userData.profileIMG === "" ? photoProfile : userData.profileIMG
               }
+              onClick={() => handleProfileUser(userData.id, history)}
             />
-            <h2>{userData.nickname}</h2>
+
+            <h2 onClick={() => handleProfileUser(userData.id, history)}>
+              {userData.nickname}
+            </h2>
             {/* <ul>
               {gamelist.map((game) => (
                 <li> {game}</li>
@@ -63,9 +69,10 @@ const FeedPage = () => {
         <section>
           <div className="divButtonsFeed">
             <div>
-              <GeralButton>Todos</GeralButton>
-              <GeralButton>Jogos</GeralButton>
-              <GeralButton>Notícias</GeralButton>
+              <GeralButton onClick={() => setFeedSwitch(true)}>
+                Publicações
+              </GeralButton>
+              <GeralButton onClick={handleNewsList}>Notícias</GeralButton>
             </div>
             <select>
               <option value="all"> Todos </option>
@@ -73,6 +80,18 @@ const FeedPage = () => {
             </select>
           </div>
           <div className="divStartPub">
+            <>
+              {modalPub ? (
+                <ModalPub
+                  closeModal={() => {
+                    setImgBase64Post(false);
+                    setModalPub(false);
+                  }}
+                />
+              ) : (
+                <></>
+              )}
+            </>
             <img
               alt="UserPhoto"
               src={
@@ -102,18 +121,21 @@ const FeedPage = () => {
               </div>
             </div>
           </div>
-          <ListCard postList={postList}></ListCard>
+          {feedSwitch ? <ListCard postList={postList} /> : <ListNews />}
         </section>
         <aside className="rightAside">
+          <h3>Amigos</h3>
           <ul>
             {userData.friendList.map((friend) => (
-              <li>
-                <img alt="userPhoto" src={friend.photo} />
+              <li
+                key={friend.userId}
+                onClick={() => handleProfileUser(friend.userId, history)}
+              >
+                <img alt="userPhoto" src={friend.profileIMG} />
                 <h2>{friend.name}</h2>
               </li>
             ))}
           </ul>
-          <h2>Ver Todos</h2>
         </aside>
       </Container>
     </>

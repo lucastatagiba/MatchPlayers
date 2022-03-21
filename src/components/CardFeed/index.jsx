@@ -1,15 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { MdMessage } from "react-icons/md";
+import {
+  AiOutlineLike,
+  AiOutlineDislike,
+  AiFillLike,
+  AiFillDislike,
+} from "react-icons/ai";
+import { IoMdSend } from "react-icons/io";
 import { CgCloseR } from "react-icons/cg";
+import { useForm } from "react-hook-form";
 import moment from "moment";
 import "moment/locale/pt";
-
+import CardGames from "../CardGames";
 import { PostListContext } from "../../providers/posts";
 import GeralButton from "../GeneralButton";
 import { Container, Box } from "./style";
 import { UserDataContext } from "../../providers/userData";
+import { GamesContext } from "../../providers/games";
 
 const CardFeed = ({
   username,
@@ -20,10 +27,26 @@ const CardFeed = ({
   postUpdate,
   postIMG,
   userId,
+  comments,
 }) => {
-  const { handleProfileUser } = useContext(UserDataContext);
-  const { handleDeletePost } = useContext(PostListContext);
+  const { games } = useContext(GamesContext);
+  const {
+    userData: { gameList },
+    handleProfileUser,
+  } = useContext(UserDataContext);
+  const { handleDeletePost, handleCommentPost } = useContext(PostListContext);
+  const { register, handleSubmit } = useForm();
+  const [buttonsLike, setButtonsLike] = useState({
+    like: false,
+    unlike: false,
+  });
   const history = useHistory();
+
+  const handleSubmitComment = (data) => {
+    const newListComments = { comments: [...comments, data.comment] };
+    handleCommentPost(newListComments, idPost);
+  };
+
   return (
     <>
       <Container>
@@ -33,6 +56,19 @@ const CardFeed = ({
             onClick={() => handleDeletePost(idPost)}
           />
         )}
+        <div className="gameContent">
+          {games
+            .filter((game) => gameList.includes(game.name))
+            .map((game) => {
+              return (
+                <CardGames
+                  key={game.name}
+                  image={game.image}
+                  name={game.name}
+                />
+              );
+            })}
+        </div>
         <Box className="userInformation">
           <img
             className="userPhoto"
@@ -45,48 +81,6 @@ const CardFeed = ({
               {username}
             </h3>
             <span>{moment(createdAt).locale("pt").fromNow()}</span>
-          </div>
-          <div className="gameContent">
-            <div className="game">
-              <img
-                className="gameLogo"
-                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-                alt="gameLogo"
-              />
-              <span className="gameName">Call of Duty</span>
-            </div>
-            <div className="game">
-              <img
-                className="gameLogo"
-                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-                alt="gameLogo"
-              />
-              <span className="gameName">Lol</span>
-            </div>
-            <div className="game">
-              <img
-                className="gameLogo"
-                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-                alt="gameLogo"
-              />
-              <span className="gameName">PUBG</span>
-            </div>
-            <div className="game">
-              <img
-                className="gameLogo"
-                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-                alt="gameLogo"
-              />
-              <span className="gameName">Valorant</span>
-            </div>
-            <div className="game">
-              <img
-                className="gameLogo"
-                src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
-                alt="gameLogo"
-              />
-              <span className="gameName">Counter-strike</span>
-            </div>
           </div>
         </Box>
         <div className="postContent">
@@ -104,18 +98,46 @@ const CardFeed = ({
 
         <Box className="likes">
           <div>
-            <AiOutlineLike />
-            <span>Gostei</span>
-            <AiOutlineDislike />
-            <span>Não gostei</span>
+            <GeralButton
+              onClick={() =>
+                setButtonsLike({
+                  like: !buttonsLike.like,
+                  unlike: false,
+                })
+              }
+            >
+              {buttonsLike.like ? <AiFillLike /> : <AiOutlineLike />}
+              <span>Gostei</span>
+            </GeralButton>
+            <GeralButton
+              onClick={() =>
+                setButtonsLike({
+                  like: false,
+                  unlike: !buttonsLike.unlike,
+                })
+              }
+            >
+              {buttonsLike.unlike ? <AiFillDislike /> : <AiOutlineDislike />}
+              <span>Não gostei</span>
+            </GeralButton>
           </div>
           <div>
             <span>Comentários</span>
           </div>
         </Box>
-        <GeralButton>
-          <MdMessage /> Adicionar Comentário
-        </GeralButton>
+        <form
+          onSubmit={handleSubmit(handleSubmitComment)}
+          className="form--comments"
+        >
+          <input placeholder="Adicionar Comentário" {...register("comment")} />
+          <GeralButton type="Submit">
+            <IoMdSend />
+          </GeralButton>
+        </form>
+        <ul className="comments--list">
+          {comments &&
+            comments.map((comment, index) => <li key={index}>{comment}</li>)}
+        </ul>
       </Container>
     </>
   );

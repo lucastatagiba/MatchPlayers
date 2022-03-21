@@ -8,7 +8,7 @@ export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")) || []
   );
-  const [userToken] = useState(
+  const [userToken, setUserToken] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-token")) || []
   );
   const [isAuth, setIsAuth] = useState(false);
@@ -42,12 +42,13 @@ export const UserDataProvider = ({ children }) => {
     });
   }, [inputvalue]);
 
-  const handleLogout = () => {
+  const handleLogout = (history) => {
+    history.push("/");
     localStorage.clear();
     toast.success("Volte Sempre =)");
     setIsAuth(false);
   };
-  const handleLogin = (data, history) => {
+  const handleLogin = (data, history, setData, setToken) => {
     Api.post("/login", data, {
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +63,10 @@ export const UserDataProvider = ({ children }) => {
           "@matchplayers-userData",
           JSON.stringify(res.data.user)
         );
+        setData(res.data.user);
         setUserData(res.data.user);
+        setToken(res.data.accessToken);
+        setUserToken(res.data.accessToken);
         setUserProfile(res.data.user);
         toast.success("Bem vindo ao Match Players");
         history.push("/feed");
@@ -152,7 +156,6 @@ export const UserDataProvider = ({ children }) => {
 
   const handleProfileUser = (idUser, history) => {
     Api.get(`644/users/${idUser}`).then((res) => {
-      console.log(res.data);
       setUserProfile(res.data);
       history.push(`/profile/${res.data.name}`);
     });
@@ -249,6 +252,8 @@ export const UserDataProvider = ({ children }) => {
     <UserDataContext.Provider
       value={{
         userData,
+        userToken,
+        setUserData,
         userProfile,
         setUserProfile,
         handleLogin,

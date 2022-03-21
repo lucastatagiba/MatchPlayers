@@ -2,18 +2,19 @@ import { useContext, useEffect, useState } from "react";
 
 import { IoMdPersonAdd } from "react-icons/io";
 import { IoPersonRemove } from "react-icons/io5";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
 import { UserDataContext } from "../../providers/userData";
-
-import * as styles from "./style";
 import { Redirect } from "react-router-dom";
 import ListCard from "../../components/ListCard";
 import { PostListContext } from "../../providers/posts";
+import * as styles from "./style";
 import GeralButton from "../../components/GeneralButton";
 import SelectTime from "../../components/SelectTime";
+import { GamesContext } from "../../providers/games";
 
 const ProfilePage = () => {
   const {
@@ -22,9 +23,12 @@ const ProfilePage = () => {
     isAuth,
     handleAddFriend,
     handleRemoveFriend,
+    handleProfileUser,
     handleSetTimeAvailability,
   } = useContext(UserDataContext);
 
+  const history = useHistory();
+  const { games } = useContext(GamesContext);
   const { UserpostList, setUserPostList, postList } =
     useContext(PostListContext);
   const [photoProfile] = useState(
@@ -44,7 +48,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
-  }, []);
+  }, [userProfile]);
 
   const handleTimeAvailability = (time) => {
     setTimeModal(!timeModal);
@@ -110,15 +114,17 @@ const ProfilePage = () => {
 
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
-                {gameList.map((game, index) => {
-                  return (
-                    <CardGames
-                      key={index}
-                      image={game.image}
-                      name={game.name}
-                    />
-                  );
-                })}
+                {games
+                  .filter((game) => gameList.includes(game.name))
+                  .map((game) => {
+                    return (
+                      <CardGames
+                        key={game.name}
+                        image={game.image}
+                        name={game.name}
+                      />
+                    );
+                  })}
               </styles.BottomLeft>
 
               <styles.BottomRight>
@@ -175,7 +181,7 @@ const ProfilePage = () => {
                     <>
                       <GeneralButton onClick={() => handleAddUser()}>
                         <IoMdPersonAdd />
-                        Adicionar Amigo
+                        Seguir Amigo
                       </GeneralButton>
                     </>
                   ) : !userData.friendList.find((item) => {
@@ -184,14 +190,14 @@ const ProfilePage = () => {
                     <>
                       <GeneralButton onClick={() => handleAddUser()}>
                         <IoMdPersonAdd />
-                        Adicionar Amigo
+                        Seguir Amigo
                       </GeneralButton>
                     </>
                   ) : (
                     <>
                       <GeneralButton onClick={() => handleRemoveUser()}>
                         <IoPersonRemove />
-                        Remover Amigo
+                        Deixar de Seguir
                       </GeneralButton>
                     </>
                   ))}
@@ -205,7 +211,16 @@ const ProfilePage = () => {
             <ListCard postList={UserpostList}></ListCard>
           </styles.Feed>
           <styles.PlaceHolder>
-            {/*substituir por frinds list*/}
+            <h3>Lista de Amigos</h3>
+            {userProfile.friendList.map((friend) => (
+              <li
+                key={friend.userId}
+                onClick={() => handleProfileUser(friend.userId, history)}
+              >
+                <img alt="userPhoto" src={friend.profileIMG} />
+                <h2>{friend.name}</h2>
+              </li>
+            ))}
           </styles.PlaceHolder>
         </styles.ProfileContentContainer>
       </styles.Container>

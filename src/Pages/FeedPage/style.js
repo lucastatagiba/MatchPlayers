@@ -5,8 +5,6 @@ export const Container = styled.div`
   flex-direction: column;
   margin: 0 auto;
   max-width: 900px;
-  .divModal {
-  }
   .leftAside {
     display: none;
     flex-direction: column;
@@ -23,6 +21,10 @@ export const Container = styled.div`
         border-radius: 50%;
         width: 80px;
         height: 80px;
+        cursor: pointer;
+      }
+      h2 {
+        cursor: pointer;
       }
     }
     .divSchedules {
@@ -69,6 +71,7 @@ export const Container = styled.div`
     }
   }
   .divStartPub {
+    position: relative;
     display: flex;
     width: 95%;
     background-color: var(--White-primary);
@@ -89,6 +92,7 @@ export const Container = styled.div`
       align-items: center;
       width: 100%;
       border-radius: 8px;
+
       button {
         font-size: 12px;
         text-align: start;
@@ -115,6 +119,8 @@ export const Container = styled.div`
     }
     .divStartPub {
       min-width: 450px;
+      .divModal {
+      }
     }
     .leftAside {
       display: flex;
@@ -125,12 +131,49 @@ export const Container = styled.div`
     }
     .rightAside {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       margin-top: 12px;
       margin-left: 15px;
-      width: 200px;
+      align-items: center;
+      border-radius: 8px;
       background-color: var(--White-primary);
       height: max-content;
+      padding-bottom: 20px;
+      min-width: 120px;
+      width: 80%;
+      h3 {
+        font-size: 18px;
+        text-align: center;
+        border-bottom: 1px solid var(--Gray-3);
+        padding: 10px 0;
+        width: 100%;
+      }
+      ul {
+        width: 100%;
+      }
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+      li {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        align-items: center;
+        border-bottom: 1px solid var(--Gray-3);
+        width: 100%;
+        cursor: pointer;
+
+        h2 {
+          width: 50%;
+
+          font-size: 1rem;
+          text-overflow: ellipsis;
+          overflow: auto;
+        }
+      }
     }
   }
 

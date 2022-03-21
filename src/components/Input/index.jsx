@@ -1,6 +1,7 @@
 import { Container, ContainerModal } from "./style";
 import { useContext } from "react";
 import { UserDataContext } from "../../providers/userData";
+import { useHistory } from "react-router-dom";
 
 const Input = ({
   bgcolor,
@@ -14,8 +15,8 @@ const Input = ({
   display,
   ...rest
 }) => {
-  const { searchUser } = useContext(UserDataContext);
-
+  const { searchUser, handleProfileUser } = useContext(UserDataContext);
+  const history = useHistory();
   return (
     <>
       <Container
@@ -31,28 +32,42 @@ const Input = ({
         <Icon />
         <ContainerModal display={display}>
           <h3>Resultados:</h3>
-          <div>
+          <ul>
             {!!searchUser &&
               searchUser.map((personSearch) => {
-                console.log(personSearch);
                 return (
-                  <div>
+                  <li key={personSearch.userId}>
                     <img
                       alt="personIMG"
                       src={personSearch.profileIMG && personSearch.profileIMG}
+                      onClick={() =>
+                        handleProfileUser(personSearch.id, history)
+                      }
                     />
-                    <div>
-                      <h2>{personSearch.name}</h2>
+                    <div className="div--games">
+                      <h2
+                        onClick={() =>
+                          handleProfileUser(personSearch.id, history)
+                        }
+                      >
+                        {personSearch.name}
+                      </h2>
                       <div>
-                        {personSearch.gameList.map((jogo) => {
-                          return <div>iconeJogo</div>;
+                        {personSearch.gameList.map((jogo, index) => {
+                          return (
+                            <img
+                              key={index}
+                              src="https://i.pinimg.com/originals/b8/3e/6f/b83e6fea403a390bd06ae17c187408e3.png"
+                              alt="GameLogo"
+                            />
+                          );
                         })}
                       </div>
                     </div>
-                  </div>
+                  </li>
                 );
               })}
-          </div>
+          </ul>
         </ContainerModal>
       </Container>
     </>

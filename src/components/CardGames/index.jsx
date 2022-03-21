@@ -1,4 +1,4 @@
-import * as styles from "./index";
+import * as styles from "./style";
 
 const CardGames = ({ image, name }) => {
   return (

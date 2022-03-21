@@ -141,7 +141,35 @@ export const Feed = styled.ul`
 export const PlaceHolder = styled.ul`
   background: var(--White-primary);
   width: 300px;
-  height: 415px;
+  list-style: none;
+  border-radius: 8px;
+  padding-bottom: 20px;
+  height: max-content;
+  min-width: 210px;
+  h3 {
+    font-size: 22px;
+    text-align: center;
+    border-bottom: 1px solid var(--Gray-3);
+    padding: 10px 0;
+  }
+  li {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+    border-bottom: 1px solid var(--Gray-3);
+    padding: 10px;
+    align-items: center;
+
+    h2 {
+      font-size: 18px;
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
 `;
 
 export const Selects = styled.div`

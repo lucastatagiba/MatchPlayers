@@ -10,10 +10,13 @@ import logo from "../../Assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { PostListContext } from "../../providers/posts";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { handleLogin, isAuth } = useContext(UserDataContext);
+  const { setUserData, setUserToken } = useContext(PostListContext);
 
   const history = useHistory();
 
@@ -29,12 +32,11 @@ const LandingPage = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const handleSubmitLogin = (data) => {
-    handleLogin(data, history);
+    handleLogin(data, history, setUserData, setUserToken);
   };
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
-
   if (isAuth) {
     return <Redirect to="/feed" />;
   }

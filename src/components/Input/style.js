@@ -17,6 +17,7 @@ export const Container = styled.div`
 `;
 export const ContainerModal = styled.div`
   display: ${(props) => props.display}!important;
+  flex-direction: column;
   align-items: start !important;
   padding: 5px;
   border: 1px solid var(--Gray-3);
@@ -31,9 +32,39 @@ export const ContainerModal = styled.div`
   h3 {
     display: flex;
   }
-  div {
+  ul {
     display: flex;
     flex-wrap: wrap;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  li {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--Gray-3);
+    align-items: center;
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .div--games {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        img {
+          height: 20px;
+          width: 20px;
+          border-radius: 50%;
+        }
+      }
+    }
   }
   img {
     width: 50px;

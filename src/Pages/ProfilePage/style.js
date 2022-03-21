@@ -55,7 +55,8 @@ export const ProfileCardTop = styled.div`
 
 export const ProfileCardBottom = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-left: auto;
   max-width: 75%;
   height: 58%;
@@ -88,8 +89,31 @@ export const BottomRight = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  padding: 0 25px 50px 0;
+  padding: 0 25px 20px 0;
   flex: 1;
+  button:first-of-type {
+    border: none;
+    background: none;
+    margin: 0px auto;
+    color: var(--Gray-3);
+  }
+  span:nth-of-type(2) {
+    background-color: var(--Gray-2);
+    border-radius: 8px;
+    width: fit-content;
+    text-align: center;
+    margin: 5px auto;
+  }
+  div > button:first-of-type {
+    background-color: var(--Blue-primary);
+    color: white;
+    height: 25px;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  button:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Avaliable = styled.h3`
@@ -153,4 +177,9 @@ export const PlaceHolder = styled.ul`
       margin-right: 10px;
     }
   }
+`;
+
+export const Selects = styled.div`
+  display: flex;
+  flex-direction: row;
 `;

@@ -36,6 +36,7 @@ const ProfilePage = () => {
   );
   const [initialSelect, setInitialSelect] = useState("");
   const [finalSelect, setFinalSelect] = useState("");
+  const [timeModal, setTimeModal] = useState(false);
   const {
     email,
     gameList,
@@ -48,6 +49,11 @@ const ProfilePage = () => {
   useEffect(() => {
     setUserPostList(postList.filter((post) => post.userId === userProfile.id));
   }, [userProfile]);
+
+  const handleTimeAvailability = (time) => {
+    setTimeModal(!timeModal);
+    handleSetTimeAvailability(time);
+  };
 
   const handleAddUser = () => {
     console.log("adicionou");
@@ -129,29 +135,43 @@ const ProfilePage = () => {
                       ? userProfile.timeAvailability
                       : userData.timeAvailability}
                   </styles.Text>
-                  {/* onChange={(e) => setInitialSelect(e.target.value)} */}
-                  {/* onChange={(e) => setFinalSelect(e.target.value)} */}
 
                   {userData.userId !== userProfile.userId ? (
                     ""
                   ) : (
                     <>
-                      <SelectTime
-                        handleFunction={(e) => setInitialSelect(e.target.value)}
-                      />
-                      <SelectTime
-                        handleFunction={(e) => setFinalSelect(e.target.value)}
-                      />
+                      <button
+                        onClick={() => setTimeModal(!timeModal)}
+                        className="openTimeEdit"
+                      >
+                        Editar Horários
+                      </button>
+                      {!timeModal ? (
+                        ""
+                      ) : (
+                        <styles.Selects>
+                          <SelectTime
+                            handleFunction={(e) =>
+                              setInitialSelect(e.target.value)
+                            }
+                          />
+                          <SelectTime
+                            handleFunction={(e) =>
+                              setFinalSelect(e.target.value)
+                            }
+                          />
 
-                      <GeralButton
-                        children={"Salvar"}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          handleSetTimeAvailability(
-                            `${initialSelect}:00 até ${finalSelect}:00 `
-                          );
-                        }}
-                      />
+                          <GeralButton
+                            children={"Salvar"}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleTimeAvailability(
+                                `${initialSelect}:00 até ${finalSelect}:00 `
+                              );
+                            }}
+                          />
+                        </styles.Selects>
+                      )}
                     </>
                   )}
                 </styles.Avaliable>

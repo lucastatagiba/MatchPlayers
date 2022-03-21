@@ -109,7 +109,7 @@ const ProfilePage = () => {
             <styles.ProfileCardBottom>
               <styles.BottomLeft>
                 {games
-                  .filter((game) => gameList.includes(game.name))
+                  .filter((game) => userProfile.gameList.includes(game.name))
                   .map((game) => {
                     return (
                       <CardGames

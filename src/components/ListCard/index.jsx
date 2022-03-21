@@ -21,6 +21,7 @@ const ListCard = ({ postList }) => {
               postUpdate={false}
               postIMG={post.postIMG || ""}
               comments={post.comments}
+              gameList={post.gameList}
             />
           );
         } else {
@@ -36,6 +37,7 @@ const ListCard = ({ postList }) => {
               postUpdate={true}
               postIMG={post.postIMG || ""}
               comments={post.comments}
+              gameList={post.gameList}
             />
           );
         }

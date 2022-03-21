@@ -14,6 +14,7 @@ export const UserDataProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [imgBase64Post, setImgBase64Post] = useState("");
   const [imgBase64User, setImgBase64User] = useState("");
+  const [imgBase64Background, setImgBase64Background] = useState("");
   const [loadingPhoto, setLoadingPhoto] = useState("");
   const [isloading, setIsloading] = useState(false);
   const [userGames, setUserGames] = useState([]);
@@ -48,6 +49,7 @@ export const UserDataProvider = ({ children }) => {
     toast.success("Volte Sempre =)");
     setIsAuth(false);
   };
+
   const handleLogin = (data, history, setData, setToken) => {
     Api.post("/login", data, {
       headers: {
@@ -74,6 +76,7 @@ export const UserDataProvider = ({ children }) => {
       })
       .catch(() => toast.error("Usuário ou Senha Inválidos"));
   };
+
   const handleRegister = (data, history) => {
     Api.post("/users", data, {
       headers: {
@@ -87,6 +90,7 @@ export const UserDataProvider = ({ children }) => {
       })
       .catch((err) => toast.error("Usuário já cadastrado, tente outro email"));
   };
+
   const handlechangeUserIMG = () => {
     setIsloading(true);
     setLoadingPhoto("https://i.stack.imgur.com/ATB3o.gif");
@@ -122,15 +126,41 @@ export const UserDataProvider = ({ children }) => {
       .catch((res) => toast.error("Tente Novamente"));
   };
 
-  // a data do handleGames Register deve entrar somente
-  /*
-
-  {
-    userId: id do usuário,
-    gameList: [...userData.gameList, novo jogo adicionado]
-  }
-
-  */
+  const handleChangeUserBackground = () => {
+    Api.patch(
+      `/644/users/${userData.id}`,
+      {
+        userId: userData.id,
+        profileBackgroundIMG: `${imgBase64Background}`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    )
+      .then((res) => {
+        toast.success("Imagem de fundo trocada com sucesso!", {
+          style: {
+            zIndex: 11,
+          },
+        });
+        localStorage.setItem(
+          "@matchplayers-userData",
+          JSON.stringify(res.data)
+        );
+        setUserData(res.data);
+        setUserProfile(res.data);
+      })
+      .catch((res) =>
+        toast.error("Tente Novamente", {
+          style: {
+            zIndex: 11,
+          },
+        })
+      );
+  };
 
   const handleGamesRegister = () => {
     const data = {};
@@ -160,34 +190,6 @@ export const UserDataProvider = ({ children }) => {
       history.push(`/profile/${res.data.name}`);
     });
   };
-
-  // a data do handleGames Edit deve entrar somente
-  /*
-
-  {
-    userId: id do usuário,
-    gameList: [jogos selecionados]
-  }
-
-  */
-
-  // const handleGamesEdit = (data) => {
-  //   Api.patch(`/644/users/${userData.id}`, data, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${userToken}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       localStorage.setItem(
-  //         "@matchplayers-userData",
-  //         JSON.stringify(res.data)
-  //       );
-  //       setUserData(res.data);
-  //       toast.success("Jogos Adicionados");
-  //     })
-  //     .catch((res) => toast.error("Tente Novamente"));
-  // };
 
   const handleAddFriend = (data) => {
     Api.patch(`/644/users/${userData.id}`, data, {
@@ -282,6 +284,9 @@ export const UserDataProvider = ({ children }) => {
         inputvalue,
         setInputvalue,
         handleSetTimeAvailability,
+        imgBase64Background,
+        setImgBase64Background,
+        handleChangeUserBackground,
       }}
     >
       {children}

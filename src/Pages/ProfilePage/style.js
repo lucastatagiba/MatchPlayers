@@ -157,11 +157,10 @@ export const UserEmail = styled.h3`
 
 export const ProfileCardBottom = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-left: auto;
-  max-width: 75%;
-  height: 58%;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding-top: 100px;
+  gap: 15px;
 
   button {
     display: flex;
@@ -187,6 +186,7 @@ export const ProfileCardBottom = styled.div`
   @media only screen and (min-width: 1024px) {
     flex-flow: row;
     padding: 25px;
+    margin-left: auto;
     max-width: 75%;
   }
 `;
@@ -202,8 +202,7 @@ export const BottomRight = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  padding: 0 25px 20px 0;
-  flex: 1;
+
   button:first-of-type {
     border: none;
     background: none;

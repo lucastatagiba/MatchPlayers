@@ -3,22 +3,21 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--Background-Color);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
   .logoimg {
     height: 80px;
     width: 60px;
   }
   ul {
-    width: 80vw;
+    max-width: 800px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    min-height: 400px;
-    height: 100vh;
-    overflow-y: scroll;
+    margin-top: 50px;
   }
   figure {
     display: flex;
@@ -57,14 +56,15 @@ export const Container = styled.div`
       flex-wrap: wrap;
       justify-content: space-around;
       min-height: 400px;
-      height: 100vh;
-      overflow-y: auto;
+      height: fit-content;
+      max-width: 100%;
     }
   }
 `;
 
 export const Box = styled.div`
-  height: 400px;
+  min-height: 400px;
+  max-height: fit-content;
   max-width: 400px;
   padding: 0px 20px;
   text-align: center;
@@ -74,7 +74,7 @@ export const Box = styled.div`
   align-items: center;
   font-size: 12px;
   @media (min-width: 1024px) {
-    height: 600px;
-    max-width: 800px;
+    min-height: 800px;
+    max-width: 1800px;
   }
 `;

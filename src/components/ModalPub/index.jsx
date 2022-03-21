@@ -18,6 +18,7 @@ const ModalPub = ({ closeModal }) => {
       userId: userData.id,
       profileIMG: userData.profileIMG,
       plataformList: userData.plataformList,
+      gameList: userData.gameList,
       desc: data.desc,
       comments: [],
       postIMG: imgBase64Post,

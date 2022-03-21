@@ -28,12 +28,10 @@ const CardFeed = ({
   postIMG,
   userId,
   comments,
+  gameList,
 }) => {
   const { games } = useContext(GamesContext);
-  const {
-    userData: { gameList },
-    handleProfileUser,
-  } = useContext(UserDataContext);
+  const { handleProfileUser } = useContext(UserDataContext);
   const { handleDeletePost, handleCommentPost } = useContext(PostListContext);
   const { register, handleSubmit } = useForm();
   const [buttonsLike, setButtonsLike] = useState({
@@ -56,19 +54,21 @@ const CardFeed = ({
             onClick={() => handleDeletePost(idPost)}
           />
         )}
-        <div className="gameContent">
-          {games
-            .filter((game) => gameList.includes(game.name))
-            .map((game) => {
-              return (
-                <CardGames
-                  key={game.name}
-                  image={game.image}
-                  name={game.name}
-                />
-              );
-            })}
-        </div>
+        {gameList && (
+          <div className="gameContent">
+            {games
+              .filter((game) => gameList.includes(game.name))
+              .map((game) => {
+                return (
+                  <CardGames
+                    key={game.name}
+                    image={game.image}
+                    name={game.name}
+                  />
+                );
+              })}
+          </div>
+        )}
         <Box className="userInformation">
           <img
             className="userPhoto"

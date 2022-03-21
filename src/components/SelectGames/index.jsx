@@ -24,7 +24,12 @@ const SelectGames = () => {
   const [gamesNames, setGamesNames] = useState([]);
 
   const { games } = useContext(GamesContext);
-  const { setUserGames } = useContext(UserDataContext);
+  const {
+    userData: { gameList },
+    setUserGames,
+  } = useContext(UserDataContext);
+
+  useEffect(() => setGamesNames(gameList), []);
 
   const options = games.map((game) => game.name);
 

@@ -88,7 +88,7 @@ export const PostListProvider = ({ children }) => {
           userId: userData.id,
           posts: newListPostUser,
         };
-
+        setUserPostList(newListPostUser);
         handleListPosts(newPosts);
       })
       .catch((err) => toast.error("Falha ao Remover Publicação."));

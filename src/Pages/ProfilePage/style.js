@@ -272,6 +272,18 @@ export const Feed = styled.div`
   }
 `;
 
+export const FeedEmpty = styled.div`
+  margin: 0 auto;
+  display: flex;
+  width: 98%;
+  background-color: var(--White-primary);
+  border-radius: 8px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  color: var(--Gray-3);
+`;
+
 export const FriendsList = styled.ul`
   display: none;
   background: var(--White-primary);

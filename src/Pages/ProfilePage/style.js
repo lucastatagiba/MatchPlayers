@@ -196,6 +196,7 @@ export const BottomLeft = styled.div`
   display: flex;
   flex-flow: row wrap;
   gap: 15px 26px;
+  margin-top: 20px;
 `;
 
 export const BottomRight = styled.div`

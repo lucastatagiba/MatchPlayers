@@ -140,8 +140,6 @@ const ProfilePage = () => {
                 </styles.UserNickname>
 
                 <styles.UserInfo>{userProfile.name}</styles.UserInfo>
-
-                <styles.UserInfo>{userProfile.email}</styles.UserInfo>
               </styles.ProfileCardUserInfo>
 
               {userProfile.nickname === userData.nickname && (
@@ -247,13 +245,7 @@ const ProfilePage = () => {
 
         <styles.ProfileContentContainer>
           <styles.Feed>
-            {UserpostList.length > 0 ? (
-              <ListCard postList={UserpostList}></ListCard>
-            ) : (
-              <styles.FeedEmpty>
-                <h2>Sem Publicações</h2>
-              </styles.FeedEmpty>
-            )}
+            <ListCard postList={UserpostList}></ListCard>
           </styles.Feed>
           <styles.FriendsList>
             <h3>Lista de Amigos</h3>

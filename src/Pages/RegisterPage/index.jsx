@@ -15,7 +15,10 @@ const RegisterPage = () => {
   const { handleRegister } = useContext(UserDataContext);
   const history = useHistory();
   const formSchema = yup.object().shape({
-    name: yup.string().required("Digite seu Nome Completo"),
+    name: yup
+      .string()
+      .max(18, "Insira no máximo 18 caracteres")
+      .required("Digite seu Nome Completo"),
     nickname: yup.string().required("Digite seu Apelido"),
     email: yup.string().required("Digite seu email").email("Formato Inválido"),
     email_confirm: yup

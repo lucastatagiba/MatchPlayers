@@ -203,12 +203,6 @@ export const BottomRight = styled.div`
   flex-flow: column nowrap;
   align-items: center;
 
-  button:first-of-type {
-    border: none;
-    background: none;
-    margin: 0px auto;
-    color: var(--Gray-3);
-  }
   span:nth-of-type(2) {
     background-color: var(--Gray-2);
     border-radius: 8px;
@@ -232,6 +226,13 @@ export const Avaliable = styled.h3`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+
+  button {
+    border: none;
+    background: none;
+    margin: 0px auto;
+    color: var(--Gray-3);
+  }
 
   & > span + span {
     margin-top: 15px;

@@ -105,7 +105,11 @@ const FeedPage = () => {
           </div>
           <div className="divSchedules">
             <h3>Horários</h3>
-            <span>{userData.timeAvailability}</span>
+            {userData.timeAvailability.length > 0 ? (
+              <span>{userData.timeAvailability}</span>
+            ) : (
+              <span>Não Selecionado</span>
+            )}
           </div>
         </aside>
         <section>

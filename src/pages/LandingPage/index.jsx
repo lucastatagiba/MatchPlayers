@@ -1,10 +1,16 @@
+//EXTERNAL DEPENDENCIES
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
+//INTERNAL DEPENDENCIES
+
+//STYLES
 import * as styles from "./style";
 import {
   Container,
@@ -26,8 +32,6 @@ import {
 } from "./style";
 import logo from "../../assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
-import { useHistory } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import { PostListContext } from "../../providers/posts";
 
 const LandingPage = () => {

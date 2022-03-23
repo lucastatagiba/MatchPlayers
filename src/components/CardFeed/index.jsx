@@ -34,14 +34,13 @@ const CardFeed = ({
   const { handleProfileUser, userData } = useContext(UserDataContext);
   const { handleDeletePost, handleNewPostComment, handleGetComments } =
     useContext(PostListContext);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [buttonsLike, setButtonsLike] = useState({
     like: false,
     unlike: false,
   });
   const [commentsList, setCommentsList] = useState(false);
   const history = useHistory();
-
   const handleSubmitComment = (data) => {
     const newComment = {
       idPost: idPost,
@@ -52,6 +51,7 @@ const CardFeed = ({
     handleNewPostComment(newComment);
     handleGetComments();
     setCommentsList(true);
+    reset();
   };
 
   return (

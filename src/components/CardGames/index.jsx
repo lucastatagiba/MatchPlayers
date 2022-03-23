@@ -1,8 +1,12 @@
-const CardGames = () => {
+import * as styles from "./style";
+
+const CardGames = ({ image, name }) => {
   return (
-    <>
-      <h1>oi</h1>
-    </>
+    <styles.Container>
+      <styles.Image src={image} alt={`Jogo ${name}`} />
+
+      <styles.Name>{name}</styles.Name>
+    </styles.Container>
   );
 };
 export default CardGames;

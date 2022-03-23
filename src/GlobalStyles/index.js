@@ -25,13 +25,21 @@ a{
     --Blue-secundary: #2B4C64;
     --Color-Secondary: #6C8394;
     --Background-Color: #F3F2EF;
+    --White-primary: #FFFFFF;
+    --Black-primary: #000000;
+    --Orange-primary: #F75F30;
 //tons de cinza
     --Gray-4: #212529;
     --Gray-3: #868E96;
     --Gray-2: #E9ECEF;
     --Gray-1: #F8F9FA;
-
 //fontsizes
 
+
 }
+
+body{
+    background: var(--Background-Color);
+}
+
 `;

@@ -1,15 +1,18 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { Api } from "../services";
 
-export const GameListContext = createContext([]);
+export const GamesContext = createContext([]);
 
-export const GameListProvider = ({ children }) => {
-  const [gameList, setGameList] = useState(
-    JSON.parse(localStorage.getItem("gameList")) || []
-  );
+export const GamesProvider = ({ children }) => {
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    Api.get("/games").then((res) => {
+      setGames(res.data);
+    });
+  }, []);
 
   return (
-    <GameListContext.Provider value={{ gameList }}>
-      {children}
-    </GameListContext.Provider>
+    <GamesContext.Provider value={{ games }}>{children}</GamesContext.Provider>
   );
 };

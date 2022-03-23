@@ -1,44 +1,30 @@
 import styled from "styled-components";
 
-export const ContainerDev = styled.div`
-  body {
-    font-size: 62.5%;
-  }
+import { Link as ReactRouterDOMLink } from "react-router-dom";
 
-  body {
-    width: 100vw;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    font-family: "Poppins", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+export const Container = styled.li``;
 
-  .container {
+export const CardContainer = styled.div`
+  &.card-container {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
+`;
 
-  .container .box {
+export const BoxContainer = styled.div`
+  &.box-container {
     position: relative;
     width: 208px;
     height: 208px;
     margin: 32px;
   }
+`;
 
-  .container .box:hover .imgBox {
-    transform: translate(-56px, -56px);
-  }
-
-  .container .box:hover .content {
-    transform: translate(56px, 56px);
-  }
-
-  .imgBox {
+export const ImageContainer = styled.figure`
+  &.image-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -48,15 +34,23 @@ export const ContainerDev = styled.div`
     transition: all 0.5s ease-in-out;
   }
 
-  .imgBox img {
+  .box-container:hover &.image-container {
+    transform: translate(-56px, -56px);
+  }
+`;
+
+export const Image = styled.img`
+  &.image-container__image {
     width: 208px;
     height: 208px;
     object-fit: cover;
     resize: both;
-    border-radius: 10px;
+    border-radius: var(--radius-pixels-10);
   }
+`;
 
-  .content {
+export const ContentContainer = styled.div`
+  &.content-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -66,38 +60,46 @@ export const ContainerDev = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-color: #fff;
+    background-color: var(--color-white);
     z-index: 1;
-    align-items: flex-end;
-    text-align: center;
+    align-items: center;
     transition: 0.5s ease-in-out;
     font-size: 45px;
-    color: #0072b1;
-    border-radius: 10px;
+    color: var(--color-lightblue);
+    border-radius: var(--radius-pixels-10);
+    box-shadow: var(--box-shadow-soft);
   }
 
-  .content h2 {
+  .box-container:hover &.content-container {
+    transform: translate(56px, 56px);
+  }
+`;
+
+export const Link = styled(ReactRouterDOMLink)`
+  margin-left: auto;
+
+  svg {
+    font-size: 45px;
+    color: var(--color-lightblue);
+  }
+`;
+
+export const Name = styled.h2`
+  &.content-container__name {
     display: block;
     font-size: 17.5px;
-    color: var(--Blue-primary);
+    color: var(--color-primary);
     font-weight: 500;
     line-height: 32px;
     letter-spacing: 1px;
   }
+`;
 
-  .content span {
-    color: #555;
+export const Role = styled.strong`
+  &.content-container__role {
+    color: var(--grey-3);
     font-size: 16px;
     font-weight: 300;
     letter-spacing: 2px;
-  }
-
-  @media (max-width: 600px) {
-    .container .box:hover .content {
-      transform: translate(0, 64px);
-    }
-    .container .box:hover .imgBox {
-      transform: translate(0, 72px);
-    }
   }
 `;

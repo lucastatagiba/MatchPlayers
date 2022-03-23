@@ -1,284 +1,196 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.li`
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
+  background: var(--color-white);
+  border-radius: var(--radius-pixels-4);
+  padding: 15px 0;
+  min-height: 250px;
+  gap: 15px 0;
+  box-shadow: var(--box-shadow-smooth);
+`;
+
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 0 10px;
+`;
+
+export const TrashButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background: var(--grey-3);
+  color: var(--grey-1);
+  border: none;
+  border-radius: var(--radius-pixels-8);
+  padding: 5px 5px;
+  margin-left: auto;
+  transition: var(--transition-all-quick);
+
+  :hover {
+    background: var(--grey-1);
+    color: var(--grey-3);
+  }
+`;
+
+export const Photo = styled.img`
+  border-radius: var(--radius-percent-50);
+  width: 60px;
+  height: 60px;
+`;
+
+export const InfoContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+export const Name = styled.h2`
+  font: var(--title-16);
+`;
+
+export const Moment = styled.time`
+  font: var(--text-12);
+  color: var(--grey-3);
+`;
+
+export const GamesList = styled.ul`
+  display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  gap: 0 15px;
+`;
+
+export const Body = styled.section``;
+
+export const TextContent = styled.p`
+  font: var(--text-14);
+  letter-spacing: -0.25px;
+  line-height: 1.25;
+  color: var(--grey-4-semitransparent);
+  margin-bottom: 15px;
+  padding: 0 15px;
   width: 100%;
-  min-height: 235px;
-  border: transparent;
-  border-radius: 8px;
-  background-color: var(--White-primary);
-  margin: 0 auto;
-  margin-bottom: 10px;
-  padding-top: 10px;
-  position: relative;
-  svg {
-    margin-top: 10px;
-    margin-right: 10px;
-    align-self: flex-end;
-    cursor: pointer;
-  }
-  .deletePost {
-    position: absolute;
-    top: 10px;
-  }
+`;
 
-  .postContent {
-    min-height: 50px;
-  }
-  .imageBox {
-    display: flex;
-    justify-content: center;
-    margin: 5px 0px;
-    padding: 0 5px;
-  }
-  .postImage {
-    height: auto;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-  }
-  .postText {
-    font-size: 12px;
-    margin: 20px 16px;
-  }
-  .userInformation {
-    height: 36px;
-    align-items: center;
-    padding-left: 4px;
-    width: 100%;
-    display: flex;
-    flex-wrap: no-wrap;
-    img {
-      cursor: pointer;
-      width: 60px;
-      height: 60px;
-    }
-  }
-  .gameContent {
-    align-self: center;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 15px;
-    border-bottom: 1px solid var(--Gray-2);
-    justify-content: space-evenly;
-    width: 90%;
-    padding-bottom: 5px;
-    .game {
-      display: flex;
-      background-color: var(--Gray-2);
-      border-radius: 8px;
-      margin-left: 5px;
-      align-items: center;
-      margin-bottom: 5px;
+export const ImageContainer = styled.figure`
+  width: 100%;
+`;
 
-      .gameLogo {
-        max-width: 18px;
-        max-height: 18px;
-        background-color: #f3f2ef;
-        padding: 1px;
-        border-radius: 50%;
-      }
-    }
-  }
-  .userName {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-top: 8px;
-    margin-left: 10px;
-    cursor: pointer;
-    h3 {
-      font-size: 16px;
-    }
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
 
-    span {
-      font-size: 10px;
-      color: var(--Gray-3);
-    }
-  }
-  .likes {
-    display: flex;
-    width: 100%;
-    padding: 0px 20px;
-    justify-content: space-between;
-    align-items: center;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    margin-top: 2px;
-    color: var(--Gray-4);
-    div:nth-child(1) {
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-        width: max-content;
-        svg {
-          margin: 0;
-          height: 20px;
-          width: 20px;
-        }
-      }
-    }
-    span {
-      font-size: 10px;
-    }
-    div {
-      display: flex;
-      align-items: center;
-    }
-  }
-  input {
-    width: 260px;
-    height: 15px;
-    font-size: 10px;
-    margin: 5px auto;
-    background-color: #f3f2ef;
-    border: none;
-    border-radius: 4px;
-  }
-  .gameName {
-    display: none;
-  }
+export const Footer = styled.footer`
+  padding: 0 15px;
+`;
+
+export const Interactions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0 50px;
+
   button {
-    margin: 5px 0;
-    text-align: start;
-    align-self: center;
-    width: 95%;
-    background-color: var(--Background-Color);
-    color: var(--Color-Secondary);
-    font-size: 12px;
-    height: max-content;
-    padding: 2px 0;
-    padding-left: 15px;
-  }
-  .form--comments {
-    align-self: center;
-    display: flex;
-    border-radius: 8px;
-    width: 95%;
-    background-color: var(--Background-Color);
-    margin-top: 5px;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    button {
-      width: max-content;
-      display: flex;
-      justify-content: flex-end;
-      margin: 0;
-      svg {
-        height: 18px;
-        width: 18px;
-        margin: 0;
-      }
-    }
-    input {
-      margin: 0;
-      background-color: transparent;
-    }
-  }
+    font: var(--text-14);
+    background: transparent;
+    color: var(--grey-4-semitransparent);
 
-  @media screen and (min-width: 1024px) {
-    min-width: 500px;
-    min-height: 235px;
-    .gameContent {
-      justify-content: flex-start;
-    }
-    .userInformation {
-      height: 86px;
-      img {
-        cursor: pointer;
-        width: 60px;
-        height: 60px;
-      }
-    }
-    .gameName {
-      display: flex;
-      border-radius: 8px;
-      padding: 2px;
-    }
-    .postText {
-      font-size: 16px;
-      width: fit-content;
-      margin-bottom: 20px;
-    }
-    .likes {
-      font-size: 20px;
-      margin-top: 10px;
-      color: var(--Gray-4);
-      padding: 0px 25px;
-      span {
-        font-size: 16px;
-      }
-    }
-    input {
-      width: 475px;
-      height: 24px;
-      margin-top: 10px;
-      font-size: 16px;
+    :hover {
+      background: var(--grey-4-semitransparent);
+      color: var(--grey-1);
     }
   }
 `;
 
-export const Box = styled.div`
-  width: max-content;
-  display: flex;
-  flex-direction: row;
+export const CommentsCount = styled.span`
+  font: var(--text-14);
+  margin-left: auto;
+  cursor: pointer;
 
-  .userPhoto {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    margin: 8px 0px 5px 12px;
+  :hover {
+    color: var(--color-lightblue);
+    text-decoration: underline;
   }
-  h3 {
-    font-size: 10px;
+`;
+
+export const ContainerComments = styled.div`
+  margin-top: 15px;
+`;
+
+export const Form = styled.form``;
+
+export const Label = styled.label`
+  display: flex;
+  position: relative;
+
+  button {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    border: 1.5px solid var(--color-primary);
+    border-radius: var(--radius-percent-50);
+    height: 30px;
+    transition: all 0.2s ease-in;
+
+    svg {
+      transition: all 0.2s ease-in-out;
+    }
+
+    :hover {
+      background: var(--grey-1);
+      color: var(--color-primary);
+
+      svg {
+        transform: rotate(-0.15turn);
+        transition: all 0.2s ease-in-out;
+      }
+    }
   }
-  span {
-    font-weight: 500;
-    font-size: 6px;
-    margin-right: 5px;
+
+  textarea:focus + button {
+    top: 60%;
   }
-  .button--comments {
-    cursor: pointer;
-  }
-  @media screen and (min-width: 1024px) {
-    .userPhoto {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      margin: 8px 0px 5px 12px;
-    }
-    .gameLogo {
-      margin-left: 4px;
-    }
-    h3 {
-      font-size: 16px;
-    }
-    span {
-      font-size: 10px;
-    }
+`;
+
+export const TextArea = styled.textarea`
+  font: var(--text-14);
+  color: var(--grey-4-semitransparent);
+  background: var(--color-background);
+  border: none;
+  border-radius: var(--radius-pixels-8);
+  padding: 10px 15px;
+  width: 100%;
+  height: 40px;
+  resize: none;
+  transition: all 0.2s ease-in-out;
+
+  :focus {
+    outline: 1.5px solid var(--color-orange);
+    height: 100px;
+    transition: all 0.2s ease-in-out;
   }
 `;
 
 export const Comments = styled.ul`
   display: ${(props) => (props.modalOn ? "flex" : "none")};
   align-self: center;
-  border-top: 1px solid var(--Gray-2);
+  border-top: 1px solid var(--grey-2);
   list-style: none;
   width: 95%;
   padding-top: 10px;
   max-height: 110px;
   overflow-y: auto;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  margin-top: 15px;
   li {
-    background-color: var(--Background-Color);
+    background-color: var(--color-background);
     border-radius: 8px;
     font-size: 12px;
     margin-bottom: 10px;

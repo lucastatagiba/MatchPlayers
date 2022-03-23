@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link as ReactRouterDomLink } from "react-router-dom";
 
 export const Container = styled.div`
-  background-color: var(--Background-Color);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -18,13 +17,13 @@ export const Container = styled.div`
       h3 {
         font-family: "Supermercado One", cursive;
         font-size: 26px;
-        color: var(--Blue-primary);
+        color: var(--color-primary);
         margin-bottom: 10px;
       }
       span {
         font-family: "Supermercado One", cursive;
         font-size: 20px;
-        color: var(--Blue-primary);
+        color: var(--color-primary);
       }
     }
     img {
@@ -39,8 +38,8 @@ export const Container = styled.div`
     background-color: none;
     background: linear-gradient(
       90deg,
-      rgba(6, 37, 67, 1) 40%,
-      rgba(247, 95, 48, 1) 100%
+      var(--color-primary) 40%,
+      var(--orange) 100%
     );
   }
 `;

@@ -1,5 +1,5 @@
 import { Container, Box } from "./style";
-import logoIMG from "../../Assets/img/logo.png";
+import logoIMG from "../../assets/img/logo.png";
 import Button from "../../components/GeneralButton";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 

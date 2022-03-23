@@ -1,35 +1,52 @@
-import * as styles from "./style";
+//EXTERNAL DEPENDENCIES
 import { AiFillLinkedin } from "react-icons/ai";
-import { Link } from "react-router-dom";
 
-const CardDev = ({ Dev }) => {
-  const style = { color: "#0072b1" };
+//INTERNAL DEPENDENCIES
 
+//STYLES
+import {
+  Container,
+  CardContainer,
+  BoxContainer,
+  ImageContainer,
+  Image,
+  ContentContainer,
+  Link,
+  Name,
+  Role,
+} from "./style";
+
+const CardDev = ({ developer }) => {
   return (
-    <styles.ContainerDev>
-      <div className="container">
-        <div className="box">
-          <div className="imgBox">
-            <img src={Dev.img} alt="" />
-          </div>
-          <div className="content">
+    <Container>
+      <CardContainer className="card-container">
+        <BoxContainer className="box-container">
+          <ImageContainer className="image-container">
+            <Image
+              className="image-container__image"
+              src={developer.image}
+              alt=""
+            />
+          </ImageContainer>
+
+          <ContentContainer className="content-container">
             <Link
               to={{
-                pathname: Dev.linkedin,
+                pathname: developer.linkedin,
               }}
+              rel="noreferrer noopener external"
               target="_blank"
             >
-              <AiFillLinkedin style={style} />
+              <AiFillLinkedin />
             </Link>
 
-            <h2>
-              {Dev.nome}
-              <span> {Dev.funcao}</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-    </styles.ContainerDev>
+            <Name className="content-container__name">{developer.name}</Name>
+
+            <Role className="content-container__role"> {developer.role}</Role>
+          </ContentContainer>
+        </BoxContainer>
+      </CardContainer>
+    </Container>
   );
 };
 

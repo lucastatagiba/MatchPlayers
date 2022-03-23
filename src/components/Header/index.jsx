@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { RiCloseCircleFill } from "react-icons/ri";
 
-import logoIMG from "../../Assets/img/logo.png";
+import logoIMG from "../../assets/img/logo.png";
 import Input from "../Input";
 import FileField from "../FileField";
 import SelectGames from "../SelectGames";

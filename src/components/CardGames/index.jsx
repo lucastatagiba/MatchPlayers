@@ -1,11 +1,11 @@
 import * as styles from "./style";
 
-const CardGames = ({ image, name, display }) => {
+const CardGames = ({ image, name, size }) => {
   return (
-    <styles.Container>
+    <styles.Container size={size}>
       <styles.Image src={image} alt={`Jogo ${name}`} />
 
-      <styles.Name display={display}>{name}</styles.Name>
+      <styles.Name size={size}>{name}</styles.Name>
     </styles.Container>
   );
 };

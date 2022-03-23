@@ -68,7 +68,7 @@ const FeedPage = () => {
       setListFriendSwitch(false);
     }
   };
-
+  console.log(postList);
   return (
     <>
       <Header />

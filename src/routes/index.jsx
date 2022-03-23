@@ -1,11 +1,11 @@
 import { Route, Switch } from "react-router-dom";
 
-import FeedPage from "../Pages/FeedPage";
-import LandingPage from "../Pages/LandingPage";
-import ProfilePage from "../Pages/ProfilePage/index.jsx";
-import RegisterPage from "../Pages/RegisterPage";
-import About from "../Pages/About";
-import NotFoundPage from "../Pages/NotFoundPage";
+import FeedPage from "../pages/FeedPage";
+import LandingPage from "../pages/LandingPage";
+import ProfilePage from "../pages/ProfilePage/index.jsx";
+import RegisterPage from "../pages/RegisterPage";
+import About from "../pages/About";
+import NotFoundPage from "../pages/NotFoundPage";
 
 const Routes = () => {
   return (

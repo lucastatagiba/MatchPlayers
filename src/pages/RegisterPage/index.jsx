@@ -1,19 +1,34 @@
-import { TextField, Button } from "@mui/material";
+//EXTERNAL DEPENDENCIES
+import { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useContext, useState } from "react";
+import { TextField } from "@mui/material";
 
-import * as styles from "./style";
+//INTERNAL DEPENDENCIES
+import {
+  Container,
+  RightContainer,
+  LogoContainer,
+  Text,
+  BoxForm,
+  Link,
+  Caption,
+  Image,
+  FormContainer,
+  InputContainer,
+  Button,
+} from "./style";
 import logo from "../../assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
-import { useHistory } from "react-router-dom";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { handleRegister } = useContext(UserDataContext);
   const history = useHistory();
+
   const formSchema = yup.object().shape({
     name: yup.string().required("Digite seu Nome Completo"),
     nickname: yup.string().required("Digite seu Apelido"),
@@ -45,38 +60,54 @@ const RegisterPage = () => {
     };
     handleRegister(newData, history);
   };
+
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
 
   return (
     <>
-      <styles.Container>
-        <styles.FigureDesktop>
-          <styles.DivLogo>
-            <img src={logo} alt="Logo" />
-            <div>
-              <h3>MatchPlayers</h3>
-              <span>Social Media For Games</span>
-            </div>
-          </styles.DivLogo>
-          <p>
+      <Container className="register">
+        <RightContainer className="register-right">
+          <LogoContainer className="logo-container">
+            <Image className="logo-container__image" src={logo} alt="Logo" />
+            <Caption className="logo-container__caption">
+              <Text className="logo-container__text--top">MatchPlayers</Text>
+              <Text className="logo-container__text--bottom">
+                Social Media For Games
+              </Text>
+            </Caption>
+          </LogoContainer>
+          <Text className="register-right__text">
             Um lugar onde é possível listar aquilo que mais gosta de jogar,
             adicionar seus amigos, chamá-los para jogar uma partida de CS, Lol,
-            COD, Pubg e até mesmo acompanhar notícias interessantes sobre o
+            COD, PUBG e até mesmo acompanhar notícias interessantes sobre o
             mundo dos games, em um só lugar.
-          </p>
-        </styles.FigureDesktop>
-        <styles.BoxForm>
-          <figure>
-            <img src={logo} alt="Logo" />
-            <div>
-              <h3>MatchPlayers</h3>
-              <span>Social Media For Games</span>
-            </div>
-          </figure>
-          <form onSubmit={handleSubmit(handleSubmitRegister)}>
-            <div>
+          </Text>
+        </RightContainer>
+
+        <BoxForm className="form-box">
+          <LogoContainer className="form-logo-container">
+            <Image
+              className="form-logo-container__image"
+              src={logo}
+              alt="Logo"
+            />
+            <Caption className="form-logo-container__caption">
+              <Text className="form-logo-container__text--top">
+                MatchPlayers
+              </Text>
+              <Text className="form-logo-container__text--bottom">
+                Social Media For Games
+              </Text>
+            </Caption>
+          </LogoContainer>
+
+          <FormContainer
+            className="form-box__container"
+            onSubmit={handleSubmit(handleSubmitRegister)}
+          >
+            <InputContainer className=".input-container">
               <TextField
                 fullWidth
                 label="Nome Completo"
@@ -85,9 +116,9 @@ const RegisterPage = () => {
                 margin="normal"
                 {...register("name")}
               />
-            </div>
-            <span>{errors.name?.message}</span>
-            <div>
+            </InputContainer>
+            <Text className="text--error">{errors.name?.message}</Text>
+            <InputContainer className=".input-container">
               <TextField
                 fullWidth
                 label="Apelido"
@@ -96,9 +127,9 @@ const RegisterPage = () => {
                 margin="normal"
                 {...register("nickname")}
               />
-            </div>
-            <span>{errors.nickname?.message}</span>
-            <div>
+            </InputContainer>
+            <Text className="text--error">{errors.nickname?.message}</Text>
+            <InputContainer className=".input-container">
               <TextField
                 fullWidth
                 label="Email"
@@ -107,9 +138,9 @@ const RegisterPage = () => {
                 margin="normal"
                 {...register("email")}
               />
-            </div>
-            <span>{errors.email?.message}</span>
-            <div>
+            </InputContainer>
+            <Text className="text--error">{errors.email?.message}</Text>
+            <InputContainer className=".input-container">
               <TextField
                 fullWidth
                 label="Confirmar Email"
@@ -118,9 +149,9 @@ const RegisterPage = () => {
                 margin="normal"
                 {...register("email_confirm")}
               />
-            </div>
-            <span>{errors.email_confirm?.message}</span>
-            <div>
+            </InputContainer>
+            <Text className="text--error">{errors.email_confirm?.message}</Text>
+            <InputContainer className="input-container--password">
               <TextField
                 fullWidth
                 type={showPassword ? "text" : "password"}
@@ -135,9 +166,9 @@ const RegisterPage = () => {
               ) : (
                 <AiFillEyeInvisible onClick={showPasswordFunction} />
               )}
-            </div>
-            <span>{errors.password?.message}</span>
-            <div>
+            </InputContainer>
+            <Text className="text--error">{errors.password?.message}</Text>
+            <InputContainer>
               <TextField
                 fullWidth
                 type={showPassword ? "text" : "password"}
@@ -147,20 +178,23 @@ const RegisterPage = () => {
                 margin="normal"
                 {...register("password_confirm")}
               />
-            </div>
-            <span>{errors.password_confirm?.message}</span>
+            </InputContainer>
+            <Text className="text--error">
+              {errors.password_confirm?.message}
+            </Text>
             <Button variant="contained" type="submit">
               Cadastrar
             </Button>
-          </form>
-          <span>
+          </FormContainer>
+
+          <Text className="form-footer__text">
             Ja é um Match Player ?
-            <styles.Link to="/">
-              <span>Faça Login</span>
-            </styles.Link>
-          </span>
-        </styles.BoxForm>
-      </styles.Container>
+            <Link to="/">
+              <Text className="form-footer__link">Faça Login</Text>
+            </Link>
+          </Text>
+        </BoxForm>
+      </Container>
     </>
   );
 };

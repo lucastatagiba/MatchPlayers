@@ -1,129 +1,169 @@
 import styled from "styled-components";
+import { styled as muiStyled } from "@mui/material/styles";
 import { Link as ReactRouterDomLink } from "react-router-dom";
+import { Button as muiButton } from "@mui/material";
 
-export const Container = styled.div`
-  background-color: var(--Background-Color);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  figure {
-    display: flex;
-    height: max-content;
-    cursor: pointer;
-    div {
-      width: max-content;
-      h3 {
-        font-family: "Supermercado One", cursive;
-        font-size: 26px;
-        color: var(--Blue-primary);
-        margin-bottom: 10px;
-      }
-      span {
-        font-family: "Supermercado One", cursive;
-        font-size: 20px;
-        color: var(--Blue-primary);
-      }
-    }
-    img {
-      height: 80px;
-      width: 60px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    flex-direction: row-reverse;
-    justify-content: space-around;
-    background-color: none;
-    background: linear-gradient(
-      90deg,
-      rgba(247, 95, 48, 1) 0%,
-      rgba(6, 37, 67, 1) 60%
-    );
-  }
-`;
-
-export const FigureDesktop = styled.div`
-  display: none;
-
-  @media (min-width: 1024px) {
+export const Container = styled.main`
+  &.register {
+    background-color: var(--Background-Color);
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    img {
-      height: 150px;
-      width: 110px;
-    }
-    p {
-      font-size: 20px;
-      width: 426px;
-      text-align: center;
-      color: white;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (min-width: 1024px) {
+    &.register {
+      flex-direction: row-reverse;
+      justify-content: space-around;
+      background-color: none;
+      background: linear-gradient(
+        90deg,
+        rgba(247, 95, 48, 1) 0%,
+        rgba(6, 37, 67, 1) 60%
+      );
     }
   }
 `;
-export const DivLogo = styled.div`
+
+export const LogoContainer = styled.div`
   display: flex;
   flex-direction: row;
   color: white;
   align-items: center;
-  padding-bottom: 70px;
-  cursor: pointer;
-  h3 {
-    font-size: 34px;
+
+  &.logo-container {
+    padding-bottom: 70px;
   }
-  span {
+  &.form-logo-container {
+    padding-bottom: 0px;
+  }
+`;
+
+export const Caption = styled.figcaption`
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  width: max-content;
+`;
+
+export const Text = styled.span`
+  color: var(--color-primary);
+
+  &.logo-container__text--top {
+    font-family: "Supermercado One", cursive;
+    font-size: 34px;
+    color: var(--color-white);
+    margin-bottom: 10px;
+  }
+
+  &.logo-container__text--bottom {
+    font-family: "Supermercado One", cursive;
     font-size: 24px;
+    color: var(--color-white);
+  }
+
+  &.register-right__text {
+    font-size: 20px;
+    width: 426px;
+    text-align: center;
+    color: white;
+  }
+
+  &.text--error {
+    margin-left: 25px;
+    align-self: start;
+    color: red;
+    font-size: 12px;
+  }
+  &.form-logo-container__text--top {
+    font-family: "Supermercado One", cursive;
+    font-weight: bold;
+    font-size: 26px;
+  }
+  &.form-logo-container__text--bottom {
+    font-family: "Supermercado One", cursive;
+    font-size: 20px;
+  }
+  &.form-footer__text {
+  }
+  &.form-footer__link {
+    color: var(--color-lightblue);
+    font-size: 14px;
+  }
+`;
+
+export const Image = styled.img`
+  &.logo-container__image {
+    height: 150px;
+    width: 110px;
+  }
+  &.form-logo-container__image {
+    height: 80px;
+    width: 60px;
+  }
+`;
+
+export const RightContainer = styled.div`
+  &.register-right {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    &.register-right {
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;
 
 export const BoxForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--White-primary);
-  width: 280px;
-  padding-top: 25px;
-  border-radius: 8px;
-  padding-bottom: 12px;
-  form {
+  &.form-box {
     display: flex;
     flex-direction: column;
     align-items: center;
-    div {
-      display: flex;
-      align-items: center;
-      svg {
-        width: 20px;
-        position: relative;
-        top: 5px;
-        right: 25px;
-        cursor: pointer;
-      }
+    background-color: var(--color-white);
+    width: 280px;
+    padding-top: 25px;
+    border-radius: 8px;
+    padding-bottom: 12px;
+  }
+`;
+
+export const FormContainer = styled.form`
+  &.form-box__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  &.input-container {
+  }
+
+  &.input-container--password {
+    margin-left: 20px;
+    svg {
+      width: 20px;
+      position: relative;
+      top: 5px;
+      right: 25px;
+      cursor: pointer;
     }
-    div:nth-child(9) {
-      margin-left: 20px;
-    }
-    button {
-      margin: 12px 0;
-      background-color: var(--Blue-primary);
-      transition: 0.2s;
-      :hover {
-        background-color: var(--Blue-primary);
+  }
+`;
+
+export const Button = muiStyled(muiButton)`
+  margin: 10px 0px ;
+  background-color: var(--color-primary);
+  transition: 0.2s;
+    :hover {
+        background-color: var(--color-lightblue);
         opacity: 0.8;
-      }
     }
-    span {
-      margin-left: 25px;
-      align-self: start;
-      color: red;
-      font-size: 12px;
-    }
-  }
-  span {
-    font-family: Arial, Helvetica, sans-serif;
-  }
 `;
 
 export const Link = styled(ReactRouterDomLink)`

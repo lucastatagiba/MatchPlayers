@@ -276,7 +276,7 @@ export const Comments = styled.ul`
   max-height: 110px;
   overflow-y: auto;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   li {
     background-color: var(--Background-Color);
     border-radius: 8px;
@@ -284,5 +284,13 @@ export const Comments = styled.ul`
     margin-bottom: 10px;
     width: max-content;
     padding: 8px 10px;
+    h3 {
+      cursor: pointer;
+      transition: 0.2s all;
+      :hover {
+        color: var(--Blue-primary);
+        text-decoration: underline;
+      }
+    }
   }
 `;

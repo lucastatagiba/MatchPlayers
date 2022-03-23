@@ -31,7 +31,7 @@ const CardFeed = ({
   gameList,
 }) => {
   const { games } = useContext(GamesContext);
-  const { handleProfileUser } = useContext(UserDataContext);
+  const { handleProfileUser, userData } = useContext(UserDataContext);
   const { handleDeletePost, handleNewPostComment, handleGetComments } =
     useContext(PostListContext);
   const { register, handleSubmit } = useForm();
@@ -46,6 +46,8 @@ const CardFeed = ({
     const newComment = {
       idPost: idPost,
       comment: data.comment,
+      nickname: userData.nickname,
+      userId: userData.userId,
     };
     handleNewPostComment(newComment);
     handleGetComments();
@@ -149,7 +151,12 @@ const CardFeed = ({
         <Comments modalOn={commentsList}>
           {comments &&
             comments.map((comment, index) => (
-              <li key={index}>{comment.comment}</li>
+              <li key={index}>
+                <h3 onClick={() => handleProfileUser(comment.userId, history)}>
+                  {comment.nickname}
+                </h3>
+                <p>{comment.comment}</p>
+              </li>
             ))}
         </Comments>
       </Container>

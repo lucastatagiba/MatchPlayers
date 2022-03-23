@@ -60,7 +60,7 @@ const Input = ({
                       <div className="gameModaList">
                         {games
                           .filter((game) =>
-                            userProfile.gameList.includes(game.name)
+                            personSearch.gameList.includes(game.name)
                           )
                           .map((game) => {
                             return (

@@ -245,7 +245,13 @@ const ProfilePage = () => {
 
         <styles.ProfileContentContainer>
           <styles.Feed>
-            <ListCard postList={UserpostList}></ListCard>
+            {UserpostList.length > 0 ? (
+              <ListCard postList={UserpostList}></ListCard>
+            ) : (
+              <styles.FeedEmpty>
+                <h2>Sem Publicações</h2>
+              </styles.FeedEmpty>
+            )}
           </styles.Feed>
           <styles.FriendsList>
             <h3>Lista de Amigos</h3>

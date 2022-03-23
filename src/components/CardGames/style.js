@@ -28,12 +28,12 @@ export const Image = styled.img`
 `;
 
 export const Name = styled.h2`
-  display: ${(props) => (props.display ? "block" : "none")};
+  display: none;
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     display: block;
   }
 `;

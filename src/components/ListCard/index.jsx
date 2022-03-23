@@ -1,10 +1,13 @@
 import { useContext } from "react";
+import { PostListContext } from "../../providers/posts";
 import { UserDataContext } from "../../providers/userData";
 import CardFeed from "../CardFeed";
 import { Container } from "./style";
 
 const ListCard = ({ postList }) => {
   const { userData } = useContext(UserDataContext);
+  const { commentsList } = useContext(PostListContext);
+
   return (
     <Container>
       {postList.map((post) => {
@@ -20,7 +23,7 @@ const ListCard = ({ postList }) => {
               userId={post.userId}
               postUpdate={false}
               postIMG={post.postIMG || ""}
-              comments={post.comments}
+              comments={commentsList.filter((item) => item.idPost === post.id)}
               gameList={post.gameList}
             />
           );
@@ -36,7 +39,7 @@ const ListCard = ({ postList }) => {
               userId={post.userId}
               postUpdate={true}
               postIMG={post.postIMG || ""}
-              comments={post.comments}
+              comments={commentsList.filter((item) => item.idPost === post.id)}
               gameList={post.gameList}
             />
           );

@@ -31,8 +31,9 @@ const CardFeed = ({
   gameList,
 }) => {
   const { games } = useContext(GamesContext);
-  const { handleProfileUser } = useContext(UserDataContext);
-  const { handleDeletePost, handleCommentPost } = useContext(PostListContext);
+  const { handleProfileUser, userData } = useContext(UserDataContext);
+  const { handleDeletePost, handleNewPostComment, handleGetComments } =
+    useContext(PostListContext);
   const { register, handleSubmit } = useForm();
   const [buttonsLike, setButtonsLike] = useState({
     like: false,
@@ -42,17 +43,24 @@ const CardFeed = ({
   const history = useHistory();
 
   const handleSubmitComment = (data) => {
+    const newComment = {
+      idPost: idPost,
+      comment: data.comment,
+      nickname: userData.nickname,
+      userId: userData.userId,
+    };
+    handleNewPostComment(newComment);
+    handleGetComments();
     setCommentsList(true);
-    const newListComments = { comments: [...comments, data.comment] };
-    handleCommentPost(newListComments, idPost);
   };
+
   return (
     <>
       <Container>
         {postUpdate && (
           <CgCloseR
             className="deletePost"
-            onClick={() => handleDeletePost(idPost)}
+            onClick={() => handleDeletePost(idPost, comments)}
           />
         )}
         {gameList && (
@@ -142,7 +150,14 @@ const CardFeed = ({
         </form>
         <Comments modalOn={commentsList}>
           {comments &&
-            comments.map((comment, index) => <li key={index}>{comment}</li>)}
+            comments.map((comment, index) => (
+              <li key={index}>
+                <h3 onClick={() => handleProfileUser(comment.userId, history)}>
+                  {comment.nickname}
+                </h3>
+                <p>{comment.comment}</p>
+              </li>
+            ))}
         </Comments>
       </Container>
     </>

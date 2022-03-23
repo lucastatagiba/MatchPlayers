@@ -170,6 +170,7 @@ export const ProfileCardBottom = styled.div`
     color: var(--Gray-4);
     height: 35px;
     gap: 0 5px;
+    margin-bottom: 15px;
 
     svg {
       width: 20px;
@@ -181,6 +182,9 @@ export const ProfileCardBottom = styled.div`
     margin-left: auto;
     padding: 25px 0 25px 0;
     max-width: 500px;
+    button {
+      margin-bottom: 0px;
+    }
   }
 
   @media only screen and (min-width: 1024px) {

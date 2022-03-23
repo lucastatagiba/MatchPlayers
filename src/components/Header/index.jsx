@@ -296,6 +296,14 @@ const Header = () => {
               Ir para o meu perfil
             </div>
             <div
+              className="modalPhotoText"
+              onClick={() => {
+                history.push("/about");
+              }}
+            >
+              Sobre Nós
+            </div>
+            <div
               className="modalPhotoText2"
               onClick={() => {
                 handleLogout(history);

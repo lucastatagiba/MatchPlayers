@@ -207,6 +207,9 @@ export const Container = styled.div`
     .modalPhoto :nth-child(2) {
       border-bottom: 1px solid var(--Gray-3);
     }
+    .modalPhoto :nth-child(3) {
+      border-bottom: 1px solid var(--Gray-3);
+    }
     .profilePhoto {
       width: 30px;
       height: 100px;
@@ -215,7 +218,7 @@ export const Container = styled.div`
         display: ${(props) =>
           props.children[2].props.children[5].props.children[1].props.display};
         width: 300px;
-        height: 80px;
+        height: fit-content;
         padding: 0 50px 0 10px;
         background-color: white;
         border-radius: 8px;

@@ -18,7 +18,7 @@ import { UserDataContext } from "../../providers/userData";
 import ListFriendsModal from "../ListFriendsModal";
 
 const Header = () => {
-  const { register, handleSubmit } = useForm();
+  const { handleSubmit } = useForm();
 
   const history = useHistory();
 

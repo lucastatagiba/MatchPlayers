@@ -15,6 +15,7 @@ export const PostListProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("@matchplayers-token")) || []
   );
   const [listNews, setListNews] = useState([]);
+  const [commentsList, setCommentsList] = useState([]);
 
   const handlePost = (data, token) => {
     Api.post(`/posts`, data, {
@@ -45,13 +46,13 @@ export const PostListProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    Api.get("/posts").then((res) => {
-      setPostList(res.data);
-    });
+    Api.get("/posts").then((res) => setPostList(res.data));
+    Api.get("/comments").then((res) => setCommentsList(res.data));
   }, [userData]);
 
   useEffect(() => {
     handleGetNews();
+    handleGetComments();
   }, []);
 
   const handlePostUser = (data, token, id) => {
@@ -72,7 +73,13 @@ export const PostListProvider = ({ children }) => {
       .catch((res) => toast.error("Tente Novamente!"));
   };
 
-  const handleDeletePost = (idPost) => {
+  const handleDeletePost = (idPost, arrComments) => {
+    arrComments.forEach((item) => {
+      Api.delete(`/comments/${item.id}`)
+        .then(() => console.log("Comentário Excluído"))
+        .catch((err) => console.log(err));
+    });
+
     Api.delete(`/posts/${idPost}`, {
       headers: {
         "Content-Type": "application/json",
@@ -107,40 +114,6 @@ export const PostListProvider = ({ children }) => {
     });
   };
 
-  const handleCommentPost = (data, idPost) => {
-    Api.patch(`/posts/${idPost}`, data, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
-      },
-    }).then((res) => {
-      const newListPost = userData.posts.filter((posts) => {
-        return posts.id !== res.data.id;
-      });
-
-      const newUserData = {
-        email: userData.email,
-        friendList: userData.friendList,
-        gameList: userData.gameList,
-        id: userData.id,
-        name: userData.name,
-        nickname: userData.nickname,
-        plataformList: userData.plataformList,
-        posts: [...newListPost, res.data],
-        profileBackgroundIMG: userData.profileBackgroundIMG,
-        profileIMG: userData.profileIMG,
-        timeAvailability: userData.timeAvailability,
-        userId: userData.userId,
-      };
-      localStorage.setItem(
-        "@matchplayers-userData",
-        JSON.stringify(newUserData)
-      );
-      setUserData(newUserData);
-      toast.success("Comentário Enviado");
-    });
-  };
-
   const handleGetNews = () => {
     ApiNews.get("/search_free?q=games&lang=pt&media=true&page_size=10", {
       headers: {
@@ -151,6 +124,18 @@ export const PostListProvider = ({ children }) => {
       .then((res) => {
         return setListNews(res.data.articles);
       })
+      .catch((err) => console.log(err));
+  };
+
+  const handleGetComments = () => {
+    Api.get("/comments")
+      .then((res) => setCommentsList(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const handleNewPostComment = (data) => {
+    Api.post("/comments", data)
+      .then(() => handleGetComments())
       .catch((err) => console.log(err));
   };
 
@@ -170,9 +155,12 @@ export const PostListProvider = ({ children }) => {
         setUserPostList,
         setUserData,
         setUserToken,
-        handleCommentPost,
         handleGetNews,
         listNews,
+        handleGetComments,
+        handleNewPostComment,
+        commentsList,
+        setCommentsList,
       }}
     >
       {children}

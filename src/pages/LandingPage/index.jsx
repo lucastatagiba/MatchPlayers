@@ -1,4 +1,4 @@
-import { TextField, Button } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,11 +6,28 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useContext, useState } from "react";
 
 import * as styles from "./style";
+import {
+  Container,
+  LogoContainer,
+  BoxForm,
+  ButtonEntrar,
+  TitleH3,
+  Span,
+  SpanCadastreSe,
+  Image,
+  ContainerTitle,
+  TitlePresentation,
+  SpanLeft,
+  DivLogo,
+  Text,
+  Form,
+  DivForm,
+  FigureDesktop,
+} from "./style";
 import logo from "../../assets/img/logo.png";
 import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { PostListContext } from "../../providers/posts";
 
 const LandingPage = () => {
@@ -43,34 +60,34 @@ const LandingPage = () => {
 
   return (
     <>
-      <styles.Container>
-        <styles.FigureDesktop>
-          <styles.DivLogo>
-            <img src={logo} alt="Logo" />
-            <div>
-              <h3>MatchPlayers</h3>
-              <span>Social Media For Games</span>
-            </div>
-          </styles.DivLogo>
-          <p>
+      <Container>
+        <FigureDesktop>
+          <DivLogo>
+            <Image src={logo} alt="Logo" />
+            <ContainerTitle>
+              <TitlePresentation>MatchPlayers</TitlePresentation>
+              <SpanLeft>Social Media For Games</SpanLeft>
+            </ContainerTitle>
+          </DivLogo>
+          <Text>
             Uma plataforma de rede social que integra o público gamer. Nela o
             você poderá adicionar seus amigos, seus jogos favoritos, cadastrar
             uma partida sua ou procurar por alguma existente. Você poderá se
             conectar com a comunidade e realizar conquistas. Será possível
             também ver as postagens de outros membros sobre notícias da
             comunidade gamer.
-          </p>
-        </styles.FigureDesktop>
-        <styles.BoxForm>
-          <figure>
-            <img src={logo} alt="Logo" />
-            <div>
-              <h3>MatchPlayers</h3>
-              <span>Social Media For Games</span>
-            </div>
-          </figure>
-          <form onSubmit={handleSubmit(handleSubmitLogin)}>
-            <div>
+          </Text>
+        </FigureDesktop>
+        <BoxForm>
+          <LogoContainer>
+            <Image src={logo} alt="Logo" />
+            <ContainerTitle>
+              <TitleH3>MatchPlayers</TitleH3>
+              <Span>Social Media For Games</Span>
+            </ContainerTitle>
+          </LogoContainer>
+          <Form onSubmit={handleSubmit(handleSubmitLogin)}>
+            <DivForm>
               <TextField
                 fullWidth
                 label="Email"
@@ -79,9 +96,9 @@ const LandingPage = () => {
                 margin="normal"
                 {...register("email")}
               />
-            </div>
-            <span>{errors.email?.message}</span>
-            <div>
+            </DivForm>
+            <SpanCadastreSe>{errors.email?.message}</SpanCadastreSe>
+            <DivForm>
               <TextField
                 fullWidth
                 type={showPassword ? "text" : "password"}
@@ -96,20 +113,24 @@ const LandingPage = () => {
               ) : (
                 <AiFillEyeInvisible onClick={showPasswordFunction} />
               )}
-            </div>
-            <span>{errors.password?.message}</span>
-            <Button variant="contained" type="submit">
+            </DivForm>
+            <SpanCadastreSe>{errors.password?.message}</SpanCadastreSe>
+            <ButtonEntrar
+              className="ButtonEntrar"
+              variant="contained"
+              type="submit"
+            >
               Entrar
-            </Button>
-          </form>
-          <span>
+            </ButtonEntrar>
+          </Form>
+          <SpanCadastreSe>
             Novo por aqui ?
             <styles.Link to="/register">
-              <span>Cadastre-se</span>
+              <SpanCadastreSe>Cadastre-se</SpanCadastreSe>
             </styles.Link>
-          </span>
-        </styles.BoxForm>
-      </styles.Container>
+          </SpanCadastreSe>
+        </BoxForm>
+      </Container>
     </>
   );
 };

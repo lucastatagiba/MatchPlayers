@@ -1,12 +1,19 @@
-import * as styles from "./style";
+//STYLES
+import { Container, Image, Name } from "./style";
 
 const CardGames = ({ image, name, size }) => {
   return (
-    <styles.Container size={size}>
-      <styles.Image src={image} alt={`Jogo ${name}`} />
+    <Container className="cardgames" size={size}>
+      <Image
+        className="cardgames__game__image"
+        src={image}
+        alt={`Jogo ${name}`}
+      />
 
-      <styles.Name size={size}>{name}</styles.Name>
-    </styles.Container>
+      <Name className="cardgames__game__name" size={size}>
+        {name}
+      </Name>
+    </Container>
   );
 };
 export default CardGames;

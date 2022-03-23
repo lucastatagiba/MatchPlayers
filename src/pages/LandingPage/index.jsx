@@ -53,6 +53,7 @@ const LandingPage = () => {
   } = useForm({ resolver: yupResolver(formSchema) });
 
   const handleSubmitLogin = (data) => {
+    console.log("oi");
     handleLogin(data, history, setUserData, setUserToken);
   };
   const showPasswordFunction = () => {

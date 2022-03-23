@@ -107,7 +107,7 @@ transition: 0.2s;
 }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,9 +1,21 @@
-import { Container, ContainerModal } from "./style";
+//EXTERNAL DEPENDENCIES
 import { useContext } from "react";
-import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
+
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/userData";
 import { GamesContext } from "../../providers/games";
 import CardGames from "../CardGames";
+
+//STYLES
+import {
+  Container,
+  SearchInput,
+  ContainerUl,
+  ContainerLi,
+  Image,
+  Text,
+} from "./style";
 
 const Input = ({
   bgcolor,
@@ -25,6 +37,7 @@ const Input = ({
   return (
     <>
       <Container
+        className="input"
         bgcolor={bgcolor}
         width={width}
         color={color}
@@ -32,32 +45,35 @@ const Input = ({
         height={height}
         border={border}
       >
-        <input placeholder={placeholder} {...rest} />
+        <SearchInput placeholder={placeholder} {...rest} />
 
         <Icon />
-        <ContainerModal display={display}>
-          <h3>Resultados:</h3>
-          <ul>
+        <Container className="results" display={display}>
+          <ContainerUl>
             {!!searchUser &&
               searchUser.map((personSearch) => {
                 return (
-                  <li key={personSearch.userId}>
-                    <img
+                  <ContainerLi
+                    className="results__usercard"
+                    key={personSearch.userId}
+                  >
+                    <Image
+                      className="usercard__userphoto"
                       alt="personIMG"
                       src={personSearch.profileIMG && personSearch.profileIMG}
                       onClick={() =>
                         handleProfileUser(personSearch.id, history)
                       }
                     />
-                    <div className="div--games">
-                      <h2
+                    <Container className="usercard__userinformation">
+                      <Text
                         onClick={() =>
                           handleProfileUser(personSearch.id, history)
                         }
                       >
                         {personSearch.name}
-                      </h2>
-                      <div className="gameModaList">
+                      </Text>
+                      <Container className="usercard__usergames">
                         {games
                           .filter((game) =>
                             userProfile.gameList.includes(game.name)
@@ -67,13 +83,13 @@ const Input = ({
                               <CardGames key={game.name} image={game.image} />
                             );
                           })}
-                      </div>
-                    </div>
-                  </li>
+                      </Container>
+                    </Container>
+                  </ContainerLi>
                 );
               })}
-          </ul>
-        </ContainerModal>
+          </ContainerUl>
+        </Container>
       </Container>
     </>
   );

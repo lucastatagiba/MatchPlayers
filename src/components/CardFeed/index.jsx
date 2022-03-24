@@ -81,7 +81,6 @@ const CardFeed = ({
     setCommentsList(true);
     reset();
   };
-  console.log(comments);
   return (
     <Container className="cardfeed">
       <Header className="cardfeed-header">

@@ -45,9 +45,11 @@ export const Image = styled.img`
 `;
 
 export const Name = styled.h2`
-  display: ${({ size }) => (size === "small" ? "none" : "block")};
-  font: var(--text-12);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  &.cardgames__game__name {
+    display: ${({ size }) => (size === "small" ? "none" : "block")};
+    font: var(--text-12);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;

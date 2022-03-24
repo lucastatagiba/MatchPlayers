@@ -14,7 +14,7 @@ import FileField from "../FileField";
 import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
 import { Container } from "./style";
-import { UserDataContext } from "../../providers/userData";
+import { UserDataContext } from "../../providers/user/userData";
 import ListFriendsModal from "../ListFriendsModal";
 
 const Header = () => {

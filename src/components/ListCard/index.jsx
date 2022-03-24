@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { UserDataContext } from "../../providers/userData";
+import { UserDataContext } from "../../providers/user/userData";
 import CardFeed from "../CardFeed";
 import { Container } from "./style";
 

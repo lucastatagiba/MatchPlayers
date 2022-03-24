@@ -4,7 +4,7 @@ import { RiCloseCircleFill } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
 
 //INTERNAL DEPENDENCIES
-import { UserDataContext } from "../../providers/userData";
+import { UserDataContext } from "../../providers/user/userData";
 
 //STYLES
 import { Container, Text, ListItem, Image } from "./style";

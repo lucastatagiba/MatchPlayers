@@ -9,6 +9,9 @@ import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 //INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
+import { PostListContext } from "../../providers/posts/posts";
+import logo from "../../assets/img/logo.png";
 
 //STYLES
 import * as styles from "./style";
@@ -30,9 +33,6 @@ import {
   DivForm,
   FigureDesktop,
 } from "./style";
-import logo from "../../assets/img/logo.png";
-import { UserDataContext } from "../../providers/userData";
-import { PostListContext } from "../../providers/posts";
 
 const LandingPage = () => {
   const [showPassword, setShowPassword] = useState(false);

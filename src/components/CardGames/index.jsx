@@ -16,4 +16,5 @@ const CardGames = ({ image, name, size }) => {
     </Container>
   );
 };
+
 export default CardGames;

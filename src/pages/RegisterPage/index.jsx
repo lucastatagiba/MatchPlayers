@@ -8,6 +8,10 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { TextField } from "@mui/material";
 
 //INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
+import logo from "../../assets/img/logo.png";
+
+//STYLES
 import {
   Container,
   RightContainer,
@@ -21,8 +25,6 @@ import {
   InputContainer,
   Button,
 } from "./style";
-import logo from "../../assets/img/logo.png";
-import { UserDataContext } from "../../providers/userData";
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);

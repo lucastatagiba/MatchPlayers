@@ -3,9 +3,9 @@ import { useState, useContext, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 
 //INTERNAL DEPENDENCIES
-import { PostListContext } from "../../providers/posts";
-import { GamesContext } from "../../providers/games";
-import { UserDataContext } from "../../providers/userData";
+import { PostListContext } from "../../providers/posts/posts";
+import { GamesContext } from "../../providers/games/games";
+import { UserDataContext } from "../../providers/user/userData";
 import Header from "../../components/Header";
 import CardGames from "../../components/CardGames";
 import ListCard from "../../components/ListCard";

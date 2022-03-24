@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 //INTERNAL DEPENDENCIES
-import { PostListContext } from "../../providers/posts";
-import { UserDataContext } from "../../providers/userData";
+import { PostListContext } from "../../providers/posts/posts";
+import { UserDataContext } from "../../providers/user/userData";
 
 //STYLES
 import {

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Api } from "../services";
+import { Api } from "../../services";
 
 export const UserDataContext = createContext([]);
 

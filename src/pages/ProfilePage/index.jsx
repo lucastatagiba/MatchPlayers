@@ -7,9 +7,9 @@ import { IoPersonRemove } from "react-icons/io5";
 import { BsPencilFill } from "react-icons/bs";
 
 //INTERNAL DEPENDENCIES
-import { UserDataContext } from "../../providers/userData";
-import { GamesContext } from "../../providers/games";
-import { PostListContext } from "../../providers/posts";
+import { UserDataContext } from "../../providers/user/userData";
+import { GamesContext } from "../../providers/games/games";
+import { PostListContext } from "../../providers/posts/posts";
 import Header from "../../components/Header";
 import ListCard from "../../components/ListCard";
 import CardGames from "../../components/CardGames/index.jsx";

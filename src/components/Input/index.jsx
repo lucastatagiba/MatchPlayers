@@ -3,8 +3,8 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 
 //INTERNAL DEPENDENCIES
-import { UserDataContext } from "../../providers/userData";
-import { GamesContext } from "../../providers/games";
+import { UserDataContext } from "../../providers/user/userData";
+import { GamesContext } from "../../providers/games/games";
 import CardGames from "../CardGames";
 
 //STYLES

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Api, ApiNews } from "../services";
+import { Api, ApiNews } from "../../services";
 
 export const PostListContext = createContext([]);
 

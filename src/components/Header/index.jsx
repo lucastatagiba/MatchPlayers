@@ -13,9 +13,24 @@ import Input from "../Input";
 import FileField from "../FileField";
 import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
-import { Container } from "./style";
 import { UserDataContext } from "../../providers/user/userData";
 import ListFriendsModal from "../ListFriendsModal";
+import {
+  Container,
+  Figure,
+  LogoImg,
+  TitleH3,
+  LogoName,
+  Span,
+  DivsMenu,
+  TitleH5,
+  Form,
+  ModalMenu,
+  CloseMenu,
+  ModalConfig,
+  ImageLoading,
+  UserImage,
+} from "./style";
 
 const Header = () => {
   const { handleSubmit } = useForm();
@@ -147,37 +162,40 @@ const Header = () => {
 
   return (
     <Container>
-      <figure onClick={() => history.push("/feed")}>
-        <img alt="logo" src={logoIMG} className="logoimg" />
-        <div className="logoName">
-          <h3>MatchPlayers</h3>
-          <span>Social Media For Games</span>
-        </div>
-      </figure>
-      <div className="modalMenu" display={appearModal.menu ? "flex" : "none"}>
-        <div onClick={() => handleModal("menu")} className="close">
+      <Figure onClick={() => history.push("/feed")}>
+        <LogoImg alt="logo" src={logoIMG} className="logoimg" />
+        <LogoName className="logoName">
+          <TitleH3>MatchPlayers</TitleH3>
+          <Span>Social Media For Games</Span>
+        </LogoName>
+      </Figure>
+      <ModalMenu
+        className="modalMenu"
+        display={appearModal.menu ? "flex" : "none"}
+      >
+        <CloseMenu onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
-        </div>
-        <div
+        </CloseMenu>
+        <DivsMenu
           onClick={() => {
             history.push(`/profile/${user}`);
             setUserProfile(userData);
           }}
         >
           Perfil
-        </div>
-        <div onClick={() => handleModalFriends()}>Amigos</div>
-        <div>Mensagens</div>
-        <div onClick={() => handleModal("config")}>Configurações</div>
-        <div
+        </DivsMenu>
+        <DivsMenu onClick={() => handleModalFriends()}>Amigos</DivsMenu>
+        <DivsMenu>Mensagens</DivsMenu>
+        <DivsMenu onClick={() => handleModal("config")}>Configurações</DivsMenu>
+        <DivsMenu
           onClick={() => {
             history.push(`/about`);
           }}
         >
           Sobre Nós
-        </div>
-        <div onClick={() => handleLogout(history)}>Sair</div>
-      </div>
+        </DivsMenu>
+        <DivsMenu onClick={() => handleLogout(history)}>Sair</DivsMenu>
+      </ModalMenu>
 
       <div>
         <Input
@@ -201,7 +219,7 @@ const Header = () => {
             className="configIcon"
             onClick={() => handleModal("config")}
           />
-          <div
+          <ModalConfig
             className="modalConfig"
             display={appearModal.config ? "flex" : "none"}
           >
@@ -209,8 +227,8 @@ const Header = () => {
               <RiCloseCircleFill />
             </div>
 
-            <form>
-              <h5>Adicionar jogos:</h5>
+            <Form>
+              <TitleH5>Adicionar jogos:</TitleH5>
 
               <SelectGames />
               <Button
@@ -222,10 +240,10 @@ const Header = () => {
                   handleGamesRegister();
                 }}
               />
-            </form>
+            </Form>
 
-            <form onSubmit={handleSubmit(handlechangeUserIMG)}>
-              <h5>Alterar perfil:</h5>
+            <Form onSubmit={handleSubmit(handlechangeUserIMG)}>
+              <TitleH5>Alterar perfil:</TitleH5>
 
               <FileField
                 state={setImgBase64User}
@@ -234,7 +252,7 @@ const Header = () => {
                 type="file"
               />
               {isloading && (
-                <img className="loading" alt="" src={loadingPhoto} />
+                <ImageLoading className="loading" alt="" src={loadingPhoto} />
               )}
 
               <Button
@@ -242,10 +260,10 @@ const Header = () => {
                 children={"Salvar alteração"}
                 width={150}
               />
-            </form>
+            </Form>
 
-            <form>
-              <h5>Editar senha:</h5>
+            <Form>
+              <TitleH5>Editar senha:</TitleH5>
 
               <TextField
                 fullWidth
@@ -266,11 +284,11 @@ const Header = () => {
                 children={"Salvar alteração"}
                 width={150}
               />
-            </form>
-          </div>
+            </Form>
+          </ModalConfig>
         </div>
         <div className="profilePhoto">
-          <img
+          <UserImage
             src={
               userData.profileIMG === "" ? photoProfile : userData.profileIMG
             }
@@ -285,7 +303,7 @@ const Header = () => {
             <div onClick={() => handleModal("photo")} className="close">
               <RiCloseCircleFill />
             </div>
-            <div
+            <DivsMenu
               onClick={() => {
                 setUserProfile(userData);
                 history.push(`/profile/${user}`);
@@ -294,8 +312,8 @@ const Header = () => {
               className="modalPhotoText"
             >
               Ir para o meu perfil
-            </div>
-            <div
+            </DivsMenu>
+            <DivsMenu
               className="modalPhotoText2"
               onClick={() => {
                 handleLogout(history);
@@ -303,7 +321,7 @@ const Header = () => {
               }}
             >
               Sair
-            </div>
+            </DivsMenu>
           </div>
         </div>
       </div>

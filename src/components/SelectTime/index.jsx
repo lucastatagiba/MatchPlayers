@@ -1,9 +1,9 @@
-import { Select } from "./style";
+import { Container, Select } from "./style";
 
 const SelectGames = ({ handleFunction }) => {
   return (
-    <Select>
-      <select onChange={handleFunction} name="" id="">
+    <Container>
+      <Select onChange={handleFunction} name="" id="">
         <option aria-label="None" value="" />
         <option value={"0"}>0:00</option>
         <option value={"2"}>2:00</option>
@@ -17,8 +17,8 @@ const SelectGames = ({ handleFunction }) => {
         <option value={"18"}>18:00</option>
         <option value={"20"}>20:00</option>
         <option value={"22"}>22:00</option>
-      </select>
-    </Select>
+      </Select>
+    </Container>
   );
 };
 

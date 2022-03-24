@@ -294,6 +294,7 @@ export const Comments = styled.ul`
     h3 {
       cursor: pointer;
       transition: 0.2s all;
+      font-weight: bold;
       :hover {
         color: var(--Blue-primary);
         text-decoration: underline;

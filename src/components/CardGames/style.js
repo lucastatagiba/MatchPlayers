@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+<<<<<<< Updated upstream
   &.cardgames {
     display: flex;
     justify-content: center;
@@ -13,6 +14,20 @@ export const Container = styled.div`
     height: fit-content;
     gap: 0 5px;
   }
+=======
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--grey-2);
+  border-radius: ${({ size }) =>
+    size === "small" ? "var(--radius-percent-50)" : "var(--radius-pixels-8)"};
+  padding: 5px 10px;
+  width: fit-content;
+  max-width: 150px;
+  height: fit-content;
+  gap: 0 5px;
+  box-shadow: var(--box-shadow-soft);
+>>>>>>> Stashed changes
 `;
 
 export const Image = styled.img`
@@ -30,11 +45,9 @@ export const Image = styled.img`
 `;
 
 export const Name = styled.h2`
-  &.cardgames__game__name {
-    display: ${({ size }) => (size === "small" ? "none" : "block")};
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  display: ${({ size }) => (size === "small" ? "none" : "block")};
+  font: var(--text-12);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

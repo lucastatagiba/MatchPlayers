@@ -1,16 +1,20 @@
 import { RiMessage2Line } from "react-icons/ri";
 
-import * as styles from "./index";
+import { Container, Image, Name } from "./style";
 
-const CardFriends = ({ image, name }) => {
+const CardFriends = ({ image, name, ...rest }) => {
   return (
-    <styles.Container>
-      <styles.Image src={image} alt={`Pessoa ${name}`} />
+    <Container className="cardfriends" {...rest}>
+      <Image
+        className="cardfriends__image"
+        src={image}
+        alt={`Pessoa ${name}`}
+      />
 
-      <styles.Name>{name}</styles.Name>
+      <Name className="cardfriends__name">{name}</Name>
 
       <RiMessage2Line />
-    </styles.Container>
+    </Container>
   );
 };
 

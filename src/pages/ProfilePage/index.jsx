@@ -1,23 +1,55 @@
+//EXTERNAL DEPENDENCIES
 import { useContext, useEffect, useState } from "react";
+import { useHistory, Redirect } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { IoMdPersonAdd } from "react-icons/io";
 import { IoPersonRemove } from "react-icons/io5";
-import { useHistory } from "react-router-dom";
 import { BsPencilFill } from "react-icons/bs";
+
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/userData";
+import { GamesContext } from "../../providers/games";
+import { PostListContext } from "../../providers/posts";
 import Header from "../../components/Header";
+import ListCard from "../../components/ListCard";
 import CardGames from "../../components/CardGames/index.jsx";
 import GeneralButton from "../../components/GeneralButton";
-import { UserDataContext } from "../../providers/userData";
-import { Redirect } from "react-router-dom";
-import ListCard from "../../components/ListCard";
-import { PostListContext } from "../../providers/posts";
-import * as styles from "./style";
 import GeralButton from "../../components/GeneralButton";
 import SelectTime from "../../components/SelectTime";
-import { GamesContext } from "../../providers/games";
 import FileField from "../../components/FileField";
-import { useForm } from "react-hook-form";
+import CardFriends from "../../components/CardFriends";
+
+//STYLES
+import {
+  Container,
+  ModalContainer,
+  Modal,
+  Title,
+  Preview,
+  ProfileCardContainer,
+  ProfileCard,
+  ProfileCardTop,
+  Edit,
+  ProfileCardUserInfo,
+  UserPhoto,
+  UserNickname,
+  ProfileCardBottom,
+  BottomLeft,
+  BottomRight,
+  Avaliability,
+  Schedule,
+  EditSchedule,
+  ProfileContentContainer,
+  Feed,
+  FriendsList,
+  Selects,
+  TitleFriends,
+} from "./style";
 
 const ProfilePage = () => {
+  const history = useHistory();
+
+  const { handleSubmit } = useForm();
   const {
     userData,
     userProfile,
@@ -30,7 +62,6 @@ const ProfilePage = () => {
     setImgBase64Background,
     handleChangeUserBackground,
   } = useContext(UserDataContext);
-  const history = useHistory();
   const { games } = useContext(GamesContext);
   const { UserpostList, setUserPostList, postList } =
     useContext(PostListContext);
@@ -41,11 +72,6 @@ const ProfilePage = () => {
   const [finalSelect, setFinalSelect] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [timeModal, setTimeModal] = useState(false);
-  const { handleSubmit } = useForm();
-
-  useEffect(() => {
-    setUserPostList(postList.filter((post) => post.userId === userProfile.id));
-  }, [userProfile]);
 
   const handleTimeAvailability = (time) => {
     setTimeModal(!timeModal);
@@ -83,19 +109,26 @@ const ProfilePage = () => {
     handleChangeUserBackground();
   };
 
+  useEffect(() => {
+    setUserPostList(postList.filter((post) => post.userId === userProfile.id));
+  }, [userProfile]);
+
   if (!isAuth) {
     return <Redirect to="/" />;
   }
+
   return (
     <>
-      <styles.ModalBackground
+      <ModalContainer
+        className="modal-background-container"
         onClick={() => setIsModalOpen((state) => !state)}
         display={isModalOpen ? "flex" : "none"}
       >
-        <styles.ModalContainer onSubmit={handleSubmit(onSubmitForm)}>
-          <styles.Title>Pré-visualizar Imagem:</styles.Title>
+        <Modal className="modal" onSubmit={handleSubmit(onSubmitForm)}>
+          <Title className="modal__title">Pré-visualizar Imagem:</Title>
 
-          <styles.Preview
+          <Preview
+            className="modal__preview"
             src={
               imgBase64Background === ""
                 ? userData.profileBackgroundIMG
@@ -112,21 +145,23 @@ const ProfilePage = () => {
           />
 
           <GeneralButton onClick={() => setIsModalOpen((state) => !state)}>
-            Salvar
+            Salvar Alterações
           </GeneralButton>
-        </styles.ModalContainer>
-      </styles.ModalBackground>
+        </Modal>
+      </ModalContainer>
 
       <Header />
 
-      <styles.Container>
-        <styles.ProfileCardContainer>
-          <styles.ProfileCard>
-            <styles.ProfileCardTop
+      <Container className="profile-page">
+        <ProfileCardContainer className="profile-card-container">
+          <ProfileCard className="profile-card">
+            <ProfileCardTop
+              className="profile-card-top"
               background={userProfile.profileBackgroundIMG}
             >
-              <styles.ProfileCardUserInfo>
-                <styles.UserPhoto
+              <ProfileCardUserInfo className="user-info">
+                <UserPhoto
+                  className="user-info__photo"
                   src={
                     userProfile.profileIMG === ""
                       ? photoProfile
@@ -135,24 +170,23 @@ const ProfilePage = () => {
                   alt={`Pessoa ${userProfile.name}`}
                 />
 
-                <styles.UserNickname>
+                <UserNickname className="user-info__nickname">
                   {userProfile.nickname}
-                </styles.UserNickname>
+                </UserNickname>
+              </ProfileCardUserInfo>
 
-                <styles.UserInfo>{userProfile.name}</styles.UserInfo>
-
-                <styles.UserInfo>{userProfile.email}</styles.UserInfo>
-              </styles.ProfileCardUserInfo>
-
-              {userProfile.nickname === userData.nickname && (
-                <styles.Edit onClick={() => setIsModalOpen((state) => !state)}>
+              {userProfile.userId === userData.userId && (
+                <Edit
+                  className="profile-card-top__edit"
+                  onClick={() => setIsModalOpen((state) => !state)}
+                >
                   <BsPencilFill />
-                </styles.Edit>
+                </Edit>
               )}
-            </styles.ProfileCardTop>
+            </ProfileCardTop>
 
-            <styles.ProfileCardBottom>
-              <styles.BottomLeft>
+            <ProfileCardBottom className="profile-card-bottom">
+              <BottomLeft className="profile-card-bottom__left">
                 {games
                   .filter((game) => userProfile.gameList.includes(game.name))
                   .map((game) => {
@@ -164,105 +198,100 @@ const ProfilePage = () => {
                       />
                     );
                   })}
-              </styles.BottomLeft>
+              </BottomLeft>
 
-              <styles.BottomRight>
-                <styles.Avaliable>
-                  <styles.Text>Disponibilidade de Horários</styles.Text>
-                  <styles.Text>
-                    {userData.userId !== userProfile.userId
-                      ? userProfile.timeAvailability
-                      : userData.timeAvailability}
-                  </styles.Text>
+              <BottomRight className="bottom-right">
+                <Avaliability className="bottom-right__avaliability">
+                  Disponibilidade de Horários:
+                </Avaliability>
 
-                  {userData.userId !== userProfile.userId ? (
-                    ""
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => setTimeModal(!timeModal)}
-                        className="openTimeEdit"
-                      >
-                        Editar Horários
-                      </button>
-                      {!timeModal ? (
-                        ""
-                      ) : (
-                        <styles.Selects>
-                          <SelectTime
-                            handleFunction={(e) =>
-                              setInitialSelect(e.target.value)
-                            }
-                          />
-                          <SelectTime
-                            handleFunction={(e) =>
-                              setFinalSelect(e.target.value)
-                            }
-                          />
+                <Schedule className="bottom-right__schedule">
+                  {userProfile.timeAvailability.length !== 0
+                    ? userProfile.timeAvailability
+                    : "Não Selecionado"}
+                </Schedule>
 
-                          <GeralButton
-                            children={"Salvar"}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              handleTimeAvailability(
-                                `${initialSelect}:00 até ${finalSelect}:00 `
-                              );
-                            }}
-                          />
-                        </styles.Selects>
-                      )}
-                    </>
-                  )}
-                </styles.Avaliable>
+                {userData.userId === userProfile.userId && (
+                  <EditSchedule
+                    className="bottom-right__edit-schedule"
+                    onClick={() => setTimeModal(!timeModal)}
+                  >
+                    Editar Horários
+                  </EditSchedule>
+                )}
+
+                {timeModal && (
+                  <Selects className="selects-container">
+                    <SelectTime
+                      handleFunction={(e) => setInitialSelect(e.target.value)}
+                    />
+
+                    <SelectTime
+                      handleFunction={(e) => setFinalSelect(e.target.value)}
+                    />
+
+                    <GeralButton
+                      children={"Salvar"}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleTimeAvailability(
+                          `${initialSelect}:00 até ${finalSelect}:00 `
+                        );
+                      }}
+                    />
+                  </Selects>
+                )}
 
                 {userData.userId !== userProfile.userId &&
                   (userData.friendList.length === 0 ? (
-                    <>
-                      <GeneralButton onClick={() => handleAddUser()}>
-                        <IoMdPersonAdd />
-                        Seguir Amigo
-                      </GeneralButton>
-                    </>
+                    <GeneralButton id="friend" onClick={() => handleAddUser()}>
+                      <IoMdPersonAdd />
+                      Seguir Amigo
+                    </GeneralButton>
                   ) : !userData.friendList.find((item) => {
                       return item.userId === userProfile.userId;
                     }) ? (
-                    <>
-                      <GeneralButton onClick={() => handleAddUser()}>
-                        <IoMdPersonAdd />
-                        Seguir Amigo
-                      </GeneralButton>
-                    </>
+                    <GeneralButton id="friend" onClick={() => handleAddUser()}>
+                      <IoMdPersonAdd />
+                      Seguir Amigo
+                    </GeneralButton>
                   ) : (
-                    <>
-                      <GeneralButton onClick={() => handleRemoveUser()}>
-                        <IoPersonRemove />
-                        Deixar de Seguir
-                      </GeneralButton>
-                    </>
+                    <GeneralButton
+                      id="friend"
+                      onClick={() => handleRemoveUser()}
+                    >
+                      <IoPersonRemove />
+                      Deixar de Seguir
+                    </GeneralButton>
                   ))}
-              </styles.BottomRight>
-            </styles.ProfileCardBottom>
-          </styles.ProfileCard>
-        </styles.ProfileCardContainer>
+              </BottomRight>
+            </ProfileCardBottom>
+          </ProfileCard>
+        </ProfileCardContainer>
 
-        <styles.ProfileContentContainer>
-          <styles.Feed>
-            <ListCard postList={UserpostList}></ListCard>
-          </styles.Feed>
-          <styles.FriendsList>
-            <h3>Lista de Amigos</h3>
-            {userProfile.friendList.map((friend) => (
-              <li
-                key={friend.userId}
-                onClick={() => handleProfileUser(friend.userId, history)}
-              >
-                <img alt="userPhoto" src={friend.profileIMG} />
-                <h2>{friend.name}</h2>
-              </li>
-            ))}
-          </styles.FriendsList>
-        </styles.ProfileContentContainer>
-      </styles.Container>
+        <ProfileContentContainer className="content-container">
+          <Feed className="content-container__feed">
+            <ListCard postList={UserpostList} />
+          </Feed>
+
+          <FriendsList className="friendslist">
+            <TitleFriends className="friendslist-conatiner__title">
+              Amigos
+            </TitleFriends>
+
+            {userProfile.friendList.length !== 0
+              ? userProfile.friendList.map((friend) => (
+                  <CardFriends
+                    key={friend.userId}
+                    image={friend.profileIMG}
+                    name={friend.name}
+                    onClick={() => handleProfileUser(friend.userId, history)}
+                  />
+                ))
+              : "Nenhum Seguido"}
+          </FriendsList>
+        </ProfileContentContainer>
+      </Container>
     </>
   );
 };

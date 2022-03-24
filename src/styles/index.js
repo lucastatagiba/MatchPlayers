@@ -86,6 +86,7 @@ export const RootVariables = createGlobalStyle`
         --color-black: #000000;
         --color-orange: #F75F30;
         --color-lightblue: #0072b1;
+        --color-modal-container: rgba(134, 142, 150, 0.25);
 
         //GREY SCALE
         --grey-1: #F8F9FA;
@@ -119,6 +120,7 @@ export const RootVariables = createGlobalStyle`
 
         //TYPOGRAPHY
         --title-24: bold 1.5rem var(--inter);
+        --title-20: bold 1.25rem var(--inter);
         --title-16: bold 1rem var(--inter);
         --title-14: bold 0.9rem var(--inter);
         --text-14: lighter 0.85rem var(--poppins);

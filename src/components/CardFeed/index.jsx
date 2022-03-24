@@ -35,7 +35,7 @@ import {
   Image,
   Footer,
   Interactions,
-  CommentsCount,
+  CommentsCounter,
   ContainerComments,
   Form,
   Label,
@@ -77,27 +77,34 @@ const CardFeed = ({
   };
 
   return (
-    <Container>
-      <Header className="userInformation">
+    <Container className="cardfeed">
+      <Header className="cardfeed-header">
         <Photo
-          className="userPhoto"
+          className="cardfeed-header__photo"
           src={profileIMG}
           alt={`Usuário ${username}`}
           onClick={() => handleProfileUser(userId, history)}
         />
 
-        <InfoContainer className="userName">
-          <Name onClick={() => handleProfileUser(userId, history)}>
+        <InfoContainer className="info-container">
+          <Name
+            className="info-container__name"
+            onClick={() => handleProfileUser(userId, history)}
+          >
             {username}
           </Name>
 
-          <Moment pubdate dateTime={createdAt}>
+          <Moment
+            className="info-container__moment"
+            pubdate
+            dateTime={createdAt}
+          >
             {moment(createdAt).locale("pt").fromNow()}
           </Moment>
         </InfoContainer>
 
         {gameList && (
-          <GamesList className="gameContent">
+          <GamesList className="games-list">
             {games
               .filter((game) => gameList.includes(game.name))
               .map((game) => {
@@ -115,7 +122,7 @@ const CardFeed = ({
 
         {postUpdate && (
           <TrashButton
-            className="deletePost"
+            className="cardfeed-header__delete"
             onClick={() => handleDeletePost(idPost)}
           >
             <IoMdTrash />
@@ -123,13 +130,15 @@ const CardFeed = ({
         )}
       </Header>
 
-      <Body className="postContent">
-        <TextContent className="postText">{desc}</TextContent>
+      <Body className="cardfeed-body">
+        <TextContent className="cardfeed-body__text-content">
+          {desc}
+        </TextContent>
 
-        <ImageContainer className="imageBox">
+        <ImageContainer className="post-image">
           {postIMG && (
             <Image
-              className="postImage"
+              className="post-image__image"
               src={postIMG}
               alt="Imagem da Publicação"
             />
@@ -137,8 +146,8 @@ const CardFeed = ({
         </ImageContainer>
       </Body>
 
-      <Footer className="likes">
-        <Interactions>
+      <Footer className="cardfeed-footer">
+        <Interactions className="interactions">
           <GeralButton
             onClick={() =>
               setButtonsLike({
@@ -163,36 +172,37 @@ const CardFeed = ({
             <span>Não gostei</span>
           </GeralButton>
 
-          <CommentsCount
+          <CommentsCounter
             onClick={() => setCommentsList(!commentsList)}
-            className="button--comments"
+            className="interactions__comments-counter"
           >
             {comments.length === 0
               ? "Nenhum Comentário"
               : comments.length === 1
               ? "Um Comentário"
               : `${comments.length} Comentários`}
-          </CommentsCount>
+          </CommentsCounter>
         </Interactions>
 
-        <ContainerComments>
+        <ContainerComments className="comments" modalOn={commentsList}>
           <Form
             onSubmit={handleSubmit(handleSubmitComment)}
-            className="form--comments"
+            className="form-comments"
           >
-            <Label>
+            <Label className="label-add-comment">
               <TextArea
+                className="label-add-comment__comment"
                 placeholder="Adicionar Comentário"
                 {...register("comment")}
               />
 
-              <GeralButton type="Submit">
+              <GeralButton type="submit">
                 <IoMdSend />
               </GeralButton>
             </Label>
           </Form>
 
-          <Comments modalOn={commentsList}>
+          <Comments className="comments-list">
             {comments &&
               comments.map((comment, index) => <li key={index}>{comment}</li>)}
           </Comments>

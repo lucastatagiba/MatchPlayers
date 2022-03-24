@@ -8,7 +8,8 @@ export const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   border-bottom: 2px solid var(--Gray-2);
-  background-color: var(--White-primary);
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow-soft);
   figure {
     display: flex;
     align-items: center;

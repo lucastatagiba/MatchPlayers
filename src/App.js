@@ -1,4 +1,5 @@
 //EXTERNAL DEPENDENCIES
+import { padding } from "@mui/system";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +17,7 @@ function App() {
       <RootVariables />
       <GlobalStyles />
 
-      <ToastContainer />
+      <ToastContainer style={{ padding: "15px", zIndex: 99999 }} />
 
       <BrowserRouter>
         <Routes />

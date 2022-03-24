@@ -1,173 +1,220 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-  padding-top: 30px;
-  padding-bottom: 50px;
+  &.profile-page {
+    padding-top: 30px;
+    padding-bottom: 50px;
+  }
 `;
 
-export const ModalBackground = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: ${(props) => props.display};
-  justify-content: center;
-  align-items: center;
-  background: rgba(134, 142, 150, 0.25);
-  backdrop-filter: blur(4px);
-  z-index: 10;
+export const ModalContainer = styled.div`
+  &.modal-background-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: ${(props) => props.display};
+    justify-content: center;
+    align-items: center;
+    background: var(--color-modal-container);
+    backdrop-filter: blur(4px);
+    z-index: 10;
+  }
 `;
 
-export const ModalContainer = styled.form`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  background: var(--White-primary);
-  border-radius: 8px;
-  padding: 10px;
-  max-width: 340px;
-  gap: 25px 0;
-  box-shadow: 0px 0px 40px -20px #000000;
-`;
+export const Modal = styled.form`
+  &.modal {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background: var(--color-white);
+    border-radius: var(--radius-pixels-4);
+    padding: 30px 15px;
+    max-width: 340px;
+    gap: 25px 0;
+    box-shadow: 0px 0px 40px -20px #000000;
+  }
 
-export const Title = styled.h2`
-  font-size: 14px;
-  margin-right: auto;
-`;
-
-export const Preview = styled.img`
-  border-radius: 4px;
-  width: 100%;
-  height: auto;
-`;
-
-export const ProfileCardContainer = styled.section`
-  margin: 0 auto;
-  max-width: 1000px;
-`;
-
-export const ProfileCard = styled.div`
-  background: var(--White-primary);
-
-  @media only screen and (min-width: 768px) {
-    margin: 0 auto;
-    border-radius: 8px 8px 0 0;
-    max-width: 750px;
+  &.modal button {
+    font: var(--text-12);
   }
 
   @media only screen and (min-width: 1024px) {
-    max-width: 1000px;
+    &.modal {
+      max-width: 500px;
+    }
+
+    &.modal button {
+      font: var(--text-14);
+    }
+  }
+`;
+
+export const Title = styled.h2`
+  &.modal__title {
+    font: var(--title-16);
+    margin-right: auto;
+  }
+`;
+
+export const Preview = styled.img`
+  &.modal__preview {
+    border-radius: var(--radius-pixels-8);
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const ProfileCardContainer = styled.section`
+  &.profile-card-container {
+    margin-bottom: 15px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    &.profile-card-container {
+      margin: 0 auto;
+      max-width: 750px;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    &.profile-card-container {
+      max-width: 1000px;
+    }
+  }
+`;
+
+export const ProfileCard = styled.div`
+  &.profile-card {
+    background: var(--color-white);
+    padding-bottom: 15px;
+    box-shadow: var(--box-shadow-smooth);
+  }
+
+  @media only screen and (min-width: 768px) {
+    &.profile-card {
+      border-radius: 4px 4px 0 0;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
     height: 330px;
   }
 `;
 
 export const ProfileCardTop = styled.div`
-  position: relative;
-  background-image: ${(props) => `url(${props.background})`};
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 155px;
+  &.profile-card-top {
+    position: relative;
+    background: no-repeat center/cover
+      ${({ background }) => `url(${background})`};
+    height: 180px;
+  }
 
   @media only screen and (min-width: 768px) {
-    border-radius: 8px 8px 0 0;
+    &.profile-card-top {
+      border-radius: 8px 8px 0 0;
+      height: 155px;
+    }
   }
-`;
-
-export const Edit = styled.button`
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--White-primary);
-  color: var(--Gray-3);
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
-  transition: all 0.2s;
-
-  &:hover {
-    background: var(--Gray-3);
-    color: var(--White-primary);
-    transition: all 0.2s;
-  }
-
-  &:active {
-    background: rgba(134, 142, 150, 0.25);
-    backdrop-filter: blur(2px);
-  }
-
-  /* svg {
-    pointer-events: none;
-  } */
 `;
 
 export const ProfileCardUserInfo = styled.div`
-  position: absolute;
-  display: flex;
-  align-items: center;
-  flex-flow: column nowrap;
-  top: 100px;
-  left: 50%;
-  text-align: center;
-  transform: translateX(-50%);
-  gap: 5px 0;
+  &.user-info {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+    top: 130px;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+    gap: 5px 0;
+  }
 
   @media only screen and (min-width: 768px) {
-    left: 0%;
-    width: 250px;
-    transform: translateX(0%);
+    &.user-info {
+      top: 105px;
+      left: 120px;
+    }
   }
 
   @media only screen and (min-width: 1024px) {
-    top: 90px;
+    &.user-info {
+      left: 135px;
+    }
   }
 `;
 
 export const UserPhoto = styled.img`
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  &.user-info__photo {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
 
   @media only screen and (min-width: 1024px) {
-    width: 130px;
-    height: 130px;
+    .user-info__photo {
+      width: 130px;
+      height: 130px;
+    }
   }
 `;
 
 export const UserNickname = styled.h2`
-  font-size: 24px;
-`;
-
-export const UserInfo = styled.h3`
-  display: none;
-  font-size: 18px;
-
-  @media only screen and (min-width: 768px) {
-    display: block;
+  &.user-info__nickname {
+    font: var(--title-24);
+    color: var(--grey-4-semitransparent);
   }
 `;
 
-export const UserEmail = styled.h3`
-  font-size: 18px;
-`;
-
-export const ProfileCardBottom = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  padding-top: 100px;
-  gap: 15px;
-
-  button {
+export const Edit = styled.button`
+  &.profile-card-top__edit {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--Background-Color);
-    color: var(--Gray-4);
+    background: var(--color-white);
+    color: var(--grey-3);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    transition: all 0.2s;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    &.profile-card-top__edit:hover {
+      background: var(--grey-3);
+      color: var(--color-white);
+      transition: all 0.2s;
+    }
+
+    &.profile-card-top__edit:active {
+      background: rgba(134, 142, 150, 0.4);
+      backdrop-filter: blur(2px);
+    }
+  }
+`;
+
+export const ProfileCardBottom = styled.div`
+  &.profile-card-bottom {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 0 15px;
+    padding-top: 100px;
+    gap: 15px;
+  }
+
+  &.profile-card-bottom button[id="friend"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: var(--text-14);
+    background: var(--color-background);
+    color: var(--grey-4);
     height: 35px;
     gap: 0 5px;
 
@@ -178,140 +225,151 @@ export const ProfileCardBottom = styled.div`
   }
 
   @media only screen and (min-width: 768px) {
-    margin-left: auto;
-    padding: 25px 0 25px 0;
-    max-width: 500px;
+    &.profile-card-bottom {
+      margin-left: auto;
+      padding: 25px 0 25px 0;
+      max-width: 500px;
+    }
   }
 
   @media only screen and (min-width: 1024px) {
-    flex-flow: row;
-    padding: 25px;
-    margin-left: auto;
-    max-width: 75%;
+    &.profile-card-bottom {
+      flex-flow: row nowrap;
+      padding: 25px;
+      max-width: 75%;
+      height: 60%;
+    }
+
+    &.profile-card-bottom button[id="friend"]:hover {
+      background: var(--grey-4);
+      color: var(--color-background);
+    }
   }
 `;
 
 export const BottomLeft = styled.div`
-  flex: 2;
-  display: flex;
-  flex-flow: row wrap;
-  gap: 15px 26px;
+  &.profile-card-bottom__left {
+    flex: 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    gap: 0 20px;
+  }
 `;
 
 export const BottomRight = styled.div`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-
-  button:first-of-type {
-    border: none;
-    background: none;
-    margin: 0px auto;
-    color: var(--Gray-3);
-  }
-  span:nth-of-type(2) {
-    background-color: var(--Gray-2);
-    border-radius: 8px;
-    width: fit-content;
-    text-align: center;
-    margin: 5px auto;
-  }
-  div > button:first-of-type {
-    background-color: var(--Blue-primary);
-    color: white;
-    height: 25px;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  button:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const Avaliable = styled.h3`
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-
-  & > span + span {
-    margin-top: 15px;
-  }
-`;
-
-export const Text = styled.span`
-  display: block;
-`;
-
-export const ProfileContentContainer = styled.section`
-  margin: 0 auto;
-  margin-top: 10px;
-
-  @media only screen and (min-width: 768px) {
+  &.bottom-right {
     display: flex;
-    justify-content: space-between;
-    max-width: 750px;
-    gap: 0 25px;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    gap: 10px 0;
+  }
+`;
+
+export const Avaliability = styled.h3`
+  &.bottom-right__avaliability {
+    font: var(--title-16);
+    text-align: center;
+  }
+`;
+
+export const Schedule = styled.strong`
+  &.bottom-right__schedule {
+    display: block;
+    font: var(--text-14);
+  }
+`;
+
+export const EditSchedule = styled.button`
+  &.bottom-right__edit-schedule {
+    font: var(--text-14);
+    background: transparent;
+    border: none;
+    margin: 5px 0;
   }
 
   @media only screen and (min-width: 1024px) {
-    max-width: 1000px;
+    &.bottom-right__edit-schedule:hover {
+      text-decoration: underline;
+      color: var(--color-lightblue);
+    }
+  }
+`;
+
+export const Selects = styled.div`
+  &.selects-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0 20px;
+  }
+
+  &.selects-container button {
+    font: var(--text-14);
+  }
+`;
+
+export const ProfileContentContainer = styled.section`
+  &.content-container {
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    &.content-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 750px;
+      gap: 0 25px;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    &.content-container {
+      max-width: 1000px;
+    }
   }
 `;
 
 export const Feed = styled.div`
-  flex: 2;
-
-  ul {
-    margin: 0 auto;
+  &.content-container__feed {
+    flex: 2;
   }
 
   @media only screen and (min-width: 768px) {
-    ul {
-      width: 100;
+    &.content-container__feed {
+      max-width: 700px;
     }
   }
 `;
 
 export const FriendsList = styled.ul`
-  display: none;
-  background: var(--White-primary);
-  width: 300px;
-  list-style: none;
-  border-radius: 8px;
-  padding-bottom: 20px;
-  height: max-content;
-
-  h3 {
-    font-size: 22px;
+  &.friendslist {
+    display: none;
     text-align: center;
-    border-bottom: 1px solid var(--Gray-3);
-    padding: 10px 0;
-  }
-  li {
-    display: flex;
-    width: 100%;
-    cursor: pointer;
-    border-bottom: 1px solid var(--Gray-3);
-    padding: 10px;
-    align-items: center;
-
-    h2 {
-      font-size: 18px;
-    }
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
+    background: var(--color-white);
+    border-radius: var(--radius-pixels-4);
+    padding: 15px;
+    width: 250px;
+    height: max-content;
+    box-shadow: var(--box-shadow-smooth);
   }
 
   @media only screen and (min-width: 768px) {
-    display: block;
+    &.friendslist {
+      display: block;
+    }
   }
 `;
 
-export const Selects = styled.div`
-  display: flex;
-  flex-direction: row;
+export const TitleFriends = styled.h3`
+  &.friendslist-conatiner__title {
+    font: var(--title-20);
+    text-align: center;
+    color: var(--grey-4-semitransparent);
+    margin-bottom: 15px;
+  }
 `;

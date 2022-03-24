@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { PostListContext } from "../../providers/posts";
-import { UserDataContext } from "../../providers/userData";
+import { PostListContext } from "../../providers/posts/posts";
+import { UserDataContext } from "../../providers/user/userData";
 import CardFeed from "../CardFeed";
 import { Container } from "./style";
 

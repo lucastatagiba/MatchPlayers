@@ -1,26 +1,48 @@
-import { TextField } from "@mui/material";
-import { BsHouseFill } from "react-icons/bs";
-import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
-import { GrMoreVertical } from "react-icons/gr";
+//EXTERNAL DEPENDENCIES
+import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { TextField } from "@mui/material";
+import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
+import { GrMoreVertical } from "react-icons/gr";
+import { BsHouseFill } from "react-icons/bs";
 import { RiCloseCircleFill } from "react-icons/ri";
 
-import logoIMG from "../../Assets/img/logo.png";
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
+import logoIMG from "../../assets/img/logo.png";
 import Input from "../Input";
 import FileField from "../FileField";
 import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
-import { Container } from "./style";
-import { UserDataContext } from "../../providers/userData";
 import ListFriendsModal from "../ListFriendsModal";
 
-const Header = () => {
-  const { register, handleSubmit } = useForm();
+//STYLES
+import {
+  Container,
+  InnerContainer,
+  Figure,
+  LogoImg,
+  TitleH3,
+  LogoName,
+  Span,
+  DivsMenu,
+  TitleH5,
+  Form,
+  ModalMenu,
+  CloseMenu,
+  ModalConfig,
+  ImageLoading,
+  UserImage,
+} from "./style";
 
+const Header = () => {
   const history = useHistory();
+
+  const params = useParams();
+
+  const { handleSubmit } = useForm();
 
   const [photoProfile] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
@@ -140,44 +162,48 @@ const Header = () => {
     }
     setSearchUser(newListUsers);
   };
-  const params = useParams();
+
   useEffect(() => {
     handleModal("input");
   }, [params]);
 
   return (
     <Container>
-      <figure onClick={() => history.push("/feed")}>
-        <img alt="logo" src={logoIMG} className="logoimg" />
-        <div className="logoName">
-          <h3>MatchPlayers</h3>
-          <span>Social Media For Games</span>
-        </div>
-      </figure>
-      <div className="modalMenu" display={appearModal.menu ? "flex" : "none"}>
-        <div onClick={() => handleModal("menu")} className="close">
+      <Figure onClick={() => history.push("/feed")}>
+        <LogoImg alt="logo" src={logoIMG} className="logoimg" />
+        <LogoName className="logoName">
+          <TitleH3>MatchPlayers</TitleH3>
+          <Span>Social Media For Games</Span>
+        </LogoName>
+      </Figure>
+
+      <ModalMenu
+        className="modalMenu"
+        display={appearModal.menu ? "flex" : "none"}
+      >
+        <CloseMenu onClick={() => handleModal("menu")} className="close">
           <RiCloseCircleFill />
-        </div>
-        <div
+        </CloseMenu>
+        <DivsMenu
           onClick={() => {
             history.push(`/profile/${user}`);
             setUserProfile(userData);
           }}
         >
           Perfil
-        </div>
-        <div onClick={() => handleModalFriends()}>Amigos</div>
-        <div>Mensagens</div>
-        <div onClick={() => handleModal("config")}>Configurações</div>
-        <div
+        </DivsMenu>
+        <DivsMenu onClick={() => handleModalFriends()}>Amigos</DivsMenu>
+        <DivsMenu>Mensagens</DivsMenu>
+        <DivsMenu onClick={() => handleModal("config")}>Configurações</DivsMenu>
+        <DivsMenu
           onClick={() => {
             history.push(`/about`);
           }}
         >
           Sobre Nós
-        </div>
-        <div onClick={() => handleLogout(history)}>Sair</div>
-      </div>
+        </DivsMenu>
+        <DivsMenu onClick={() => handleLogout(history)}>Sair</DivsMenu>
+      </ModalMenu>
 
       <div>
         <Input
@@ -187,21 +213,24 @@ const Header = () => {
           onChange={(event) => getValueSearch(event)}
           display={appearModal.input ? "flex" : "none"}
         />
+
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
         <BsHouseFill
           className="houseIcon"
           onClick={() => history.push("/feed")}
         />
+
         <AiFillMessage
           className="messageIcon"
           onClick={() => handleModal("message")}
         />
+
         <div className="configDiv">
           <AiFillSetting
             className="configIcon"
             onClick={() => handleModal("config")}
           />
-          <div
+          <ModalConfig
             className="modalConfig"
             display={appearModal.config ? "flex" : "none"}
           >
@@ -209,8 +238,8 @@ const Header = () => {
               <RiCloseCircleFill />
             </div>
 
-            <form>
-              <h5>Adicionar jogos:</h5>
+            <Form>
+              <TitleH5>Adicionar jogos:</TitleH5>
 
               <SelectGames />
               <Button
@@ -222,10 +251,10 @@ const Header = () => {
                   handleGamesRegister();
                 }}
               />
-            </form>
+            </Form>
 
-            <form onSubmit={handleSubmit(handlechangeUserIMG)}>
-              <h5>Alterar perfil:</h5>
+            <Form onSubmit={handleSubmit(handlechangeUserIMG)}>
+              <TitleH5>Alterar perfil:</TitleH5>
 
               <FileField
                 state={setImgBase64User}
@@ -234,7 +263,7 @@ const Header = () => {
                 type="file"
               />
               {isloading && (
-                <img className="loading" alt="" src={loadingPhoto} />
+                <ImageLoading className="loading" alt="" src={loadingPhoto} />
               )}
 
               <Button
@@ -242,10 +271,10 @@ const Header = () => {
                 children={"Salvar alteração"}
                 width={150}
               />
-            </form>
+            </Form>
 
-            <form>
-              <h5>Editar senha:</h5>
+            <Form>
+              <TitleH5>Editar senha:</TitleH5>
 
               <TextField
                 fullWidth
@@ -266,11 +295,12 @@ const Header = () => {
                 children={"Salvar alteração"}
                 width={150}
               />
-            </form>
-          </div>
+            </Form>
+          </ModalConfig>
         </div>
+
         <div className="profilePhoto">
-          <img
+          <UserImage
             src={
               userData.profileIMG === "" ? photoProfile : userData.profileIMG
             }
@@ -285,7 +315,8 @@ const Header = () => {
             <div onClick={() => handleModal("photo")} className="close">
               <RiCloseCircleFill />
             </div>
-            <div
+
+            <DivsMenu
               onClick={() => {
                 setUserProfile(userData);
                 history.push(`/profile/${user}`);
@@ -294,16 +325,16 @@ const Header = () => {
               className="modalPhotoText"
             >
               Ir para o meu perfil
-            </div>
-            <div
-              className="modalPhotoText"
-              onClick={() => {
-                history.push("/about");
-              }}
+            </DivsMenu>
+
+            <DivsMenu
+              className="modalPhotoText2"
+              onClick={() => history.push("/about")}
             >
-              Sobre Nós
-            </div>
-            <div
+              Sobre nós
+            </DivsMenu>
+
+            <DivsMenu
               className="modalPhotoText2"
               onClick={() => {
                 handleLogout(history);
@@ -311,10 +342,11 @@ const Header = () => {
               }}
             >
               Sair
-            </div>
+            </DivsMenu>
           </div>
         </div>
       </div>
+
       {modalFriends && (
         <ListFriendsModal
           listFriends={listFriends}
@@ -324,4 +356,5 @@ const Header = () => {
     </Container>
   );
 };
+
 export default Header;

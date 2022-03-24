@@ -8,6 +8,7 @@ const GeralButton = ({
   width,
   height,
   onClick,
+  ...rest
 }) => {
   return (
     <>
@@ -18,6 +19,7 @@ const GeralButton = ({
         width={width}
         height={height}
         onClick={onClick}
+        {...rest}
       >
         {children}
       </Container>

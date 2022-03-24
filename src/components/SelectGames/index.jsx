@@ -6,8 +6,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import { Label } from "./style";
-import { GamesContext } from "../../providers/games";
-import { UserDataContext } from "../../providers/userData";
+import { GamesContext } from "../../providers/games/games";
+import { UserDataContext } from "../../providers/user/userData";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;

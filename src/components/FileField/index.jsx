@@ -1,6 +1,8 @@
+//EXTERNAL DEPENDENCIES
 import { useState } from "react";
 
-import * as styles from "./style";
+//STYLES
+import { Container, Label, FileName, Input } from "./style";
 
 const FileField = ({ state, ...rest }) => {
   const [selected, setSelected] = useState("normal");
@@ -30,19 +32,19 @@ const FileField = ({ state, ...rest }) => {
 
   return (
     <>
-      <styles.Container htmlFor={rest.id}>
-        <styles.Label selected={selected}>{rest.placeholder}</styles.Label>
+      <Container htmlFor={rest.id}>
+        <Label selected={selected}>{rest.placeholder}</Label>
 
-        <styles.FileName id={`file-name-${rest.id}`}></styles.FileName>
+        <FileName id={`file-name-${rest.id}`}></FileName>
 
-        <styles.Input
+        <Input
           {...rest}
           onChange={(event) => {
             handleFileField(event, rest.id);
             base64Converter(event.target, state);
           }}
         />
-      </styles.Container>
+      </Container>
     </>
   );
 };

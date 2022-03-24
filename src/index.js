@@ -1,19 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { PostListProvider } from "./providers/posts";
-import { UserDataProvider } from "./providers/userData";
-import { GamesProvider } from "./providers/games";
+
+import Provider from "./providers";
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserDataProvider>
-      <GamesProvider>
-        <PostListProvider>
-          <App />
-        </PostListProvider>
-      </GamesProvider>
-    </UserDataProvider>
+    <Provider>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

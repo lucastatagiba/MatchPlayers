@@ -1,9 +1,13 @@
+//EXTERNAL DEPENDENCIES
 import { useContext } from "react";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useHistory } from "react-router-dom";
 
-import { UserDataContext } from "../../providers/userData";
-import { Container } from "./style";
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
+
+//STYLES
+import { Container, Text, ListItem, Image } from "./style";
 
 const ListFriendsModal = ({ listFriends, modalClose }) => {
   const { handleProfileUser } = useContext(UserDataContext);
@@ -11,17 +15,21 @@ const ListFriendsModal = ({ listFriends, modalClose }) => {
   const history = useHistory();
 
   return (
-    <Container>
+    <Container className="friendslist">
       <RiCloseCircleFill onClick={() => modalClose(false)} />
-      <h5>Lista de Amigos</h5>
+      <Text className="friendslist__title">Lista de Amigos</Text>
       {listFriends.map((friend) => (
-        <li
+        <ListItem
           key={friend.userId}
           onClick={() => handleProfileUser(friend.userId, history)}
         >
-          <img alt="userPhoto" src={friend.profileIMG} />
-          <h2>{friend.name}</h2>
-        </li>
+          <Image
+            className="friendslist__userphoto"
+            alt="userPhoto"
+            src={friend.profileIMG}
+          />
+          <Text className="friendslist__friendname">{friend.name}</Text>
+        </ListItem>
       ))}
     </Container>
   );

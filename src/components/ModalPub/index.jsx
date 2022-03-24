@@ -1,11 +1,24 @@
+//EXTERNAL DEPENDENCIES
 import GeralButton from "../GeneralButton";
-import { Container } from "./style";
 import { BsFillImageFill } from "react-icons/bs";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { PostListContext } from "../../providers/posts";
-import { UserDataContext } from "../../providers/userData";
+
+//INTERNAL DEPENDENCIES
+import { PostListContext } from "../../providers/posts/posts";
+import { UserDataContext } from "../../providers/user/userData";
+
+//STYLES
+import {
+  Container,
+  Text,
+  Image,
+  FormContainer,
+  TextArea,
+  Label,
+  Input,
+} from "./style";
 
 const ModalPub = ({ closeModal }) => {
   const { handlePost, userData, userToken } = useContext(PostListContext);
@@ -29,24 +42,37 @@ const ModalPub = ({ closeModal }) => {
   };
 
   return (
-    <Container>
-      <div className="headerModalPub">
-        <h1> Criar Publicação </h1>
+    <Container className="modal">
+      <Container className="modal__header">
+        <Text className="header__text"> Criar Publicação </Text>
         <RiCloseCircleFill onClick={closeModal} />
-      </div>
-      <div className="ContainModalPub">
-        <img src={userData.profileIMG} alt="UserImg" />
-        <form className="rightSidePub" onSubmit={handleSubmit(handlePostData)}>
-          <textarea
+      </Container>
+      <Container className="modal__content">
+        <Image
+          className="content__userphoto"
+          src={userData.profileIMG}
+          alt="UserImg"
+        />
+        <FormContainer
+          className="rightSidePub"
+          onSubmit={handleSubmit(handlePostData)}
+        >
+          <TextArea
             placeholder="No que você está pensando?"
             {...register("desc")}
           />
-          {imgBase64Post && <img src={imgBase64Post} alt="Thumbnail" />}
-          <div className="buttonsModalPub">
-            <label htmlFor="selector-file">
+          {imgBase64Post && (
+            <Image
+              className="content__imagepreview"
+              src={imgBase64Post}
+              alt="Thumbnail"
+            />
+          )}
+          <Container className="modal__footer">
+            <Label htmlFor="selector-file">
               <BsFillImageFill color="black" /> Foto
-            </label>
-            <input
+            </Label>
+            <Input
               id="selector-file"
               type="file"
               placeholder="Arquivo Selecionado"
@@ -62,9 +88,9 @@ const ModalPub = ({ closeModal }) => {
             <GeralButton width="max-content" bgcolor={"#6C8394"} type="Submit">
               Publicar
             </GeralButton>
-          </div>
-        </form>
-      </div>
+          </Container>
+        </FormContainer>
+      </Container>
     </Container>
   );
 };

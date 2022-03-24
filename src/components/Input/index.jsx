@@ -1,9 +1,21 @@
-import { Container, ContainerModal } from "./style";
+//EXTERNAL DEPENDENCIES
 import { useContext } from "react";
-import { UserDataContext } from "../../providers/userData";
 import { useHistory } from "react-router-dom";
-import { GamesContext } from "../../providers/games";
+
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
+import { GamesContext } from "../../providers/games/games";
 import CardGames from "../CardGames";
+
+//STYLES
+import {
+  Container,
+  SearchInput,
+  ContainerUl,
+  ContainerLi,
+  Image,
+  Text,
+} from "./style";
 
 const Input = ({
   bgcolor,
@@ -23,59 +35,66 @@ const Input = ({
   const { games } = useContext(GamesContext);
 
   return (
-    <>
-      <Container
-        bgcolor={bgcolor}
-        width={width}
-        color={color}
-        bdradius={bdradius}
-        height={height}
-        border={border}
-      >
-        <input placeholder={placeholder} {...rest} />
+    <Container
+      className="input"
+      bgcolor={bgcolor}
+      width={width}
+      color={color}
+      bdradius={bdradius}
+      height={height}
+      border={border}
+    >
+      <SearchInput placeholder={placeholder} {...rest} />
 
-        <Icon />
-        <ContainerModal display={display}>
-          <h3>Resultados:</h3>
-          <ul>
-            {!!searchUser &&
-              searchUser.map((personSearch) => {
-                return (
-                  <li key={personSearch.userId}>
-                    <img
-                      alt="personIMG"
-                      src={personSearch.profileIMG && personSearch.profileIMG}
+      <Icon />
+      <Container className="results" display={display}>
+        <ContainerUl>
+          {!!searchUser &&
+            searchUser.map((personSearch) => {
+              return (
+                <ContainerLi
+                  className="results__usercard"
+                  key={personSearch.userId}
+                >
+                  <Image
+                    className="usercard__userphoto"
+                    alt="personIMG"
+                    src={personSearch.profileIMG && personSearch.profileIMG}
+                    onClick={() => handleProfileUser(personSearch.id, history)}
+                  />
+
+                  <Container className="usercard__userinformation">
+                    <Text
                       onClick={() =>
                         handleProfileUser(personSearch.id, history)
                       }
-                    />
-                    <div className="div--games">
-                      <h2
-                        onClick={() =>
-                          handleProfileUser(personSearch.id, history)
-                        }
-                      >
-                        {personSearch.name}
-                      </h2>
-                      <div className="gameModaList">
-                        {games
-                          .filter((game) =>
-                            personSearch.gameList.includes(game.name)
-                          )
-                          .map((game) => {
-                            return (
-                              <CardGames key={game.name} image={game.image} />
-                            );
-                          })}
-                      </div>
-                    </div>
-                  </li>
-                );
-              })}
-          </ul>
-        </ContainerModal>
+                    >
+                      {personSearch.name}
+                    </Text>
+
+                    <Container className="usercard__usergames">
+                      {games
+                        .filter((game) =>
+                          personSearch.gameList.includes(game.name)
+                        )
+                        .map((game) => {
+                          return (
+                            <CardGames
+                              key={game.name}
+                              size={"small"}
+                              image={game.image}
+                            />
+                          );
+                        })}
+                    </Container>
+                  </Container>
+                </ContainerLi>
+              );
+            })}
+        </ContainerUl>
       </Container>
-    </>
+    </Container>
   );
 };
+
 export default Input;

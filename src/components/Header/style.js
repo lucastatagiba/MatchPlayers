@@ -68,15 +68,20 @@ export const ModalMenu = styled.div`
   display: ${(props) => props.children[1].props.display};
   width: 80%;
   max-width: 380px;
-  height: 175px;
   border-radius: 8px;
   position: absolute;
-  top: 60px;
+  top: 40px;
   flex-direction: column;
   margin-top: 20px;
-  border: 2px solid var(--Blue-primary);
+  border: 2px solid var(--color-primary);
   background-color: var(--color-white);
   z-index: 3;
+
+  div + div {
+    border-top: 1px solid var(--grey-2);
+    height: fit-content;
+    padding: 10px;
+  }
 `;
 
 export const CloseMenu = styled.div`
@@ -126,16 +131,20 @@ export const UserImage = styled.img`
   }
 `;
 
-export const Container = styled.div`
-  height: 60px;
+export const Container = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
-  width: 100%;
-  max-width: 100vw;
   justify-content: space-evenly;
   align-items: center;
-  border-bottom: 2px solid var(--Gray-2);
   background-color: var(--color-white);
+  border-bottom: 2px solid var(--grey-2);
+  height: 65px;
   box-shadow: var(--box-shadow-soft);
+  z-index: 5;
+
   figure {
     display: flex;
     align-items: center;
@@ -190,13 +199,11 @@ export const Container = styled.div`
 
     div {
       width: 100%;
-      border-top: 1px solid var(--Gray-3);
       display: flex;
       justify-content: center;
       font-size: 14px;
-      padding-top: 5px;
-      height: 100px;
     }
+
     div:hover {
       opacity: 0.5;
       cursor: pointer;
@@ -223,7 +230,6 @@ export const Container = styled.div`
   }
   .profilePhoto {
     width: 0px;
-    height: 100px;
 
     .modalPhoto {
       display: none;
@@ -236,12 +242,12 @@ export const Container = styled.div`
   div {
     display: flex;
     align-items: center;
-    gap: 0px;
+
     input {
       width: 100%;
     }
     svg {
-      color: var(--Gray-3);
+      color: var(--grey-3);
     }
     .userimg,
     .houseIcon,
@@ -287,20 +293,19 @@ export const Container = styled.div`
     }
     .profilePhoto {
       width: 30px;
-      height: 100px;
+
       position: relative;
       .modalPhoto {
         display: ${(props) =>
           props.children[2].props.children[5].props.children[1].props.display};
         width: 300px;
-        height: 80px;
         padding: 0 50px 0 10px;
         background-color: white;
         border-radius: 8px;
         position: absolute;
-        top: 80px;
+        top: 50px;
         right: 5px;
-        border: 2px solid var(--Blue-primary);
+        border: 2px solid var(--color-primary);
         justify-content: space-between;
         z-index: 3;
         .modalPhotoText {

@@ -16,7 +16,7 @@ export const Container = styled.div`
     display: ${(props) => props.display}!important;
     flex-direction: column;
     align-items: start !important;
-    padding: 5px;
+    padding: 15px;
     border: 1px solid var(--grey-3);
     border-radius: 8px;
     width: 300px;
@@ -64,10 +64,13 @@ export const ContainerUl = styled.ul`
 export const ContainerLi = styled.li`
   display: flex;
   width: 100%;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--grey-3);
   align-items: center;
+  margin-bottom: 15px;
+
+  & + li {
+    padding-top: 15px;
+    border-top: 1px solid var(--grey-2);
+  }
 `;
 
 export const Image = styled.img`

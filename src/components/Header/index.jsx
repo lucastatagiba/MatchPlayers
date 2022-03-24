@@ -1,22 +1,27 @@
-import { TextField } from "@mui/material";
-import { BsHouseFill } from "react-icons/bs";
-import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
-import { GrMoreVertical } from "react-icons/gr";
+//EXTERNAL DEPENDENCIES
+import { useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { TextField } from "@mui/material";
+import { AiFillMessage, AiFillSetting, AiOutlineSearch } from "react-icons/ai";
+import { GrMoreVertical } from "react-icons/gr";
+import { BsHouseFill } from "react-icons/bs";
 import { RiCloseCircleFill } from "react-icons/ri";
 
+//INTERNAL DEPENDENCIES
+import { UserDataContext } from "../../providers/user/userData";
 import logoIMG from "../../assets/img/logo.png";
 import Input from "../Input";
 import FileField from "../FileField";
 import SelectGames from "../SelectGames";
 import Button from "../GeneralButton";
-import { UserDataContext } from "../../providers/user/userData";
 import ListFriendsModal from "../ListFriendsModal";
+
+//STYLES
 import {
   Container,
+  InnerContainer,
   Figure,
   LogoImg,
   TitleH3,
@@ -33,9 +38,11 @@ import {
 } from "./style";
 
 const Header = () => {
-  const { handleSubmit } = useForm();
-
   const history = useHistory();
+
+  const params = useParams();
+
+  const { handleSubmit } = useForm();
 
   const [photoProfile] = useState(
     JSON.parse(localStorage.getItem("@matchplayers-userData")).profileIMG || ""
@@ -155,7 +162,7 @@ const Header = () => {
     }
     setSearchUser(newListUsers);
   };
-  const params = useParams();
+
   useEffect(() => {
     handleModal("input");
   }, [params]);
@@ -169,6 +176,7 @@ const Header = () => {
           <Span>Social Media For Games</Span>
         </LogoName>
       </Figure>
+
       <ModalMenu
         className="modalMenu"
         display={appearModal.menu ? "flex" : "none"}
@@ -205,15 +213,18 @@ const Header = () => {
           onChange={(event) => getValueSearch(event)}
           display={appearModal.input ? "flex" : "none"}
         />
+
         <GrMoreVertical className="menu" onClick={() => handleModal("menu")} />
         <BsHouseFill
           className="houseIcon"
           onClick={() => history.push("/feed")}
         />
+
         <AiFillMessage
           className="messageIcon"
           onClick={() => handleModal("message")}
         />
+
         <div className="configDiv">
           <AiFillSetting
             className="configIcon"
@@ -287,6 +298,7 @@ const Header = () => {
             </Form>
           </ModalConfig>
         </div>
+
         <div className="profilePhoto">
           <UserImage
             src={
@@ -303,6 +315,7 @@ const Header = () => {
             <div onClick={() => handleModal("photo")} className="close">
               <RiCloseCircleFill />
             </div>
+
             <DivsMenu
               onClick={() => {
                 setUserProfile(userData);
@@ -313,6 +326,14 @@ const Header = () => {
             >
               Ir para o meu perfil
             </DivsMenu>
+
+            <DivsMenu
+              className="modalPhotoText2"
+              onClick={() => history.push("/about")}
+            >
+              Sobre nós
+            </DivsMenu>
+
             <DivsMenu
               className="modalPhotoText2"
               onClick={() => {
@@ -325,6 +346,7 @@ const Header = () => {
           </div>
         </div>
       </div>
+
       {modalFriends && (
         <ListFriendsModal
           listFriends={listFriends}
@@ -334,4 +356,5 @@ const Header = () => {
     </Container>
   );
 };
+
 export default Header;

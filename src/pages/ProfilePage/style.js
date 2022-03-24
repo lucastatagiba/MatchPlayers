@@ -227,7 +227,7 @@ export const ProfileCardBottom = styled.div`
   @media only screen and (min-width: 768px) {
     &.profile-card-bottom {
       margin-left: auto;
-      padding: 25px 0 25px 0;
+      padding: 25px 15px;
       max-width: 500px;
     }
   }
@@ -255,7 +255,7 @@ export const BottomLeft = styled.div`
     justify-content: center;
     align-items: flex-start;
     height: 100%;
-    gap: 0 20px;
+    gap: 10px 20px;
   }
 `;
 

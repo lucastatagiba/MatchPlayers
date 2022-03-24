@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   &.feed-page {
     margin-top: 30px;
+    padding-top: 45px;
     padding-bottom: 50px;
   }
 
@@ -21,7 +22,7 @@ export const Container = styled.main`
       margin-left: auto;
       margin-right: auto;
       max-width: 1100px;
-      gap: 0 50px;
+      gap: 0 25px;
     }
   }
 `;
@@ -114,7 +115,7 @@ export const Navigation = styled.nav`
   &.navigation-container {
     display: flex;
     background: var(--color-white);
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     padding: 15px;
     gap: 0 10px;
     box-shadow: var(--box-shadow-smooth);

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-<<<<<<< Updated upstream
   &.cardgames {
     display: flex;
     justify-content: center;
@@ -9,25 +8,10 @@ export const Container = styled.div`
     background: var(--grey-2);
     border-radius: ${({ size }) =>
       size === "small" ? "var(--radius-percent-50)" : "var(--radius-pixels-8)"};
-    padding: 5px 5px;
-    width: fit-content;
-    height: fit-content;
+    width: ${({ size }) => (size === "small" ? "fit-content" : "150px")};
+    height: ${({ size }) => (size === "small" ? "fit-content" : "35px")};
     gap: 0 5px;
   }
-=======
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--grey-2);
-  border-radius: ${({ size }) =>
-    size === "small" ? "var(--radius-percent-50)" : "var(--radius-pixels-8)"};
-  padding: 5px 10px;
-  width: fit-content;
-  max-width: 150px;
-  height: fit-content;
-  gap: 0 5px;
-  box-shadow: var(--box-shadow-soft);
->>>>>>> Stashed changes
 `;
 
 export const Image = styled.img`

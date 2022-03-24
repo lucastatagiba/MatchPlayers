@@ -1,27 +1,34 @@
-import { Container, Box } from "./style";
+//EXTERNAL DEPENDENCIES
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
+//INTERNAL DEPENDENCIES
 import logoIMG from "../../assets/img/logo.png";
 import Button from "../../components/GeneralButton";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
+//STYLES
+import { Container, Box, LogoContainer, Image, Caption, Text } from "./style";
 
 const NotFoundPage = () => {
   return (
     <>
-      <Container>
-        <Box>
-          <figure>
-            <img className="logoimg" src={logoIMG} alt="Logo" />
-            <div>
-              <h3>MatchPlayers</h3>
-              <span>Social Media For Games</span>
-            </div>
-          </figure>
+      <Container className="notfound">
+        <Box className="notfound-main">
+          <LogoContainer className="logo-container">
+            <Image className="logo-container__image" src={logoIMG} alt="Logo" />
+            <Caption className="logo-container__caption">
+              <Text className="logo-container__text--top">MatchPlayers</Text>
+              <Text className="logo-container">Social Media For Games</Text>
+            </Caption>
+          </LogoContainer>
 
-          <h2>Esta Página não está disponível</h2>
-          <p>
+          <Text className="main__text--top">
+            Esta Página não está disponível
+          </Text>
+          <Text className="main__text--bottom">
             O link pode não estar funcionando ou a Página pode ter sido
             removida. Verifique se o link que você está tentando abrir está
             correto.
-          </p>
+          </Text>
           <Link to="/">
             <Button
               bgcolor={"#6C8394"}

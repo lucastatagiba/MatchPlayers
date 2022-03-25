@@ -210,7 +210,14 @@ const CardFeed = ({
           <Comments className="comments-list">
             {comments &&
               comments.map((comment, index) => (
-                <li key={index}>{comment.comment}</li>
+                <li key={index}>
+                  <h3
+                    onClick={() => handleProfileUser(comment.userId, history)}
+                  >
+                    {comment.nickname}
+                  </h3>
+                  <p>{comment.comment}</p>
+                </li>
               ))}
           </Comments>
         </ContainerComments>

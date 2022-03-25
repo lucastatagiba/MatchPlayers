@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   &.news {
-    background-color: var(--White-primary);
+    background-color: var(--color-white);
     margin-bottom: 10px;
     border-radius: 8px;
     padding: 20px;
+    width: 100%;
     text-decoration: none;
-    color: var(--Gray-4);
+    color: var(--grey-4);
   }
   &.cardnews {
     display: flex;

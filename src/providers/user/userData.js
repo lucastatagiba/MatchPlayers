@@ -245,6 +245,7 @@ export const UserDataProvider = ({ children }) => {
           JSON.stringify(res.data)
         );
         setUserData(res.data);
+        setUserProfile(res.data);
         toast.success("Horário alterado");
       })
       .catch(() => toast.error("Tente Novamente!"));
